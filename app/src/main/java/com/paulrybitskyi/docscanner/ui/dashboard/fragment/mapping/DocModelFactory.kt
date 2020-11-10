@@ -14,26 +14,30 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.dashboard
+package com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping
 
-import androidx.fragment.app.viewModels
-import com.paulrybitskyi.docscanner.R
-import com.paulrybitskyi.docscanner.databinding.FragmentDashboardBinding
-import com.paulrybitskyi.docscanner.ui.base.BaseFragment
-import com.paulrybitskyi.docscanner.utils.viewBinding
-
-internal class DashboardFragment : BaseFragment<
-    FragmentDashboardBinding,
-    DashboardViewModel
->(R.layout.fragment_dashboard) {
+import com.paulrybitskyi.docscanner.ui.views.DocModel
+import com.paulrybitskyi.docscanner.utils.DocDateFormatter
+import java.io.File
 
 
-    override val viewBinding by viewBinding(FragmentDashboardBinding::bind)
-    override val viewModel by viewModels<DashboardViewModel>()
+internal interface DocModelFactory {
+
+    fun createModel(document: File): DocModel
+
+}
 
 
-    override fun onInit() {
-        super.onInit()
+internal class DocModelFactoryImpl(
+    private val docDateFormatter: DocDateFormatter
+) : DocModelFactory {
+
+
+    override fun createModel(document: File): DocModel {
+        return DocModel(
+            name = document.name,
+            date = docDateFormatter.formatDate(document.lastModified())
+        )
     }
 
 

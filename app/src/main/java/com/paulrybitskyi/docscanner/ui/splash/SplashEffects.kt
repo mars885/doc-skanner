@@ -14,9 +14,26 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.dashboard
+package com.paulrybitskyi.docscanner.ui.splash
 
-import androidx.hilt.lifecycle.ViewModelInject
-import com.paulrybitskyi.docscanner.ui.base.BaseViewModel
+import com.paulrybitskyi.docscanner.ui.base.events.Command
+import com.paulrybitskyi.docscanner.ui.base.events.Route
+import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
 
-internal class DashboardViewModel @ViewModelInject constructor() : BaseViewModel()
+
+internal sealed class SplashCommands : Command {
+
+    object RequestStoragePermission : Command
+
+    class ShowStoragePermissionDeniedDialog(val config: DialogConfig) : Command
+
+}
+
+
+internal sealed class SplashRoutes : Route {
+
+    object Dashboard : SplashRoutes()
+
+    object Exit : SplashRoutes()
+
+}

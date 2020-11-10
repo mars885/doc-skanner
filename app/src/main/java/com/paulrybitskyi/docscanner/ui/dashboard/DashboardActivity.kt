@@ -14,17 +14,29 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui
+package com.paulrybitskyi.docscanner.ui.dashboard
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.paulrybitskyi.commons.ktx.intentFor
 import com.paulrybitskyi.commons.window.anims.WindowAnimations
 import com.paulrybitskyi.commons.window.anims.overrideEnterTransition
 import com.paulrybitskyi.docscanner.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-internal class RootActivity : AppCompatActivity(R.layout.activity_root) {
+internal class DashboardActivity : AppCompatActivity(R.layout.activity_dashboard) {
+
+
+    companion object {
+
+        fun newIntent(context: Context): Intent {
+            return context.intentFor<DashboardActivity>()
+        }
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

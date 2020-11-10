@@ -19,5 +19,18 @@
 <resources>
 
     <string name="app_name">DocScanner</string>
+    <string name="font_family_medium" translatable="false">sans-serif-medium</string>
+
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
+
+    <!-- Errors -->
+    <string name="error_storage_permission_not_granted">The app cannot proceed further without access to the phone\'s media. Please try again.</string>
+    <string name="error_storage_folder_creation_failed">Could not create the storage folder. Please try again later.</string>
+    <string name="error_unknown_message">Oops! Something went wrong.</string>
+
+    <!-- DashboardFragment -->
+    <string name="dashboard_toolbar_title">Dashboard</string>
+    <string name="dashboard_info_view_title">No Documents Found</string>
 
 </resources>

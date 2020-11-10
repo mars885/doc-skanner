@@ -54,6 +54,8 @@ object versions {
     const val daggerHiltAssistedInjection = "1.0.0-alpha02"
     const val materialComponents = "1.3.0-alpha02"
     const val protobuf = "3.10.0"
+    const val dexter = "6.2.1"
+    const val materialDialogs = "0.9.6.0"
     const val desugaredLibs = "1.0.9"
     const val kotlinResult = "1.1.8"
     const val expandableTextView = "1.0.5"
@@ -171,6 +173,8 @@ object deps {
 
     object misc {
 
+        const val dexter = "com.karumi:dexter:${versions.dexter}"
+        const val materialDialogs = "com.afollestad.material-dialogs:core:${versions.materialDialogs}"
         const val desugaredLibs = "com.android.tools:desugar_jdk_libs:${versions.desugaredLibs}"
         const val kotlinResult = "com.michael-bull.kotlin-result:kotlin-result:${versions.kotlinResult}"
         const val expandableTextView = "at.blogc:expandabletextview:${versions.expandableTextView}"

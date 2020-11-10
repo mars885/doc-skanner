@@ -49,6 +49,7 @@ android {
 
 dependencies {
     implementation(deps.kotlin.stdLib)
+    implementation(deps.kotlin.coroutinesCore)
 
     implementation(deps.androidX.appCompat)
     implementation(deps.androidX.navFragmentKtx)
@@ -62,7 +63,14 @@ dependencies {
 
     implementation(deps.google.materialComponents)
 
+    implementation(deps.commons.commonsCore)
+    implementation(deps.commons.commonsKtx)
+    implementation(deps.commons.commonsWidgets)
     implementation(deps.commons.commonsWindowAnims)
+    implementation(deps.commons.commonsRecyclerView)
+
+    implementation(deps.misc.dexter)
+    implementation(deps.misc.materialDialogs)
 
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)

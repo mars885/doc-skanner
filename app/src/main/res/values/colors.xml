@@ -24,6 +24,32 @@
     <color name="colorContentContainer">#242526</color>
     <color name="colorPrimaryText">@android:color/white</color>
     <color name="colorSecondaryText">#a1a8b0</color>
+    <color name="colorSecondaryDarkText">#83898e</color>
     <color name="colorNavigationBar">#2c2d2e</color>
+    <color name="colorProgressBar">@color/colorAccent</color>
+    <color name="colorInfoView">@color/colorSecondaryText</color>
+
+    <!-- Toolbar -->
+    <color name="toolbar_background_color">@color/colorPrimary</color>
+    <color name="toolbar_title_text_color">@color/colorPrimaryText</color>
+    <color name="toolbar_button_icon_color">@color/colorPrimaryText</color>
+
+    <!-- Dialogs -->
+    <color name="dialog_background_color">@color/colorPrimary</color>
+    <color name="dialog_title_color">@color/colorPrimaryText</color>
+    <color name="dialog_text_color">@color/colorPrimaryText</color>
+    <color name="dialog_widget_color">@color/colorAccent</color>
+    <color name="dialog_button_color">@color/colorPrimaryText</color>
+
+    <!-- DashboardFragment -->
+    <color name="dashboard_docs_background">@color/colorContentContainer</color>
+    <color name="dashboard_scan_btn_background">@color/colorAccent</color>
+    <color name="dashboard_scan_btn_icon_color">@color/colorPrimaryText</color>
+
+    <!-- DocView -->
+    <color name="doc_card_background_color">@color/colorPrimary</color>
+    <color name="doc_icon_color">@color/colorSecondaryText</color>
+    <color name="doc_name_color">@color/colorSecondaryText</color>
+    <color name="doc_date_color">@color/colorSecondaryDarkText</color>
 
 </resources>

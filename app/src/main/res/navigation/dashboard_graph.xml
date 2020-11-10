@@ -19,12 +19,12 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root_graph"
+    android:id="@+id/dashboard_graph"
     app:startDestination="@+id/dashboardFragment">
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.paulrybitskyi.docscanner.ui.dashboard.DashboardFragment">
+        android:name="com.paulrybitskyi.docscanner.ui.dashboard.fragment.DashboardFragment">
 
         <action
             android:id="@+id/action_editFragment"

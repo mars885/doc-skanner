@@ -17,12 +17,8 @@
 package com.paulrybitskyi.docscanner.ui.base
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.CallSuper
-import androidx.annotation.LayoutRes
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.paulrybitskyi.commons.ktx.showLongToast
@@ -32,45 +28,25 @@ import com.paulrybitskyi.docscanner.ui.base.events.Route
 import com.paulrybitskyi.docscanner.ui.base.events.commons.GeneralCommands
 import kotlinx.coroutines.flow.collect
 
-internal abstract class BaseFragment<
+internal abstract class BaseActivity<
     VB : ViewBinding,
     VM : BaseViewModel
->(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
+> : AppCompatActivity() {
 
-
-    private var isViewCreated = false
 
     protected abstract val viewBinding: VB
     protected abstract val viewModel: VM
 
 
-    final override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Prevent the view from recreation until onDestroy is called
-        return if(isViewCreated) {
-            viewBinding.root
-        } else {
-            super.onCreateView(inflater, container, savedInstanceState)
-        }
-    }
+    // Cannot be made final due to Dagger Hilt
+    override fun onCreate(savedInstanceState: Bundle?) {
+        onPreInit()
 
+        super.onCreate(savedInstanceState)
+        setContentView(viewBinding.root)
 
-    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val wasViewCreated = isViewCreated
-        isViewCreated = true
-
-        if(!wasViewCreated) {
-            onPreInit()
-            onInit()
-            onPostInit()
-        }
-
-        onBindViewModel()
+        onInit()
+        onPostInit()
     }
 
 
@@ -82,7 +58,28 @@ internal abstract class BaseFragment<
 
     @CallSuper
     protected open fun onInit() {
-        // Stub
+        onBindViewModel()
+    }
+
+
+    @CallSuper
+    protected open fun onBindViewModel() {
+        bindViewModelCommands()
+        bindViewModelRoutes()
+    }
+
+
+    private fun bindViewModelCommands() {
+        lifecycleScope.launchWhenResumed {
+            viewModel.commandFlow.collect(::onHandleCommand)
+        }
+    }
+
+
+    private fun bindViewModelRoutes() {
+        lifecycleScope.launchWhenResumed {
+            viewModel.routeFlow.collect(::onRoute)
+        }
     }
 
 
@@ -105,27 +102,6 @@ internal abstract class BaseFragment<
 
 
     @CallSuper
-    protected open fun onBindViewModel() {
-        bindViewModelCommands()
-        bindViewModelRoutes()
-    }
-
-
-    private fun bindViewModelCommands() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.commandFlow.collect(::onHandleCommand)
-        }
-    }
-
-
-    private fun bindViewModelRoutes() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.routeFlow.collect(::onRoute)
-        }
-    }
-
-
-    @CallSuper
     protected open fun onHandleCommand(command: Command) {
         when(command) {
             is GeneralCommands.ShowShortToast -> showShortToast(command.message)
@@ -137,13 +113,6 @@ internal abstract class BaseFragment<
     @CallSuper
     protected open fun onRoute(route: Route) {
         // Stub
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        isViewCreated = false
     }
 
 

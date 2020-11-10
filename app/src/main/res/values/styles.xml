@@ -27,4 +27,17 @@
         <item name="android:navigationBarColor">@color/colorNavigationBar</item>
     </style>
 
+    <style name="DocScannerTheme.SplashScreen">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+    <style name="DocScanner"/>
+
+    <style name="DocScanner.Toolbar">
+        <item name="toolbar_titleTextColor">@color/toolbar_title_text_color</item>
+        <item name="toolbar_buttonIconColor">@color/toolbar_button_icon_color</item>
+        <item name="toolbar_titleTextSize">@dimen/toolbar_title_text_size</item>
+        <item name="toolbar_titleTextGravity">left</item>
+    </style>
+
 </resources>

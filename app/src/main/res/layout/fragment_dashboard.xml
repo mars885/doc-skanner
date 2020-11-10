@@ -19,18 +19,45 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.paulrybitskyi.commons.widgets.toolbar.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="DASHBOARD"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
+        app:toolbar_titleText="@string/dashboard_toolbar_title"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/DocScanner.Toolbar"/>
+
+    <com.paulrybitskyi.docscanner.ui.views.DocsView
+        android:id="@+id/docsView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/dashboard_docs_background"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/scanBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dashboard_scan_btn_margin"
+        android:layout_marginBottom="@dimen/dashboard_scan_btn_margin_bottom"
+        android:layout_marginStart="@dimen/dashboard_scan_btn_margin"
+        android:layout_marginEnd="@dimen/dashboard_scan_btn_margin"
+        android:backgroundTint="@color/dashboard_scan_btn_background"
+        android:src="@drawable/text_box_plus_outline"
+        app:tint="@color/dashboard_scan_btn_icon_color"
+        app:fabSize="normal"
+        app:borderWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
