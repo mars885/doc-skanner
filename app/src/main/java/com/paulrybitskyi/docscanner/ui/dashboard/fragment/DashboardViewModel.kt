@@ -16,6 +16,10 @@
 
 package com.paulrybitskyi.docscanner.ui.dashboard.fragment
 
+import android.Manifest.permission.CAMERA
+import android.content.Context
+import android.net.Uri
+import androidx.core.net.toUri
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,22 +31,40 @@ import com.paulrybitskyi.docscanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
 import com.paulrybitskyi.docscanner.ui.views.DocModel
 import com.paulrybitskyi.docscanner.ui.views.DocsUiState
-import com.paulrybitskyi.docscanner.utils.DispatcherProvider
-import com.paulrybitskyi.docscanner.utils.StringProvider
+import com.paulrybitskyi.docscanner.utils.*
+import com.paulrybitskyi.docscanner.utils.CameraPresenceVerifier
+import com.paulrybitskyi.docscanner.utils.PermissionVerifier
+import com.paulrybitskyi.docscanner.utils.TemporaryImageFileCreator
+import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
+import com.paulrybitskyi.docscanner.utils.dialogs.DialogItem
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 internal class DashboardViewModel @ViewModelInject constructor(
+    @ApplicationContext private val applicationContext: Context,
     private val observeAppStorageFolderFilesUseCase: ObserveAppStorageFolderFilesUseCase,
     private val docsUiStateFactory: DocsUiStateFactory,
     private val dispatcherProvider: DispatcherProvider,
-    private val stringProvider: StringProvider
+    private val stringProvider: StringProvider,
+    private val cameraPresenceVerifier: CameraPresenceVerifier,
+    private val permissionVerifier: PermissionVerifier,
+    private val temporaryImageFileCreator: TemporaryImageFileCreator,
+    private val shareableUriFactory: ShareableUriFactory
 ) : BaseViewModel() {
 
 
     private var isLoadingData = false
 
+    private var cameraImageUri: Uri? = null
+
+    private val _toolbarProgressBarVisibility = MutableLiveData<Boolean>(false)
     private val _uiState = MutableLiveData<DocsUiState>(DocsUiState.Empty)
+
+    val toolbarProgressBarVisibility: LiveData<Boolean>
+        get() = _toolbarProgressBarVisibility
 
     val uiState: LiveData<DocsUiState>
         get() = _uiState
@@ -80,5 +102,131 @@ internal class DashboardViewModel @ViewModelInject constructor(
         route(DashboardRoutes.DocPreview(model.filePath))
     }
 
+
+    fun onScanButtonClicked() {
+        showImagePickerDialog()
+    }
+
+
+    private fun showImagePickerDialog() {
+        dispatchCommand(DashboardCommands.ShowDialog(constructImagePickerDialogConfig()))
+    }
+
+
+    private fun constructImagePickerDialogConfig(): DialogConfig {
+        val options = buildList {
+            if(cameraPresenceVerifier.isCameraPresent()) {
+                add(ImagePickerOption.CAMERA.toDialogItem())
+            }
+
+            add(ImagePickerOption.GALLERY.toDialogItem())
+        }
+
+        val dialogConfig = DialogConfig(
+            title = stringProvider.getString(R.string.doc_preview_image_picker_dialog_title),
+            items = options,
+            itemsCallback = ::onImagePickerItemSelected
+        )
+
+        return dialogConfig
+    }
+
+
+    private fun onImagePickerItemSelected(item: DialogItem) {
+        when(item.tag as ImagePickerOption) {
+            ImagePickerOption.CAMERA -> onCameraOptionSelected()
+            ImagePickerOption.GALLERY -> onGalleryOptionSelected()
+        }
+    }
+
+
+    private fun onCameraOptionSelected() {
+        if(permissionVerifier.isPermissionGranted(CAMERA)) {
+            takeCameraImage()
+            return
+        }
+
+        dispatchCommand(DashboardCommands.RequestCameraPermission)
+    }
+
+
+    private fun takeCameraImage() {
+        val imageFile = temporaryImageFileCreator.createTempImageFile()
+        val imageUri = shareableUriFactory.createShareableUri(imageFile)
+            .also { cameraImageUri = it }
+
+        dispatchCommand(DashboardCommands.TakeCameraImage(imageUri))
+    }
+
+
+    fun onCameraPermissionGranted() {
+        takeCameraImage()
+    }
+
+
+    fun onCameraPermissionDenied() {
+        val dialogConfig = DialogConfig(
+            title = stringProvider.getString(R.string.error),
+            content = stringProvider.getString(R.string.error_camera_permission_not_granted),
+            positiveBtnText = stringProvider.getString(R.string.ok)
+        )
+
+        dispatchCommand(DashboardCommands.ShowDialog(dialogConfig))
+    }
+
+
+    fun onCameraImageTaken() {
+        route(DashboardRoutes.Edit(checkNotNull(cameraImageUri)))
+    }
+
+
+    private fun onGalleryOptionSelected() {
+        dispatchCommand(DashboardCommands.PickGalleryImage)
+    }
+
+
+    fun onGalleryImagePicked(imageUri: Uri) {
+        _toolbarProgressBarVisibility.value = true
+
+        viewModelScope.launch(dispatcherProvider.io) {
+            copyGalleryImage(imageUri)
+        }
+    }
+
+
+    private suspend fun copyGalleryImage(galleryImageUri: Uri) {
+        val contentResolver = applicationContext.contentResolver
+        val sourceImageIs = contentResolver.openInputStream(galleryImageUri)
+        val destImageFile = temporaryImageFileCreator.createTempImageFile()
+        val destImageOs = destImageFile.outputStream()
+
+        sourceImageIs?.copyTo(destImageOs)
+
+        withContext(dispatcherProvider.main) {
+            _toolbarProgressBarVisibility.value = false
+            route(DashboardRoutes.Edit(destImageFile.toUri()))
+        }
+    }
+
+
+    private fun ImagePickerOption.toDialogItem(): DialogItem {
+        val title = stringProvider.getString(
+            when(this) {
+                ImagePickerOption.CAMERA -> R.string.camera
+                ImagePickerOption.GALLERY -> R.string.gallery
+            }
+        )
+
+        return DialogItem(title = title, tag = this)
+    }
+
+
+}
+
+
+private enum class ImagePickerOption {
+
+    CAMERA,
+    GALLERY
 
 }

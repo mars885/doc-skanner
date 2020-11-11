@@ -23,9 +23,12 @@
 
     <string name="ok">OK</string>
     <string name="error">Error</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
     <!-- Errors -->
     <string name="error_storage_permission_not_granted">The app cannot proceed further without access to the phone\'s media. Please try again.</string>
+    <string name="error_camera_permission_not_granted">Cannot take an image without access to the camera. Please try again.</string>
     <string name="error_storage_folder_creation_failed">Could not create the storage folder. Please try again later.</string>
     <string name="error_unknown_message">Oops! Something went wrong.</string>
 
@@ -35,5 +38,6 @@
 
     <!-- DocPreviewFragment -->
     <string name="doc_preview_info_view_title">Cannot not open the file!</string>
+    <string name="doc_preview_image_picker_dialog_title">Choose an image from</string>
 
 </resources>

@@ -31,7 +31,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.Toolbar"/>
+        style="@style/DocScanner.Toolbar">
+
+        <ProgressBar
+            android:id="@+id/toolbarPb"
+            android:layout_width="@dimen/dashboard_toolbar_progress_bar_size"
+            android:layout_height="@dimen/dashboard_toolbar_progress_bar_size"
+            android:layout_marginStart="@dimen/dashboard_toolbar_progress_bar_margin"
+            android:layout_marginEnd="@dimen/dashboard_toolbar_progress_bar_margin"
+            android:layout_gravity="end|center_vertical"/>
+
+    </com.paulrybitskyi.commons.widgets.toolbar.Toolbar>
 
     <com.paulrybitskyi.docscanner.ui.views.DocsView
         android:id="@+id/docsView"

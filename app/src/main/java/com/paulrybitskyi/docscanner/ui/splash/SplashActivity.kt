@@ -41,15 +41,12 @@ internal class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewMo
 
         when(command) {
             is SplashCommands.RequestStoragePermission -> requestStoragePermission()
-            is SplashCommands.ShowStoragePermissionDeniedDialog -> showStoragePermissionDeniedDialog(command.config)
+            is SplashCommands.ShowDialog -> showDialog(command.config)
         }
     }
 
 
     private fun requestStoragePermission() {
-        // Using method references inside withListener throws
-        // very odd compilation error
-
         Dexter.withContext(this)
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(
@@ -60,7 +57,7 @@ internal class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewMo
     }
 
 
-    private fun showStoragePermissionDeniedDialog(config: DialogConfig) {
+    private fun showDialog(config: DialogConfig) {
         dialog?.dismiss()
         dialog = dialogBuilder.buildDialog(this, config).show(lifecycle)
     }

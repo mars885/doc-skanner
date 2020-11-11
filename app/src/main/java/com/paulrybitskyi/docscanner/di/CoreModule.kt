@@ -53,6 +53,26 @@ internal object CoreModule {
 
 
     @Provides
+    fun provideCameraPresenceVerifier(@ApplicationContext context: Context): CameraPresenceVerifier {
+        return CameraPresenceVerifierImpl(context)
+    }
+
+
+    @Provides
+    fun provideTemporaryImageFileCreator(
+        @ApplicationContext context: Context
+    ): TemporaryImageFileCreator {
+        return TemporaryImageFileCreatorImpl(context)
+    }
+
+
+    @Provides
+    fun provideShareableUriFactory(@ApplicationContext context: Context): ShareableUriFactory {
+        return ShareableUriFactoryImpl(context)
+    }
+
+
+    @Provides
     fun provideDialogBuilder(): DialogBuilder {
         return DialogBuilderImpl()
     }

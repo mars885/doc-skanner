@@ -53,4 +53,9 @@ internal class DocPreviewViewModel @ViewModelInject constructor(
     }
 
 
+    fun onToolbarLeftButtonClicked() {
+        route(DocPreviewRoutes.NavigateBack)
+    }
+
+
 }

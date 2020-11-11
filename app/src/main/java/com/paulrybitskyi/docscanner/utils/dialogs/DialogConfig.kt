@@ -16,16 +16,17 @@
 
 package com.paulrybitskyi.docscanner.utils.dialogs
 
+
 internal class DialogConfig(
     val title: String = "",
     val content: String = "",
-    val items: Array<String> = arrayOf(),
+    val items: List<DialogItem> = emptyList(),
     val selectedItemIndex: Int = -1,
     val negativeBtnText: String = "",
     val positiveBtnText: String = "",
     val isCancelable: Boolean = true,
-    val itemsCallback: ((String) -> Unit)? = null,
-    val itemsCallbackSingleChoice: ((Int) -> Unit)? = null,
+    val itemsCallback: ((DialogItem) -> Unit)? = null,
+    val itemsCallbackSingleChoice: ((DialogItem) -> Unit)? = null,
     val negativeBtnClick: (() -> Unit)? = null,
     val positiveBtnClick: (() -> Unit)? = null,
     val onShown: (() -> Unit)? = null,
@@ -57,3 +58,9 @@ internal class DialogConfig(
         get() = (itemsCallbackSingleChoice != null)
 
 }
+
+
+internal class DialogItem(
+    val title: String,
+    val tag: Any? = null
+)

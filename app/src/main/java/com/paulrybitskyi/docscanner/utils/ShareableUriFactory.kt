@@ -14,26 +14,36 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.splash
+package com.paulrybitskyi.docscanner.utils
 
-import com.paulrybitskyi.docscanner.ui.base.events.Command
-import com.paulrybitskyi.docscanner.ui.base.events.Route
-import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
+import android.content.Context
+import android.net.Uri
+import androidx.core.content.FileProvider
+import java.io.File
 
 
-internal sealed class SplashCommands : Command {
+internal interface ShareableUriFactory {
 
-    object RequestStoragePermission : Command
-
-    class ShowDialog(val config: DialogConfig) : Command
+    fun createShareableUri(file: File): Uri
 
 }
 
 
-internal sealed class SplashRoutes : Route {
+internal class ShareableUriFactoryImpl(
+    private val applicationContext: Context
+) : ShareableUriFactory {
 
-    object Dashboard : SplashRoutes()
 
-    object Exit : SplashRoutes()
+    private companion object {
+
+        private const val AUTHORITY = "com.paulrybitskyi.docscanner.provider"
+
+    }
+
+
+    override fun createShareableUri(file: File): Uri {
+        return FileProvider.getUriForFile(applicationContext, AUTHORITY, file)
+    }
+
 
 }

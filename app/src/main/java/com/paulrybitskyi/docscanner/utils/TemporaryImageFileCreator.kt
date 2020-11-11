@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.splash
+package com.paulrybitskyi.docscanner.utils
 
-import com.paulrybitskyi.docscanner.ui.base.events.Command
-import com.paulrybitskyi.docscanner.ui.base.events.Route
-import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
+import android.content.Context
+import java.io.File
 
 
-internal sealed class SplashCommands : Command {
+internal interface TemporaryImageFileCreator {
 
-    object RequestStoragePermission : Command
-
-    class ShowDialog(val config: DialogConfig) : Command
+    fun createTempImageFile(): File
 
 }
 
 
-internal sealed class SplashRoutes : Route {
+internal class TemporaryImageFileCreatorImpl(
+    private val applicationContext: Context
+) : TemporaryImageFileCreator {
 
-    object Dashboard : SplashRoutes()
 
-    object Exit : SplashRoutes()
+    override fun createTempImageFile(): File {
+        return File.createTempFile("IMG_", ".jpg", applicationContext.cacheDir)
+    }
+
 
 }

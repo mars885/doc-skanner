@@ -16,11 +16,29 @@
 
 package com.paulrybitskyi.docscanner.ui.dashboard.fragment
 
+import android.net.Uri
+import com.paulrybitskyi.docscanner.ui.base.events.Command
 import com.paulrybitskyi.docscanner.ui.base.events.Route
+import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
+
+
+internal sealed class DashboardCommands : Command {
+
+    class ShowDialog(val config: DialogConfig): DashboardCommands()
+
+    object RequestCameraPermission: DashboardCommands()
+
+    class TakeCameraImage(val destinationUri: Uri): DashboardCommands()
+
+    object PickGalleryImage: DashboardCommands()
+
+}
 
 
 internal sealed class DashboardRoutes : Route {
 
     data class DocPreview(val filePath: String): DashboardRoutes()
+
+    data class Edit(val docFile: Uri): DashboardRoutes()
 
 }

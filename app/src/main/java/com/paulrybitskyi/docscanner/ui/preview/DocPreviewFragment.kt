@@ -23,6 +23,8 @@ import com.paulrybitskyi.commons.ktx.makeVisible
 import com.paulrybitskyi.docscanner.R
 import com.paulrybitskyi.docscanner.databinding.FragmentDocPreviewBinding
 import com.paulrybitskyi.docscanner.ui.base.BaseFragment
+import com.paulrybitskyi.docscanner.ui.base.events.Route
+import com.paulrybitskyi.docscanner.utils.extensions.navController
 import com.paulrybitskyi.docscanner.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +37,18 @@ internal class DocPreviewFragment : BaseFragment<
 
     override val viewBinding by viewBinding(FragmentDocPreviewBinding::bind)
     override val viewModel by viewModels<DocPreviewViewModel>()
+
+
+    override fun onInit() {
+        super.onInit()
+
+        initToolbar()
+    }
+
+
+    private fun initToolbar() = with(viewBinding.toolbar) {
+        onLeftButtonClickListener = { viewModel.onToolbarLeftButtonClicked() }
+    }
 
 
     override fun onBindViewModel() = with(viewModel) {
@@ -72,6 +86,20 @@ internal class DocPreviewFragment : BaseFragment<
         viewBinding.progressBar.makeGone()
         viewBinding.pdfView.makeGone()
         viewBinding.infoView.makeVisible()
+    }
+
+
+    override fun onRoute(route: Route) {
+        super.onRoute(route)
+
+        when(route) {
+            is DocPreviewRoutes.NavigateBack -> navigateBack()
+        }
+    }
+
+
+    private fun navigateBack() {
+        navController.popBackStack()
     }
 
 

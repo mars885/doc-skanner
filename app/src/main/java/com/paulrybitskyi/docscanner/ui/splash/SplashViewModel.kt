@@ -88,10 +88,11 @@ internal class SplashViewModel @ViewModelInject constructor(
             title = stringProvider.getString(R.string.error),
             content = stringProvider.getString(R.string.error_storage_permission_not_granted),
             positiveBtnText = stringProvider.getString(R.string.ok),
+            isCancelable = false,
             onDismiss = ::exit
         )
 
-        dispatchCommand(SplashCommands.ShowStoragePermissionDeniedDialog(dialogConfig))
+        dispatchCommand(SplashCommands.ShowDialog(dialogConfig))
     }
 
 

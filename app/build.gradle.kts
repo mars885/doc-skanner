@@ -45,6 +45,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    compileOptions {
+        sourceCompatibility = appConfig.javaCompatibilityVersion
+        targetCompatibility = appConfig.javaCompatibilityVersion
+    }
 }
 
 dependencies {

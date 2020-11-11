@@ -62,17 +62,17 @@ internal class DialogBuilderImpl : DialogBuilder {
 
     private fun MaterialDialog.Builder.addListItems(config: DialogConfig) {
         if(config.hasItems) {
-            items(*config.items)
+            items(config.items.map(DialogItem::title))
 
             if(config.hasItemsCallback) {
-                itemsCallback { _, _, _, text ->
-                    config.itemsCallback?.invoke(text.toString())
+                itemsCallback { _, _, index, _ ->
+                    config.itemsCallback?.invoke(config.items[index])
                 }
             }
 
             if(config.hasItemsCallbackSingleChoice && config.hasSelectedItemIndex) {
                 itemsCallbackSingleChoice(config.selectedItemIndex) { _, _, index, _ ->
-                    config.itemsCallbackSingleChoice?.invoke(index)
+                    config.itemsCallbackSingleChoice?.invoke(config.items[index])
                     true
                 }
             }

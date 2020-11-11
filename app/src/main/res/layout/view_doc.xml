@@ -52,11 +52,13 @@
             android:textSize="@dimen/doc_name_text_size"
             android:textColor="@color/doc_name_color"
             android:fontFamily="@string/font_family_medium"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/dateTv"
             app:layout_constraintStart_toEndOf="@id/iconIv"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Document Document Document Documen"/>
+            tools:text="Document"/>
 
         <TextView
             android:id="@+id/dateTv"

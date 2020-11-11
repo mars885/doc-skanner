@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.splash
+package com.paulrybitskyi.docscanner.utils
 
-import com.paulrybitskyi.docscanner.ui.base.events.Command
-import com.paulrybitskyi.docscanner.ui.base.events.Route
-import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
+import android.content.Context
+import android.content.pm.PackageManager
 
 
-internal sealed class SplashCommands : Command {
+internal interface CameraPresenceVerifier {
 
-    object RequestStoragePermission : Command
-
-    class ShowDialog(val config: DialogConfig) : Command
+    fun isCameraPresent(): Boolean
 
 }
 
 
-internal sealed class SplashRoutes : Route {
+internal class CameraPresenceVerifierImpl(
+    private val applicationContext: Context
+) : CameraPresenceVerifier {
 
-    object Dashboard : SplashRoutes()
 
-    object Exit : SplashRoutes()
+    override fun isCameraPresent(): Boolean {
+        return applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
+    }
+
 
 }

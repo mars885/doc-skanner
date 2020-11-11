@@ -29,7 +29,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/docs_recycler_view_padding"
+        android:paddingTop="@dimen/docs_recycler_view_padding"
+        android:paddingStart="@dimen/docs_recycler_view_padding"
+        android:paddingEnd="@dimen/docs_recycler_view_padding"
+        android:paddingBottom="@dimen/docs_recycler_view_padding_bottom"
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:scrollbars="none"/>

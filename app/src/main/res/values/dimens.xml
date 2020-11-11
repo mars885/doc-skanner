@@ -28,11 +28,14 @@
     <dimen name="info_view_title_text_size">16sp</dimen>
 
     <!-- DashboardFragment -->
+    <dimen name="dashboard_toolbar_progress_bar_size">35dp</dimen>
+    <dimen name="dashboard_toolbar_progress_bar_margin">10dp</dimen>
     <dimen name="dashboard_scan_btn_margin">16dp</dimen>
     <dimen name="dashboard_scan_btn_margin_bottom">18dp</dimen>
 
     <!-- DocsView -->
     <dimen name="docs_recycler_view_padding">16dp</dimen>
+    <dimen name="docs_recycler_view_padding_bottom">95dp</dimen>
     <dimen name="docs_recycler_view_decorator_spacing">12dp</dimen>
 
     <!-- DocView -->

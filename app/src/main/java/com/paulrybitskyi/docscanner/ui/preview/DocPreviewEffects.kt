@@ -14,26 +14,13 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.splash
+package com.paulrybitskyi.docscanner.ui.preview
 
-import com.paulrybitskyi.docscanner.ui.base.events.Command
 import com.paulrybitskyi.docscanner.ui.base.events.Route
-import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
 
 
-internal sealed class SplashCommands : Command {
+internal sealed class DocPreviewRoutes : Route {
 
-    object RequestStoragePermission : Command
-
-    class ShowDialog(val config: DialogConfig) : Command
-
-}
-
-
-internal sealed class SplashRoutes : Route {
-
-    object Dashboard : SplashRoutes()
-
-    object Exit : SplashRoutes()
+    object NavigateBack : DocPreviewRoutes()
 
 }
