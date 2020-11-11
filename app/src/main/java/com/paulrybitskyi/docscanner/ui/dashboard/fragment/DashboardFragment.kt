@@ -20,13 +20,15 @@ import androidx.fragment.app.viewModels
 import com.paulrybitskyi.docscanner.R
 import com.paulrybitskyi.docscanner.databinding.FragmentDashboardBinding
 import com.paulrybitskyi.docscanner.ui.base.BaseFragment
+import com.paulrybitskyi.docscanner.ui.base.events.Route
+import com.paulrybitskyi.docscanner.utils.extensions.navController
 import com.paulrybitskyi.docscanner.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 internal class DashboardFragment : BaseFragment<
     FragmentDashboardBinding,
-        DashboardViewModel
+    DashboardViewModel
 >(R.layout.fragment_dashboard) {
 
 
@@ -64,6 +66,20 @@ internal class DashboardFragment : BaseFragment<
         uiState.observe(viewLifecycleOwner) {
             viewBinding.docsView.uiState = it
         }
+    }
+
+
+    override fun onRoute(route: Route) {
+        super.onRoute(route)
+
+        when(route) {
+            is DashboardRoutes.DocPreview -> navigateToDocPreviewScreen(route.filePath)
+        }
+    }
+
+
+    private fun navigateToDocPreviewScreen(docFilePath: String) {
+        navController.navigate(DashboardFragmentDirections.actionDocPreviewFragment(docFilePath))
     }
 
 

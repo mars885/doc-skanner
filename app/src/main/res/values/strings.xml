@@ -33,4 +33,7 @@
     <string name="dashboard_toolbar_title">Dashboard</string>
     <string name="dashboard_info_view_title">No Documents Found</string>
 
+    <!-- DocPreviewFragment -->
+    <string name="doc_preview_info_view_title">Cannot not open the file!</string>
+
 </resources>

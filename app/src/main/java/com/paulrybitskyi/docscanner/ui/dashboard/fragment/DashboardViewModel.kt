@@ -77,7 +77,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
 
     fun onDocClicked(model: DocModel) {
-        //todo
+        route(DashboardRoutes.DocPreview(model.filePath))
     }
 
 

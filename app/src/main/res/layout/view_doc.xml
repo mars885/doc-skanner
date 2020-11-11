@@ -28,12 +28,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/doc_container_padding">
+        android:paddingTop="@dimen/doc_container_vertical_padding"
+        android:paddingBottom="@dimen/doc_container_vertical_padding">
 
         <ImageView
             android:id="@+id/iconIv"
             android:layout_width="@dimen/doc_icon_size"
             android:layout_height="@dimen/doc_icon_size"
+            android:layout_marginStart="@dimen/doc_icon_horizontal_margin"
+            android:layout_marginEnd="@dimen/doc_icon_horizontal_margin"
             android:src="@drawable/file_document_outline"
             app:tint="@color/doc_icon_color"
             app:layout_constraintTop_toTopOf="parent"
@@ -42,28 +45,32 @@
 
         <TextView
             android:id="@+id/nameTv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/doc_name_margin_start"
+            android:layout_marginStart="@dimen/doc_name_horizontal_margin"
+            android:layout_marginEnd="@dimen/doc_name_horizontal_margin"
             android:textSize="@dimen/doc_name_text_size"
             android:textColor="@color/doc_name_color"
             android:fontFamily="@string/font_family_medium"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/dateTv"
             app:layout_constraintStart_toEndOf="@id/iconIv"
-            tools:text="Document"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Document Document Document Documen"/>
 
         <TextView
             android:id="@+id/dateTv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/doc_date_margin_start"
+            android:layout_marginStart="@dimen/doc_date_horizontal_margin"
+            android:layout_marginEnd="@dimen/doc_date_horizontal_margin"
             android:textSize="@dimen/doc_date_text_size"
             android:textColor="@color/doc_date_color"
             android:fontFamily="@string/font_family_medium"
             app:layout_constraintTop_toBottomOf="@id/nameTv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iconIv"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="10.10.2020 3:15 PM"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

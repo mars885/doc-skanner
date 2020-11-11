@@ -35,6 +35,7 @@ internal class DocModelFactoryImpl(
 
     override fun createModel(document: File): DocModel {
         return DocModel(
+            filePath = document.absolutePath,
             name = document.name,
             date = docDateFormatter.formatDate(document.lastModified())
         )

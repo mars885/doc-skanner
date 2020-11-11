@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docscanner.ui.views
+package com.paulrybitskyi.docscanner.ui.dashboard.fragment
 
-internal data class DocModel(
-    val filePath: String,
-    val name: String,
-    val date: String?
-)
+import com.paulrybitskyi.docscanner.ui.base.events.Route
+
+
+internal sealed class DashboardRoutes : Route {
+
+    data class DocPreview(val filePath: String): DashboardRoutes()
+
+}

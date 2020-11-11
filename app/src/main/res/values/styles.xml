@@ -23,7 +23,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorContentContainer</item>
         <item name="android:navigationBarColor">@color/colorNavigationBar</item>
     </style>
 
@@ -38,6 +38,19 @@
         <item name="toolbar_buttonIconColor">@color/toolbar_button_icon_color</item>
         <item name="toolbar_titleTextSize">@dimen/toolbar_title_text_size</item>
         <item name="toolbar_titleTextGravity">left</item>
+    </style>
+
+    <style name="DocScanner.InfoView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/info_view_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/info_view_horizontal_margin</item>
+        <item name="infoView_iconSize">@dimen/info_view_icon_size</item>
+        <item name="infoView_iconColor">@color/colorInfoView</item>
+        <item name="infoView_titleTextColor">@color/colorInfoView</item>
+        <item name="infoView_titleTextTopMargin">@dimen/info_view_title_text_top_margin</item>
+        <item name="infoView_titleTextSize">@dimen/info_view_title_text_size</item>
+        <item name="infoView_descriptionText">""</item>
     </style>
 
 </resources>

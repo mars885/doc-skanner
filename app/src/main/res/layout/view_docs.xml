@@ -43,18 +43,9 @@
 
     <com.paulrybitskyi.commons.widgets.InfoView
         android:id="@+id/infoView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/docs_info_view_horizontal_margin"
-        android:layout_marginEnd="@dimen/docs_info_view_horizontal_margin"
         app:infoView_icon="@drawable/file_document_multiple_outline"
-        app:infoView_iconSize="80dp"
-        app:infoView_iconColor="@color/colorInfoView"
         app:infoView_titleText="@string/dashboard_info_view_title"
-        app:infoView_titleTextColor="@color/colorInfoView"
-        app:infoView_titleTextTopMargin="@dimen/docs_info_view_title_text_top_margin"
-        app:infoView_titleTextSize="@dimen/docs_info_view_title_text_size"
-        app:infoView_descriptionText=""/>
+        style="@style/DocScanner.InfoView"/>
 
 </merge>

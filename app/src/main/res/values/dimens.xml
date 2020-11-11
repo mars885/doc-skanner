@@ -21,6 +21,12 @@
     <!-- Toolbar -->
     <dimen name="toolbar_title_text_size">20sp</dimen>
 
+    <!-- InfoView -->
+    <dimen name="info_view_horizontal_margin">30dp</dimen>
+    <dimen name="info_view_icon_size">80dp</dimen>
+    <dimen name="info_view_title_text_top_margin">15dp</dimen>
+    <dimen name="info_view_title_text_size">16sp</dimen>
+
     <!-- DashboardFragment -->
     <dimen name="dashboard_scan_btn_margin">16dp</dimen>
     <dimen name="dashboard_scan_btn_margin_bottom">18dp</dimen>
@@ -28,18 +34,19 @@
     <!-- DocsView -->
     <dimen name="docs_recycler_view_padding">16dp</dimen>
     <dimen name="docs_recycler_view_decorator_spacing">12dp</dimen>
-    <dimen name="docs_info_view_horizontal_margin">30dp</dimen>
-    <dimen name="docs_info_view_title_text_top_margin">15dp</dimen>
-    <dimen name="docs_info_view_title_text_size">16sp</dimen>
 
     <!-- DocView -->
     <dimen name="doc_card_elevation">2dp</dimen>
     <dimen name="doc_card_corner_radius">8dp</dimen>
-    <dimen name="doc_container_padding">10dp</dimen>
+    <dimen name="doc_container_vertical_padding">12dp</dimen>
     <dimen name="doc_icon_size">30dp</dimen>
-    <dimen name="doc_name_margin_start">15dp</dimen>
+    <dimen name="doc_icon_horizontal_margin">15dp</dimen>
+    <dimen name="doc_name_horizontal_margin">15dp</dimen>
     <dimen name="doc_name_text_size">18sp</dimen>
-    <dimen name="doc_date_margin_start">15dp</dimen>
+    <dimen name="doc_date_horizontal_margin">15dp</dimen>
     <dimen name="doc_date_text_size">14sp</dimen>
+
+    <!-- DocPreviewFragment -->
+    <dimen name="doc_preview_page_spacing">5dp</dimen>
 
 </resources>

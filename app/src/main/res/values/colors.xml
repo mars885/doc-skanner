@@ -52,4 +52,7 @@
     <color name="doc_name_color">@color/colorSecondaryText</color>
     <color name="doc_date_color">@color/colorSecondaryDarkText</color>
 
+    <!-- DocPreviewFragment -->
+    <color name="doc_preview_container_background">@color/colorContentContainer</color>
+
 </resources>

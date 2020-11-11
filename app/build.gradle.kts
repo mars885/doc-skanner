@@ -71,6 +71,7 @@ dependencies {
 
     implementation(deps.misc.dexter)
     implementation(deps.misc.materialDialogs)
+    implementation(deps.misc.pdfViewer)
 
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)

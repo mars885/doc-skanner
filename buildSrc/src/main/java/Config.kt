@@ -56,9 +56,7 @@ object versions {
     const val protobuf = "3.10.0"
     const val dexter = "6.2.1"
     const val materialDialogs = "0.9.6.0"
-    const val desugaredLibs = "1.0.9"
-    const val kotlinResult = "1.1.8"
-    const val expandableTextView = "1.0.5"
+    const val pdfViewer = "2.8.2"
     const val okHttp = "4.8.0"
     const val retrofit = "2.9.0"
     const val moshi = "1.9.3"
@@ -175,9 +173,7 @@ object deps {
 
         const val dexter = "com.karumi:dexter:${versions.dexter}"
         const val materialDialogs = "com.afollestad.material-dialogs:core:${versions.materialDialogs}"
-        const val desugaredLibs = "com.android.tools:desugar_jdk_libs:${versions.desugaredLibs}"
-        const val kotlinResult = "com.michael-bull.kotlin-result:kotlin-result:${versions.kotlinResult}"
-        const val expandableTextView = "at.blogc:expandabletextview:${versions.expandableTextView}"
+        const val pdfViewer = "com.github.barteksc:android-pdf-viewer:${versions.pdfViewer}"
 
     }
 
