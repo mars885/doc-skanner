@@ -29,12 +29,9 @@ import com.paulrybitskyi.docscanner.domain.ObserveAppStorageFolderFilesUseCase
 import com.paulrybitskyi.docscanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docscanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
-import com.paulrybitskyi.docscanner.ui.views.DocModel
-import com.paulrybitskyi.docscanner.ui.views.DocsUiState
+import com.paulrybitskyi.docscanner.ui.views.docs.DocModel
+import com.paulrybitskyi.docscanner.ui.views.docs.DocsUiState
 import com.paulrybitskyi.docscanner.utils.*
-import com.paulrybitskyi.docscanner.utils.CameraPresenceVerifier
-import com.paulrybitskyi.docscanner.utils.PermissionVerifier
-import com.paulrybitskyi.docscanner.utils.TemporaryImageFileCreator
 import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docscanner.utils.dialogs.DialogItem
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -60,7 +57,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
     private var cameraImageUri: Uri? = null
 
-    private val _toolbarProgressBarVisibility = MutableLiveData<Boolean>(false)
+    private val _toolbarProgressBarVisibility = MutableLiveData(false)
     private val _uiState = MutableLiveData<DocsUiState>(DocsUiState.Empty)
 
     val toolbarProgressBarVisibility: LiveData<Boolean>
@@ -176,7 +173,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
 
     fun onCameraImageTaken() {
-        route(DashboardRoutes.Edit(checkNotNull(cameraImageUri)))
+        route(DashboardRoutes.DcoEditing(checkNotNull(cameraImageUri)))
     }
 
 
@@ -204,7 +201,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
         withContext(dispatcherProvider.main) {
             _toolbarProgressBarVisibility.value = false
-            route(DashboardRoutes.Edit(destImageFile.toUri()))
+            route(DashboardRoutes.DcoEditing(destImageFile.toUri()))
         }
     }
 

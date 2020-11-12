@@ -16,7 +16,7 @@
 
 package com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping
 
-import com.paulrybitskyi.docscanner.ui.views.DocsUiState
+import com.paulrybitskyi.docscanner.ui.views.docs.DocsUiState
 import java.io.File
 
 

@@ -39,6 +39,6 @@ internal sealed class DashboardRoutes : Route {
 
     data class DocPreview(val filePath: String): DashboardRoutes()
 
-    data class Edit(val docFile: Uri): DashboardRoutes()
+    data class DcoEditing(val docFile: Uri): DashboardRoutes()
 
 }

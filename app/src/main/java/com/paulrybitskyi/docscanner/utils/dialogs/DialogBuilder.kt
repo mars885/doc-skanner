@@ -38,6 +38,7 @@ internal class DialogBuilderImpl : DialogBuilder {
             .apply {
                 addTitle(config)
                 addContent(config)
+                addInput(config)
                 addListItems(config)
                 addNegativeText(config)
                 addPositiveText(config)
@@ -57,6 +58,15 @@ internal class DialogBuilderImpl : DialogBuilder {
 
     private fun MaterialDialog.Builder.addContent(config: DialogConfig) {
         if(config.hasContent) content(config.content)
+    }
+
+
+    private fun MaterialDialog.Builder.addInput(config: DialogConfig) {
+        if(config.hasInput) {
+            input(config.inputHint, config.inputPrefill) { _, text ->
+                config.inputCallback?.invoke(text.toString())
+            }
+        }
     }
 
 

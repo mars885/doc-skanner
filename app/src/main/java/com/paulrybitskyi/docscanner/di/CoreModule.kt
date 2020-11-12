@@ -23,6 +23,8 @@ import com.paulrybitskyi.docscanner.utils.DocDateFormatterImpl
 import com.paulrybitskyi.docscanner.utils.StringProviderImpl
 import com.paulrybitskyi.docscanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docscanner.utils.dialogs.DialogBuilderImpl
+import com.paulrybitskyi.docscanner.utils.highlight.ImageHighlightFinder
+import com.paulrybitskyi.docscanner.utils.highlight.OpenCvImageHighlightFinder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +34,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @Module
 @InstallIn(ApplicationComponent::class)
 internal object CoreModule {
+
+
+    @Provides
+    fun provideOpenCvManager(): OpenCvManager {
+        return OpenCvManagerImpl()
+    }
 
 
     @Provides
@@ -67,6 +75,14 @@ internal object CoreModule {
 
 
     @Provides
+    fun providePdfDocumentFileCreator(
+        appStorageFolderProvider: AppStorageFolderProvider
+    ): PdfDocumentFileCreator {
+        return PdfDocumentFileCreatorImpl(appStorageFolderProvider)
+    }
+
+
+    @Provides
     fun provideShareableUriFactory(@ApplicationContext context: Context): ShareableUriFactory {
         return ShareableUriFactoryImpl(context)
     }
@@ -85,8 +101,46 @@ internal object CoreModule {
 
 
     @Provides
+    fun provideDocDetailsBuilder(
+        docDateFormatter: DocDateFormatter,
+        docSizeFormatter: DocSizeFormatter
+    ): DocDetailsBuilder {
+        return DocDetailsBuilderImpl(
+            docDateFormatter = docDateFormatter,
+            docSizeFormatter = docSizeFormatter
+        )
+    }
+
+
+    @Provides
     fun provideDocDateFormatter(@ApplicationContext context: Context): DocDateFormatter {
         return DocDateFormatterImpl(context)
+    }
+
+
+    @Provides
+    fun provideDocSizeFormatter(
+        @ApplicationContext context: Context,
+    ): DocSizeFormatter {
+        return DocSizeFormatterImpl(applicationContext = context)
+    }
+
+
+    @Provides
+    fun provideImageHighlightFinder(): ImageHighlightFinder {
+        return OpenCvImageHighlightFinder()
+    }
+
+
+    @Provides
+    fun provideImagePerspectiveTransformer(): ImagePerspectiveTransformer {
+        return OpenCvImagePerspectiveTransformer()
+    }
+
+
+    @Provides
+    fun provideImageEffectApplier(): ImageEffectApplier {
+        return OpenCvImageEffectApplier()
     }
 
 

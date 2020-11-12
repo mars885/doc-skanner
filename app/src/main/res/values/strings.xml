@@ -25,11 +25,25 @@
     <string name="error">Error</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="success">Success</string>
+
+    <string name="action_rotate_left">Rotate Left</string>
+    <string name="action_rotate_right">Rotate Right</string>
+    <string name="action_next">Next</string>
+    <string name="action_clear_effect">Clear Effect</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
 
     <!-- Errors -->
     <string name="error_storage_permission_not_granted">The app cannot proceed further without access to the phone\'s media. Please try again.</string>
     <string name="error_camera_permission_not_granted">Cannot take an image without access to the camera. Please try again.</string>
-    <string name="error_storage_folder_creation_failed">Could not create the storage folder. Please try again later.</string>
+    <string name="error_initialization_failed">Could not initialize the app. Please try again later.</string>
+    <string name="error_cannot_crop">Cannot crop. Please readjust cropping area.</string>
+    <string name="error_cropping_failed">Could not crop the image. Please try again later.</string>
+    <string name="error_effect_application_failed">Could not apply the effect. Please try again later.</string>
+    <string name="error_bitmap_saving">Could not save the image. Please try again.</string>
+    <string name="error_pdf_document_creation_failed">Could not create a PDF document. Please try again.</string>
+    <string name="error_invalid_file_name">The provided file name is invalid. Please try again.</string>"
     <string name="error_unknown_message">Oops! Something went wrong.</string>
 
     <!-- DashboardFragment -->
@@ -39,5 +53,16 @@
     <!-- DocPreviewFragment -->
     <string name="doc_preview_info_view_title">Cannot not open the file!</string>
     <string name="doc_preview_image_picker_dialog_title">Choose an image from</string>
+
+    <!-- DocEditingFragment -->
+    <string name="doc_editing_toolbar_title">Edit</string>
+
+    <!-- DocEffectsFragment -->
+    <string name="doc_effects_toolbar_title">Effects</string>
+    <string name="doc_effects_magic_color_effect">Magic Color</string>
+    <string name="doc_effects_gray_mode_effect">Gray Mode</string>
+    <string name="doc_effects_black_and_white_effect">Black &amp; White</string>
+    <string name="doc_effects_file_name_dialog_title">PDF File Name</string>
+    <string name="doc_effects_file_name_dialog_hint">Enter a file name</string>
 
 </resources>

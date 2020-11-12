@@ -44,7 +44,7 @@ internal class CreateAppStorageFolderUseCaseImpl(
 
             emit(appStorageFolder)
         }
-        .flowOn(dispatcherProvider.computation)
+        .flowOn(dispatcherProvider.io)
     }
 
 

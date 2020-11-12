@@ -43,14 +43,40 @@
     <style name="DocScanner.InfoView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/info_view_horizontal_margin</item>
-        <item name="android:layout_marginEnd">@dimen/info_view_horizontal_margin</item>
-        <item name="infoView_iconSize">@dimen/info_view_icon_size</item>
+        <item name="android:layout_marginStart">@dimen/default_info_view_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_info_view_horizontal_margin</item>
+        <item name="infoView_iconSize">@dimen/default_info_view_icon_size</item>
         <item name="infoView_iconColor">@color/colorInfoView</item>
         <item name="infoView_titleTextColor">@color/colorInfoView</item>
-        <item name="infoView_titleTextTopMargin">@dimen/info_view_title_text_top_margin</item>
-        <item name="infoView_titleTextSize">@dimen/info_view_title_text_size</item>
+        <item name="infoView_titleTextTopMargin">@dimen/default_info_view_title_text_top_margin</item>
+        <item name="infoView_titleTextSize">@dimen/default_info_view_title_text_size</item>
         <item name="infoView_descriptionText">""</item>
+    </style>
+
+    <style name="DocScanner.Button">
+        <item name="android:background">@drawable/button_background_drawable</item>
+        <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="DocScanner.Effects"/>
+
+    <style name="DocScanner.Effects.Effect">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/doc_effects_effect_bg_drawable</item>
+        <item name="android:paddingTop">@dimen/doc_effects_effect_view_padding_top</item>
+        <item name="android:paddingBottom">@dimen/doc_effects_effect_view_padding_bottom</item>
+        <item name="android:paddingStart">@dimen/doc_effects_effect_view_horizontal_padding</item>
+        <item name="android:paddingEnd">@dimen/doc_effects_effect_view_horizontal_padding</item>
+        <item name="infoView_iconSize">@dimen/doc_effects_effect_view_icon_size</item>
+        <item name="infoView_iconColor">@color/doc_effects_effect_view_content_color</item>
+        <item name="infoView_titleTextSize">@dimen/doc_effects_effect_view_title_size</item>
+        <item name="infoView_titleTextColor">@color/doc_effects_effect_view_content_color</item>
+        <item name="infoView_descriptionText">""</item>
+        <item name="layout_constraintTop_toBottomOf">@id/toolbar</item>
     </style>
 
 </resources>

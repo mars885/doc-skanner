@@ -64,6 +64,7 @@ object versions {
     const val room = "2.2.5"
     const val coreKtx = "1.3.1"
     const val fragmentKtx = "1.2.5"
+    const val liveDataKtx = "2.2.0"
     const val dataStore = "1.0.0-alpha01"
     const val commonsCore = "1.0.0"
     const val commonsKtx = "1.0.0"
@@ -91,15 +92,7 @@ object deps {
 
     object local {
 
-        const val domain = ":domain"
-        const val data = ":data"
-        const val database = ":database"
-        const val igdbApi = ":igdb-api"
-        const val igdbApicalypse = ":igdb-apicalypse"
-        const val imageLoading = ":image-loading"
-        const val core = ":core"
-        const val commonsData = ":commons-data"
-        const val commonsUiWidgets = ":commons-ui-widgets"
+        const val openCv = ":openCVLibrary341"
 
     }
 
@@ -128,6 +121,7 @@ object deps {
         const val roomCompiler = "androidx.room:room-compiler:${versions.room}"
         const val coreKtx = "androidx.core:core-ktx:${versions.coreKtx}"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:${versions.fragmentKtx}"
+        const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${versions.liveDataKtx}"
         const val prefsDataStore = "androidx.datastore:datastore-preferences:${versions.dataStore}"
         const val protoDataStore = "androidx.datastore:datastore-core:${versions.dataStore}"
         const val daggerHiltAssistedInjection = "androidx.hilt:hilt-lifecycle-viewmodel:${versions.daggerHiltAssistedInjection}"

@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    implementation(project(deps.local.openCv))
+
     implementation(deps.kotlin.stdLib)
     implementation(deps.kotlin.coroutinesCore)
 
@@ -65,8 +67,11 @@ dependencies {
     implementation(deps.androidX.lifecycleViewModel)
     implementation(deps.androidX.coreKtx)
     implementation(deps.androidX.fragmentKtx)
+    implementation(deps.androidX.liveDataKtx)
 
     implementation(deps.google.materialComponents)
+
+    implementation(deps.square.picasso)
 
     implementation(deps.commons.commonsCore)
     implementation(deps.commons.commonsKtx)

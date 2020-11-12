@@ -20,6 +20,7 @@ import androidx.fragment.app.viewModels
 import com.paulrybitskyi.commons.ktx.getDimensionPixelSize
 import com.paulrybitskyi.commons.ktx.makeGone
 import com.paulrybitskyi.commons.ktx.makeVisible
+import com.paulrybitskyi.commons.ktx.removeElevation
 import com.paulrybitskyi.docscanner.R
 import com.paulrybitskyi.docscanner.databinding.FragmentDocPreviewBinding
 import com.paulrybitskyi.docscanner.ui.base.BaseFragment
@@ -47,6 +48,7 @@ internal class DocPreviewFragment : BaseFragment<
 
 
     private fun initToolbar() = with(viewBinding.toolbar) {
+        removeElevation()
         onLeftButtonClickListener = { viewModel.onToolbarLeftButtonClicked() }
     }
 

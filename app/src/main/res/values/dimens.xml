@@ -18,20 +18,23 @@
 
 <resources>
 
+    <dimen name="artificial_shadow_height">2dp</dimen>
+
     <!-- Toolbar -->
     <dimen name="toolbar_title_text_size">20sp</dimen>
+    <dimen name="toolbar_progress_bar_size">35dp</dimen>
+    <dimen name="toolbar_progress_bar_margin">10dp</dimen>
 
     <!-- InfoView -->
-    <dimen name="info_view_horizontal_margin">30dp</dimen>
-    <dimen name="info_view_icon_size">80dp</dimen>
-    <dimen name="info_view_title_text_top_margin">15dp</dimen>
-    <dimen name="info_view_title_text_size">16sp</dimen>
+    <dimen name="default_info_view_horizontal_margin">30dp</dimen>
+    <dimen name="default_info_view_icon_size">80dp</dimen>
+    <dimen name="default_info_view_title_text_top_margin">15dp</dimen>
+    <dimen name="default_info_view_title_text_size">16sp</dimen>
 
-    <!-- DashboardFragment -->
-    <dimen name="dashboard_toolbar_progress_bar_size">35dp</dimen>
-    <dimen name="dashboard_toolbar_progress_bar_margin">10dp</dimen>
-    <dimen name="dashboard_scan_btn_margin">16dp</dimen>
-    <dimen name="dashboard_scan_btn_margin_bottom">18dp</dimen>
+    <!-- Button -->
+    <dimen name="button_corner_radius">15dp</dimen>
+    <dimen name="button_padding">8dp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
 
     <!-- DocsView -->
     <dimen name="docs_recycler_view_padding">16dp</dimen>
@@ -45,11 +48,40 @@
     <dimen name="doc_icon_size">30dp</dimen>
     <dimen name="doc_icon_horizontal_margin">15dp</dimen>
     <dimen name="doc_name_horizontal_margin">15dp</dimen>
-    <dimen name="doc_name_text_size">18sp</dimen>
-    <dimen name="doc_date_horizontal_margin">15dp</dimen>
-    <dimen name="doc_date_text_size">14sp</dimen>
+    <dimen name="doc_name_text_size">16sp</dimen>
+    <dimen name="doc_details_margin_top">2dp</dimen>
+    <dimen name="doc_details_horizontal_margin">15dp</dimen>
+    <dimen name="doc_details_text_size">14sp</dimen>
+
+    <!-- DocCropperView -->
+    <dimen name="doc_cropper_image_margin">16dp</dimen>
+
+    <!-- ImageCropperView -->
+    <dimen name="image_cropper_pointer_size">32dp</dimen>
+    <dimen name="image_cropper_pointer_stroke_width">2dp</dimen>
+    <dimen name="image_cropper_line_stroke_width">1dp</dimen>
+
+    <!-- DashboardFragment -->
+    <dimen name="dashboard_scan_btn_margin">16dp</dimen>
+    <dimen name="dashboard_scan_btn_margin_bottom">18dp</dimen>
 
     <!-- DocPreviewFragment -->
     <dimen name="doc_preview_page_spacing">5dp</dimen>
+
+    <!-- DocEditingFragment -->
+    <dimen name="doc_editing_cropper_vertical_margin">16dp</dimen>
+    <dimen name="doc_editing_cropper_horizontal_margin">16dp</dimen>
+    <dimen name="doc_editing_button_margin">16dp</dimen>
+    <dimen name="doc_editing_rotate_button_touch_margin">8dp</dimen>
+
+    <!-- DocEffectsFragment -->
+    <dimen name="doc_effects_effect_view_icon_size">30dp</dimen>
+    <dimen name="doc_effects_effect_view_title_size">15sp</dimen>
+    <dimen name="doc_effects_effect_view_padding_top">10dp</dimen>
+    <dimen name="doc_effects_effect_view_padding_bottom">15dp</dimen>
+    <dimen name="doc_effects_effect_view_horizontal_padding">10dp</dimen>
+    <dimen name="doc_effects_image_vertical_margin">30dp</dimen>
+    <dimen name="doc_effects_image_horizontal_margin">20dp</dimen>
+    <dimen name="doc_effects_button_margin">16dp</dimen>
 
 </resources>

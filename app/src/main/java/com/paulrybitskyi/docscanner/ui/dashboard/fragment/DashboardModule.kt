@@ -20,7 +20,7 @@ import com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping.DocModelFactor
 import com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping.DocModelFactoryImpl
 import com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
 import com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping.DocsUiStateFactoryImpl
-import com.paulrybitskyi.docscanner.utils.DocDateFormatter
+import com.paulrybitskyi.docscanner.utils.DocDetailsBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,10 +40,8 @@ internal object DashboardModule {
 
 
     @Provides
-    fun provideDocModelFactory(
-        docDateFormatter: DocDateFormatter
-    ): DocModelFactory {
-        return DocModelFactoryImpl(docDateFormatter)
+    fun provideDocModelFactory(docDetailsBuilder: DocDetailsBuilder): DocModelFactory {
+        return DocModelFactoryImpl(docDetailsBuilder)
     }
 
 

@@ -16,8 +16,9 @@
 
 package com.paulrybitskyi.docscanner.ui.dashboard.fragment.mapping
 
-import com.paulrybitskyi.docscanner.ui.views.DocModel
+import com.paulrybitskyi.docscanner.ui.views.docs.DocModel
 import com.paulrybitskyi.docscanner.utils.DocDateFormatter
+import com.paulrybitskyi.docscanner.utils.DocDetailsBuilder
 import java.io.File
 
 
@@ -29,7 +30,7 @@ internal interface DocModelFactory {
 
 
 internal class DocModelFactoryImpl(
-    private val docDateFormatter: DocDateFormatter
+    private val docDetailsBuilder: DocDetailsBuilder
 ) : DocModelFactory {
 
 
@@ -37,7 +38,7 @@ internal class DocModelFactoryImpl(
         return DocModel(
             filePath = document.absolutePath,
             name = document.name,
-            date = docDateFormatter.formatDate(document.lastModified())
+            details = docDetailsBuilder.buildDetails(document)
         )
     }
 

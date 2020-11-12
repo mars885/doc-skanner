@@ -55,25 +55,25 @@
             android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/dateTv"
+            app:layout_constraintBottom_toTopOf="@+id/detailsTv"
             app:layout_constraintStart_toEndOf="@id/iconIv"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Document"/>
 
         <TextView
-            android:id="@+id/dateTv"
+            android:id="@+id/detailsTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/doc_date_horizontal_margin"
-            android:layout_marginEnd="@dimen/doc_date_horizontal_margin"
-            android:textSize="@dimen/doc_date_text_size"
-            android:textColor="@color/doc_date_color"
+            android:layout_marginStart="@dimen/doc_details_horizontal_margin"
+            android:layout_marginEnd="@dimen/doc_details_horizontal_margin"
+            android:textSize="@dimen/doc_details_text_size"
+            android:textColor="@color/doc_details_color"
             android:fontFamily="@string/font_family_medium"
             app:layout_constraintTop_toBottomOf="@id/nameTv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iconIv"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="10.10.2020 3:15 PM"/>
+            tools:text="10.10.2020 3:15 PM &#8226; 15.83 MB"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

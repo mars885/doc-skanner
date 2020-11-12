@@ -20,19 +20,26 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docscanner.R
+import com.paulrybitskyi.docscanner.domain.ClearAppCacheUseCase
 import com.paulrybitskyi.docscanner.domain.CreateAppStorageFolderUseCase
+import com.paulrybitskyi.docscanner.domain.InitOpenCvLibraryUseCase
 import com.paulrybitskyi.docscanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docscanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docscanner.utils.PermissionVerifier
 import com.paulrybitskyi.docscanner.utils.StringProvider
+import com.paulrybitskyi.docscanner.utils.combine
 import com.paulrybitskyi.docscanner.utils.dialogs.DialogConfig
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
+import java.io.File
 
 internal class SplashViewModel @ViewModelInject constructor(
+    private val initOpenCvLibraryUseCase: InitOpenCvLibraryUseCase,
     private val createAppStorageFolderUseCase: CreateAppStorageFolderUseCase,
+    private val clearAppCacheUseCase: ClearAppCacheUseCase,
     private val permissionVerifier: PermissionVerifier,
     private val stringProvider: StringProvider
 ) : BaseViewModel() {
@@ -53,36 +60,6 @@ internal class SplashViewModel @ViewModelInject constructor(
     }
 
 
-    fun onStoragePermissionGranted() {
-        viewModelScope.launch {
-            createAppStorageFolder()
-        }
-    }
-
-
-    private suspend fun createAppStorageFolder() {
-        createAppStorageFolderUseCase.execute(Unit)
-            .onCompletion { onAppStorageFolderCreationCompleted(it) }
-            .catch { onAppStorageFolderCreationFailed() }
-            .collect()
-    }
-
-
-    private fun onAppStorageFolderCreationFailed() {
-        val message = stringProvider.getString(R.string.error_storage_folder_creation_failed)
-
-        dispatchCommand(GeneralCommands.ShowLongToast(message))
-        exit()
-    }
-
-
-    private fun onAppStorageFolderCreationCompleted(error: Throwable?) {
-        if(error != null) return
-
-        route(SplashRoutes.Dashboard)
-    }
-
-
     fun onStoragePermissionDenied() {
         val dialogConfig = DialogConfig(
             title = stringProvider.getString(R.string.error),
@@ -93,6 +70,55 @@ internal class SplashViewModel @ViewModelInject constructor(
         )
 
         dispatchCommand(SplashCommands.ShowDialog(dialogConfig))
+    }
+
+
+    fun onStoragePermissionGranted() {
+        runInitializationFlow()
+    }
+
+
+    private fun runInitializationFlow() {
+        viewModelScope.launch {
+            combine(
+                initOpenCvLibrary(),
+                createAppStorageFolder(),
+                clearAppCache()
+            )
+            .onCompletion { onInitializationFlowCompleted(it) }
+            .catch { onInitializationFlowFailed() }
+            .collect()
+        }
+    }
+
+
+    private suspend fun initOpenCvLibrary(): Flow<Unit> {
+        return initOpenCvLibraryUseCase.execute(Unit)
+    }
+
+
+    private suspend fun createAppStorageFolder(): Flow<File> {
+        return createAppStorageFolderUseCase.execute(Unit)
+    }
+
+
+    private suspend fun clearAppCache(): Flow<Unit> {
+        return clearAppCacheUseCase.execute(Unit)
+    }
+
+
+    private fun onInitializationFlowFailed() {
+        val message = stringProvider.getString(R.string.error_initialization_failed)
+
+        dispatchCommand(GeneralCommands.ShowLongToast(message))
+        exit()
+    }
+
+
+    private fun onInitializationFlowCompleted(error: Throwable?) {
+        if(error != null) return
+
+        route(SplashRoutes.Dashboard)
     }
 
 
