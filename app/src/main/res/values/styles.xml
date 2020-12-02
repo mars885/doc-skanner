@@ -18,7 +18,7 @@
 
 <resources>
 
-    <style name="DocScannerTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="DocSkannerTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -27,20 +27,20 @@
         <item name="android:navigationBarColor">@color/colorNavigationBar</item>
     </style>
 
-    <style name="DocScannerTheme.SplashScreen">
+    <style name="DocSkannerTheme.SplashScreen">
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 
-    <style name="DocScanner"/>
+    <style name="DocSkanner"/>
 
-    <style name="DocScanner.Toolbar">
+    <style name="DocSkanner.Toolbar">
         <item name="toolbar_titleTextColor">@color/toolbar_title_text_color</item>
         <item name="toolbar_buttonIconColor">@color/toolbar_button_icon_color</item>
         <item name="toolbar_titleTextSize">@dimen/toolbar_title_text_size</item>
         <item name="toolbar_titleTextGravity">left</item>
     </style>
 
-    <style name="DocScanner.InfoView">
+    <style name="DocSkanner.InfoView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/default_info_view_horizontal_margin</item>
@@ -53,7 +53,7 @@
         <item name="infoView_descriptionText">""</item>
     </style>
 
-    <style name="DocScanner.Button">
+    <style name="DocSkanner.Button">
         <item name="android:background">@drawable/button_background_drawable</item>
         <item name="android:padding">@dimen/button_padding</item>
         <item name="android:gravity">center</item>
@@ -61,9 +61,9 @@
         <item name="android:textColor">@color/colorPrimaryText</item>
     </style>
 
-    <style name="DocScanner.Effects"/>
+    <style name="DocSkanner.Effects"/>
 
-    <style name="DocScanner.Effects.Effect">
+    <style name="DocSkanner.Effects.Effect">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/doc_effects_effect_bg_drawable</item>

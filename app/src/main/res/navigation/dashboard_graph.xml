@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.paulrybitskyi.docscanner.ui.dashboard.fragment.DashboardFragment">
+        android:name="com.paulrybitskyi.docskanner.ui.dashboard.fragment.DashboardFragment">
 
         <action
             android:id="@+id/action_docPreviewFragment"
@@ -58,11 +58,11 @@
 
     <fragment
         android:id="@+id/docPreviewFragment"
-        android:name="com.paulrybitskyi.docscanner.ui.preview.DocPreviewFragment"/>
+        android:name="com.paulrybitskyi.docskanner.ui.preview.DocPreviewFragment"/>
 
     <fragment
         android:id="@+id/docEditingFragment"
-        android:name="com.paulrybitskyi.docscanner.ui.editing.DocEditingFragment">
+        android:name="com.paulrybitskyi.docskanner.ui.editing.DocEditingFragment">
 
         <action
             android:id="@+id/action_docEffectsFragment"
@@ -82,7 +82,7 @@
 
     <fragment
         android:id="@+id/docEffectsFragment"
-        android:name="com.paulrybitskyi.docscanner.ui.effects.DocEffectsFragment">
+        android:name="com.paulrybitskyi.docskanner.ui.effects.DocEffectsFragment">
 
         <action
             android:id="@+id/action_dashboardFragment"

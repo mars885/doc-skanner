@@ -16,7 +16,7 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.paulrybitskyi.docscanner">
+    package="com.paulrybitskyi.docskanner">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -27,19 +27,19 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".DocScannerApplication"
+        android:name=".DocSkannerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/DocScannerTheme">
+        android:theme="@style/DocSkannerTheme">
 
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/DocScannerTheme.SplashScreen">
+            android:theme="@style/DocSkannerTheme.SplashScreen">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -53,7 +53,7 @@
             android:screenOrientation="portrait">
 
             <intent-filter>
-                <action android:name="com.paulrybitskyi.docscanner.DASHBOARD_ACTIVITY"/>
+                <action android:name="com.paulrybitskyi.docskanner.DASHBOARD_ACTIVITY"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
 

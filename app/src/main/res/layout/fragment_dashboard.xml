@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.Toolbar">
+        style="@style/DocSkanner.Toolbar">
 
         <ProgressBar
             android:id="@+id/toolbarPb"
@@ -43,7 +43,7 @@
 
     </com.paulrybitskyi.commons.widgets.toolbar.Toolbar>
 
-    <com.paulrybitskyi.docscanner.ui.views.docs.DocsView
+    <com.paulrybitskyi.docskanner.ui.views.docs.DocsView
         android:id="@+id/docsView"
         android:layout_width="0dp"
         android:layout_height="0dp"

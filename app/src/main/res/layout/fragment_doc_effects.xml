@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.Toolbar">
+        style="@style/DocSkanner.Toolbar">
 
         <ProgressBar
             android:id="@+id/toolbarPb"
@@ -44,31 +44,31 @@
 
     </com.paulrybitskyi.commons.widgets.toolbar.Toolbar>
 
-    <com.paulrybitskyi.docscanner.ui.views.CrutchInfoView
+    <com.paulrybitskyi.docskanner.ui.views.CrutchInfoView
         android:id="@+id/magicColorEffectIv"
         app:infoView_icon="@drawable/auto_fix"
         app:infoView_titleText="@string/doc_effects_magic_color_effect"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/grayModeEffectIv"
-        style="@style/DocScanner.Effects.Effect"
+        style="@style/DocSkanner.Effects.Effect"
         tools:ignore="MissingConstraints"/>
 
-    <com.paulrybitskyi.docscanner.ui.views.CrutchInfoView
+    <com.paulrybitskyi.docskanner.ui.views.CrutchInfoView
         android:id="@+id/grayModeEffectIv"
         app:infoView_icon="@drawable/cloud"
         app:infoView_titleText="@string/doc_effects_gray_mode_effect"
         app:layout_constraintStart_toEndOf="@id/magicColorEffectIv"
         app:layout_constraintEnd_toStartOf="@+id/blackAndWhiteEffectIv"
-        style="@style/DocScanner.Effects.Effect"
+        style="@style/DocSkanner.Effects.Effect"
         tools:ignore="MissingConstraints"/>
 
-    <com.paulrybitskyi.docscanner.ui.views.CrutchInfoView
+    <com.paulrybitskyi.docskanner.ui.views.CrutchInfoView
         android:id="@+id/blackAndWhiteEffectIv"
         app:infoView_icon="@drawable/invert_colors"
         app:infoView_titleText="@string/doc_effects_black_and_white_effect"
         app:layout_constraintStart_toEndOf="@id/grayModeEffectIv"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.Effects.Effect"
+        style="@style/DocSkanner.Effects.Effect"
         tools:ignore="MissingConstraints"/>
 
     <View
@@ -79,7 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.paulrybitskyi.docscanner.ui.views.doceffects.DocEffectsView
+    <com.paulrybitskyi.docskanner.ui.views.doceffects.DocEffectsView
         android:id="@+id/docEffectsView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -103,7 +103,7 @@
         app:layout_constraintBottom_toTopOf="@+id/saveBtnTv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.Button"/>
+        style="@style/DocSkanner.Button"/>
 
     <TextView
         android:id="@+id/saveBtnTv"
@@ -116,6 +116,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/DocScanner.Button"/>
+        style="@style/DocSkanner.Button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

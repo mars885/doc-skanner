@@ -1,4 +1,4 @@
-rootProject.name = "DocScanner"
+rootProject.name = "DocSkanner"
 
 include(":app")
 include(":openCVLibrary341")

@@ -18,7 +18,7 @@
 
 <resources>
 
-    <string name="app_name">DocScanner</string>
+    <string name="app_name">DocSkanner</string>
     <string name="font_family_medium" translatable="false">sans-serif-medium</string>
 
     <string name="ok">OK</string>

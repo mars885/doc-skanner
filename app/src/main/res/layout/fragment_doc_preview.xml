@@ -53,7 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.InfoView"
+        style="@style/DocSkanner.InfoView"
         tools:visibility="visible"/>
 
     <com.paulrybitskyi.commons.widgets.toolbar.Toolbar
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/DocScanner.Toolbar"
+        style="@style/DocSkanner.Toolbar"
         tools:toolbar_titleText="Document.pdf"/>
 
     <View
