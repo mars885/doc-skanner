@@ -21,6 +21,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.paulrybitskyi.commons.ktx.getCompatColor
 import com.paulrybitskyi.commons.ktx.toColorStateList
 import com.paulrybitskyi.docskanner.R
+import javax.inject.Inject
 
 
 internal interface DialogBuilder {
@@ -30,7 +31,7 @@ internal interface DialogBuilder {
 }
 
 
-internal class DialogBuilderImpl : DialogBuilder {
+internal class DialogBuilderImpl @Inject constructor() : DialogBuilder {
 
 
     override fun buildDialog(context: Context, config: DialogConfig): Dialog {

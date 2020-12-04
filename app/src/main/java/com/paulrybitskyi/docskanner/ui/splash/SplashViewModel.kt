@@ -20,14 +20,14 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
+import com.paulrybitskyi.docskanner.core.PermissionVerifier
+import com.paulrybitskyi.docskanner.core.utils.combine
 import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
 import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
 import com.paulrybitskyi.docskanner.domain.InitOpenCvLibraryUseCase
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.utils.PermissionVerifier
-import com.paulrybitskyi.docskanner.utils.StringProvider
-import com.paulrybitskyi.docskanner.utils.combine
+import com.paulrybitskyi.docskanner.core.StringProvider
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

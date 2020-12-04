@@ -16,132 +16,18 @@
 
 package com.paulrybitskyi.docskanner.di
 
-import android.content.Context
-import com.paulrybitskyi.docskanner.utils.*
-import com.paulrybitskyi.docskanner.utils.DocDateFormatter
-import com.paulrybitskyi.docskanner.utils.DocDateFormatterImpl
-import com.paulrybitskyi.docskanner.utils.StringProviderImpl
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilderImpl
-import com.paulrybitskyi.docskanner.utils.highlight.ImageHighlightFinder
-import com.paulrybitskyi.docskanner.utils.highlight.OpenCvImageHighlightFinder
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ApplicationComponent::class)
-internal object CoreModule {
+internal interface CoreModule {
 
-
-    @Provides
-    fun provideOpenCvManager(): OpenCvManager {
-        return OpenCvManagerImpl()
-    }
-
-
-    @Provides
-    fun provideStringProvider(@ApplicationContext context: Context): StringProvider {
-        return StringProviderImpl(context)
-    }
-
-
-    @Provides
-    fun provideDispatcherProvider(): DispatcherProvider {
-        return DispatcherProviderImpl()
-    }
-
-
-    @Provides
-    fun providePermissionVerifier(@ApplicationContext context: Context): PermissionVerifier {
-        return PermissionVerifierImpl(context)
-    }
-
-
-    @Provides
-    fun provideCameraPresenceVerifier(@ApplicationContext context: Context): CameraPresenceVerifier {
-        return CameraPresenceVerifierImpl(context)
-    }
-
-
-    @Provides
-    fun provideTemporaryImageFileCreator(
-        @ApplicationContext context: Context
-    ): TemporaryImageFileCreator {
-        return TemporaryImageFileCreatorImpl(context)
-    }
-
-
-    @Provides
-    fun providePdfDocumentFileCreator(
-        appStorageFolderProvider: AppStorageFolderProvider
-    ): PdfDocumentFileCreator {
-        return PdfDocumentFileCreatorImpl(appStorageFolderProvider)
-    }
-
-
-    @Provides
-    fun provideShareableUriFactory(@ApplicationContext context: Context): ShareableUriFactory {
-        return ShareableUriFactoryImpl(context)
-    }
-
-
-    @Provides
-    fun provideDialogBuilder(): DialogBuilder {
-        return DialogBuilderImpl()
-    }
-
-
-    @Provides
-    fun provideAppStorageFolderProvider(): AppStorageFolderProvider {
-        return AppStorageFolderProviderImpl()
-    }
-
-
-    @Provides
-    fun provideDocDetailsBuilder(
-        docDateFormatter: DocDateFormatter,
-        docSizeFormatter: DocSizeFormatter
-    ): DocDetailsBuilder {
-        return DocDetailsBuilderImpl(
-            docDateFormatter = docDateFormatter,
-            docSizeFormatter = docSizeFormatter
-        )
-    }
-
-
-    @Provides
-    fun provideDocDateFormatter(@ApplicationContext context: Context): DocDateFormatter {
-        return DocDateFormatterImpl(context)
-    }
-
-
-    @Provides
-    fun provideDocSizeFormatter(
-        @ApplicationContext context: Context,
-    ): DocSizeFormatter {
-        return DocSizeFormatterImpl(applicationContext = context)
-    }
-
-
-    @Provides
-    fun provideImageHighlightFinder(): ImageHighlightFinder {
-        return OpenCvImageHighlightFinder()
-    }
-
-
-    @Provides
-    fun provideImagePerspectiveTransformer(): ImagePerspectiveTransformer {
-        return OpenCvImagePerspectiveTransformer()
-    }
-
-
-    @Provides
-    fun provideImageEffectApplier(): ImageEffectApplier {
-        return OpenCvImageEffectApplier()
-    }
-
+    @Binds
+    fun provideDialogBuilder(builder: DialogBuilderImpl): DialogBuilder
 
 }

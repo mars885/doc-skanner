@@ -24,8 +24,8 @@ import com.paulrybitskyi.docskanner.databinding.FragmentDocEditingBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
 import com.paulrybitskyi.docskanner.ui.base.events.Command
 import com.paulrybitskyi.docskanner.ui.base.events.Route
-import com.paulrybitskyi.docskanner.utils.extensions.navController
-import com.paulrybitskyi.docskanner.utils.viewBinding
+import com.paulrybitskyi.docskanner.utils.utils.navController
+import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,7 +55,7 @@ internal class DocEditingFragment : BaseFragment<
     private fun initButtons() = with(viewBinding) {
         rotateLeftBtnTv.onClick { viewModel.onRotateLeftButtonClicked() }
         rotateRightBtnTv.onClick { viewModel.onRotateRightButtonClicked() }
-        nextBtnTv.onClick { cropperView.cropBitmap(viewModel::onNextButtonClicked) }
+        confirmBtnTv.onClick { cropperView.cropBitmap(viewModel::onConfirmButtonClicked) }
     }
 
 

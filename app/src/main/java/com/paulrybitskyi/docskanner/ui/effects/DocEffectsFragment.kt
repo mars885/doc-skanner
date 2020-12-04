@@ -25,13 +25,13 @@ import com.paulrybitskyi.docskanner.databinding.FragmentDocEffectsBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
 import com.paulrybitskyi.docskanner.ui.base.events.Command
 import com.paulrybitskyi.docskanner.ui.base.events.Route
-import com.paulrybitskyi.docskanner.ui.views.doceffects.DocEffectsView
+import com.paulrybitskyi.docskanner.ui.views.DocEffectsView
 import com.paulrybitskyi.docskanner.utils.dialogs.Dialog
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
-import com.paulrybitskyi.docskanner.utils.extensions.navController
-import com.paulrybitskyi.docskanner.utils.viewBinding
+import com.paulrybitskyi.docskanner.utils.utils.navController
+import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

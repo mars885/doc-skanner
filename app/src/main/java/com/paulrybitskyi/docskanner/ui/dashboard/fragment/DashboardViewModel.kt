@@ -25,13 +25,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
+import com.paulrybitskyi.docskanner.core.*
 import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
 import com.paulrybitskyi.docskanner.ui.views.docs.DocModel
 import com.paulrybitskyi.docskanner.ui.views.docs.DocsUiState
-import com.paulrybitskyi.docskanner.utils.*
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogItem
 import dagger.hilt.android.qualifiers.ApplicationContext

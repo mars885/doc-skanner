@@ -31,6 +31,7 @@ android {
         targetSdkVersion(appConfig.targetSdkVersion)
         versionCode = appConfig.versionCode
         versionName = appConfig.versionName
+        applicationId = appConfig.applicationId
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +54,10 @@ android {
 }
 
 dependencies {
+    implementation(project(deps.local.domain))
+    implementation(project(deps.local.data))
+    implementation(project(deps.local.core))
+    implementation(project(deps.local.imageProcessing))
     implementation(project(deps.local.openCv))
 
     implementation(deps.kotlin.stdLib)

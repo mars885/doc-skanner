@@ -22,14 +22,14 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.paulrybitskyi.docskanner.R
+import com.paulrybitskyi.docskanner.core.PdfDocumentFileCreator
+import com.paulrybitskyi.docskanner.core.utils.combine
 import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
 import com.paulrybitskyi.docskanner.domain.CreatePdfDocumentUseCase
 import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.utils.PdfDocumentFileCreator
-import com.paulrybitskyi.docskanner.utils.StringProvider
-import com.paulrybitskyi.docskanner.utils.combine
+import com.paulrybitskyi.docskanner.core.StringProvider
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*

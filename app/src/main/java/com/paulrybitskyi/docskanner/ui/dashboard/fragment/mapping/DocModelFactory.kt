@@ -17,7 +17,7 @@
 package com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping
 
 import com.paulrybitskyi.docskanner.ui.views.docs.DocModel
-import com.paulrybitskyi.docskanner.utils.DocDetailsBuilder
+import com.paulrybitskyi.docskanner.core.DocDetailsBuilder
 import java.io.File
 
 

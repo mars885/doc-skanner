@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/DocSkanner.Toolbar"/>
 
-    <com.paulrybitskyi.docskanner.ui.views.doccropper.DocCropperView
+    <com.paulrybitskyi.docskanner.ui.views.DocCropperView
         android:id="@+id/cropperView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -55,7 +55,7 @@
         android:layout_marginEnd="@dimen/doc_editing_rotate_button_touch_margin"
         android:layout_marginBottom="@dimen/doc_editing_button_margin"
         android:text="@string/action_rotate_left"
-        app:layout_constraintBottom_toTopOf="@+id/nextBtnTv"
+        app:layout_constraintBottom_toTopOf="@+id/confirmBtnTv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rotateRightBtnTv"
         style="@style/DocSkanner.Button"/>
@@ -68,19 +68,19 @@
         android:layout_marginEnd="@dimen/doc_editing_button_margin"
         android:layout_marginBottom="@dimen/doc_editing_button_margin"
         android:text="@string/action_rotate_right"
-        app:layout_constraintBottom_toTopOf="@+id/nextBtnTv"
+        app:layout_constraintBottom_toTopOf="@+id/confirmBtnTv"
         app:layout_constraintStart_toEndOf="@id/rotateLeftBtnTv"
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/DocSkanner.Button"/>
 
     <TextView
-        android:id="@+id/nextBtnTv"
+        android:id="@+id/confirmBtnTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/doc_editing_button_margin"
         android:layout_marginEnd="@dimen/doc_editing_button_margin"
         android:layout_marginBottom="@dimen/doc_editing_button_margin"
-        android:text="@string/action_next"
+        android:text="@string/action_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

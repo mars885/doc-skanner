@@ -79,7 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.paulrybitskyi.docskanner.ui.views.doceffects.DocEffectsView
+    <com.paulrybitskyi.docskanner.ui.views.DocEffectsView
         android:id="@+id/docEffectsView"
         android:layout_width="0dp"
         android:layout_height="0dp"

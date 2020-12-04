@@ -12,8 +12,8 @@ import com.paulrybitskyi.docskanner.utils.dialogs.Dialog
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
-import com.paulrybitskyi.docskanner.utils.extensions.withListener
-import com.paulrybitskyi.docskanner.utils.viewBinding
+import com.paulrybitskyi.docskanner.core.utils.withListener
+import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -29,7 +29,7 @@
 
     <string name="action_rotate_left">Rotate Left</string>
     <string name="action_rotate_right">Rotate Right</string>
-    <string name="action_next">Next</string>
+    <string name="action_confirm">Confirm</string>
     <string name="action_clear_effect">Clear Effect</string>
     <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>

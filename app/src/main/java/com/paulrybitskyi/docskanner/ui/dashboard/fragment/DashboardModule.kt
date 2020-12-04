@@ -16,11 +16,11 @@
 
 package com.paulrybitskyi.docskanner.ui.dashboard.fragment
 
+import com.paulrybitskyi.docskanner.core.DocDetailsBuilder
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocModelFactory
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocModelFactoryImpl
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocsUiStateFactoryImpl
-import com.paulrybitskyi.docskanner.utils.DocDetailsBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -26,12 +26,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
+import com.paulrybitskyi.docskanner.core.TemporaryImageFileCreator
 import com.paulrybitskyi.docskanner.domain.SaveBitmapToFileUseCase
 import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.utils.StringProvider
-import com.paulrybitskyi.docskanner.utils.TemporaryImageFileCreator
+import com.paulrybitskyi.docskanner.core.StringProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -72,7 +72,7 @@ internal class DocEditingViewModel @ViewModelInject constructor(
     }
 
 
-    fun onNextButtonClicked(croppedDocument: Bitmap) {
+    fun onConfirmButtonClicked(croppedDocument: Bitmap) {
         saveCroppedDocumentToFile(croppedDocument)
     }
 
