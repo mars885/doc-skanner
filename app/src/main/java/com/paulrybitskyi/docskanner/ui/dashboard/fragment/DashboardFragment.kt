@@ -174,7 +174,7 @@ internal class DashboardFragment : BaseFragment<
 
         when(route) {
             is DashboardRoutes.DocPreview -> navigateToDocPreviewScreen(route.filePath)
-            is DashboardRoutes.DcoEditing -> navigateToDocEditingScreen(route.docFile)
+            is DashboardRoutes.DocScanning -> navigateToDocScanningScreen(route.docFile)
         }
     }
 
@@ -184,8 +184,8 @@ internal class DashboardFragment : BaseFragment<
     }
 
 
-    private fun navigateToDocEditingScreen(docFile: Uri) {
-        navController.navigate(DashboardFragmentDirections.actionDocEditingFragment(docFile))
+    private fun navigateToDocScanningScreen(docFile: Uri) {
+        navController.navigate(DashboardFragmentDirections.actionDocScanningFragment(docFile))
     }
 
 

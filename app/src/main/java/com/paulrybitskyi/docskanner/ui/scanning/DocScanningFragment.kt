@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.ui.editing
+package com.paulrybitskyi.docskanner.ui.scanning
 
 import android.net.Uri
 import androidx.fragment.app.viewModels
 import com.paulrybitskyi.commons.ktx.onClick
 import com.paulrybitskyi.docskanner.R
-import com.paulrybitskyi.docskanner.databinding.FragmentDocEditingBinding
+import com.paulrybitskyi.docskanner.databinding.FragmentDocScanningBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
 import com.paulrybitskyi.docskanner.ui.base.events.Command
 import com.paulrybitskyi.docskanner.ui.base.events.Route
@@ -29,14 +29,14 @@ import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-internal class DocEditingFragment : BaseFragment<
-    FragmentDocEditingBinding,
-    DocEditingViewModel
->(R.layout.fragment_doc_editing) {
+internal class DocScanningFragment : BaseFragment<
+    FragmentDocScanningBinding,
+    DocScanningViewModel
+>(R.layout.fragment_doc_scanning) {
 
 
-    override val viewBinding by viewBinding(FragmentDocEditingBinding::bind)
-    override val viewModel by viewModels<DocEditingViewModel>()
+    override val viewBinding by viewBinding(FragmentDocScanningBinding::bind)
+    override val viewModel by viewModels<DocScanningViewModel>()
 
 
     override fun onInit() {
@@ -66,7 +66,7 @@ internal class DocEditingFragment : BaseFragment<
     }
 
 
-    private fun DocEditingViewModel.observeDocFile() {
+    private fun DocScanningViewModel.observeDocFile() {
         docFile.observe(viewLifecycleOwner) {
             viewBinding.cropperView.imageUri = it
         }
@@ -77,8 +77,8 @@ internal class DocEditingFragment : BaseFragment<
         super.onHandleCommand(command)
 
         when(command) {
-            is DocEditingCommands.RotateImageLeft -> rotateImageLeft()
-            is DocEditingCommands.RotateImageRight -> rotateImageRight()
+            is DocScanningCommands.RotateImageLeft -> rotateImageLeft()
+            is DocScanningCommands.RotateImageRight -> rotateImageRight()
         }
     }
 
@@ -97,14 +97,14 @@ internal class DocEditingFragment : BaseFragment<
         super.onRoute(route)
 
         when(route) {
-            is DocEditingRoutes.DocEffects -> navigateToDocEffectsScreen(route.docFile)
-            is DocEditingRoutes.NavigateBack -> navigateBack()
+            is DocScanningRoutes.DocEffects -> navigateToDocEffectsScreen(route.docFile)
+            is DocScanningRoutes.NavigateBack -> navigateBack()
         }
     }
 
 
     private fun navigateToDocEffectsScreen(docFile: Uri) {
-        navController.navigate(DocEditingFragmentDirections.actionDocEffectsFragment(docFile))
+        navController.navigate(DocScanningFragmentDirections.actionDocEffectsFragment(docFile))
     }
 
 

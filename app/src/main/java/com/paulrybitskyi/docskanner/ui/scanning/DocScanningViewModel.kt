@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.ui.editing
+package com.paulrybitskyi.docskanner.ui.scanning
 
 import android.graphics.Bitmap
 import android.net.Uri
@@ -43,7 +43,7 @@ import java.io.File
 private const val PARAM_DOC_FILE = "doc_file"
 
 
-internal class DocEditingViewModel @ViewModelInject constructor(
+internal class DocScanningViewModel @ViewModelInject constructor(
     private val saveBitmapToFileUseCase: SaveBitmapToFileUseCase,
     private val temporaryImageFileCreator: TemporaryImageFileCreator,
     private val stringProvider: StringProvider,
@@ -58,17 +58,17 @@ internal class DocEditingViewModel @ViewModelInject constructor(
 
 
     fun onToolbarLeftButtonClicked() {
-        route(DocEditingRoutes.NavigateBack)
+        route(DocScanningRoutes.NavigateBack)
     }
 
 
     fun onRotateLeftButtonClicked() {
-        dispatchCommand(DocEditingCommands.RotateImageLeft)
+        dispatchCommand(DocScanningCommands.RotateImageLeft)
     }
 
 
     fun onRotateRightButtonClicked() {
-        dispatchCommand(DocEditingCommands.RotateImageRight)
+        dispatchCommand(DocScanningCommands.RotateImageRight)
     }
 
 
@@ -96,7 +96,7 @@ internal class DocEditingViewModel @ViewModelInject constructor(
     private fun onCroppedDocumentSaved(error: Throwable?, croppedDocFile: File) {
         if(error != null) return
 
-        route(DocEditingRoutes.DocEffects(croppedDocFile.toUri()))
+        route(DocScanningRoutes.DocEffects(croppedDocFile.toUri()))
     }
 
 

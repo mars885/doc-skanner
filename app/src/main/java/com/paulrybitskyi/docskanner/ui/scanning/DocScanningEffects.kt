@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.ui.editing
+package com.paulrybitskyi.docskanner.ui.scanning
 
 import android.net.Uri
 import com.paulrybitskyi.docskanner.ui.base.events.Command
 import com.paulrybitskyi.docskanner.ui.base.events.Route
 
 
-internal sealed class DocEditingCommands : Command {
+internal sealed class DocScanningCommands : Command {
 
-    object RotateImageLeft : DocEditingCommands()
+    object RotateImageLeft : DocScanningCommands()
 
-    object RotateImageRight : DocEditingCommands()
+    object RotateImageRight : DocScanningCommands()
 
 }
 
 
-internal sealed class DocEditingRoutes : Route {
+internal sealed class DocScanningRoutes : Route {
 
-    data class DocEffects(val docFile: Uri) : DocEditingRoutes()
+    data class DocEffects(val docFile: Uri) : DocScanningRoutes()
 
-    object NavigateBack : DocEditingRoutes()
+    object NavigateBack : DocScanningRoutes()
 
 }

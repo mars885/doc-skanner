@@ -173,7 +173,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
 
     fun onCameraImageTaken() {
-        route(DashboardRoutes.DcoEditing(checkNotNull(cameraImageUri)))
+        route(DashboardRoutes.DocScanning(checkNotNull(cameraImageUri)))
     }
 
 
@@ -201,7 +201,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
         withContext(dispatcherProvider.main) {
             _toolbarProgressBarVisibility.value = false
-            route(DashboardRoutes.DcoEditing(destImageFile.toUri()))
+            route(DashboardRoutes.DocScanning(destImageFile.toUri()))
         }
     }
 

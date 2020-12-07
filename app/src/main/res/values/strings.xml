@@ -54,8 +54,8 @@
     <string name="doc_preview_info_view_title">Cannot not open the file!</string>
     <string name="doc_preview_image_picker_dialog_title">Choose an image from</string>
 
-    <!-- DocEditingFragment -->
-    <string name="doc_editing_toolbar_title">Edit</string>
+    <!-- DocScanningFragment -->
+    <string name="doc_scanning_toolbar_title">Scanning</string>
 
     <!-- DocEffectsFragment -->
     <string name="doc_effects_toolbar_title">Effects</string>

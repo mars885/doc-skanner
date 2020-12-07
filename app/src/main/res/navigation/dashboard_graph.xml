@@ -41,8 +41,8 @@
         </action>
 
         <action
-            android:id="@+id/action_docEditingFragment"
-            app:destination="@+id/docEditingFragment"
+            android:id="@+id/action_docScanningFragment"
+            app:destination="@+id/docScanningFragment"
             app:enterAnim="@anim/horizontal_sliding_window_b_enter_animation"
             app:exitAnim="@anim/horizontal_sliding_window_a_exit_animation"
             app:popEnterAnim="@anim/horizontal_sliding_window_a_enter_animation"
@@ -61,8 +61,8 @@
         android:name="com.paulrybitskyi.docskanner.ui.preview.DocPreviewFragment"/>
 
     <fragment
-        android:id="@+id/docEditingFragment"
-        android:name="com.paulrybitskyi.docskanner.ui.editing.DocEditingFragment">
+        android:id="@+id/docScanningFragment"
+        android:name="com.paulrybitskyi.docskanner.ui.scanning.DocScanningFragment">
 
         <action
             android:id="@+id/action_docEffectsFragment"
