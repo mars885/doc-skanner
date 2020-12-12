@@ -37,32 +37,10 @@ object appConfig {
 
 object versions {
 
-    const val kotlin = "1.4.10" // also in buildSrc build.gradle.kts file
-    const val gradlePlugin = "4.1.1" // also in buildSrc build.gradle.kts file
-    const val gradleVersionsPlugin = "0.29.0"
-    const val kotlinCoroutinesCore = "1.3.9"
-    const val appCompat = "1.1.0"
-    const val navigationVersion = "2.3.1"
-    const val constraintLayout = "2.0.2"
-    const val recyclerView = "1.1.0"
-    const val lifecycle = "2.2.0"
+    const val kotlin = "1.4.21" // also in buildSrc build.gradle.kts file
+    const val navigationVersion = "2.3.2"
     const val daggerHilt = "2.28.3-alpha"
-    const val daggerHiltAssistedInjection = "1.0.0-alpha02"
-    const val materialComponents = "1.3.0-alpha02"
-    const val dexter = "6.2.1"
-    const val materialDialogs = "0.9.6.0"
-    const val pdfViewer = "2.8.2"
-    const val picasso = "2.71828"
-    const val coreKtx = "1.3.1"
-    const val fragmentKtx = "1.2.5"
-    const val liveDataKtx = "2.2.0"
-    const val commonsCore = "1.0.0"
-    const val commonsKtx = "1.0.0"
-    const val commonsWidgets = "1.0.0"
-    const val commonsRecyclerView = "1.0.0"
-    const val commonsWindowAnims = "1.0.0"
-    const val jUnit = "4.13"
-    const val jUnitExt = "1.1.1"
+    const val gradleVersionsPlugin = "0.36.0"
 
 }
 
@@ -71,7 +49,9 @@ object deps {
 
     object plugins {
 
-        const val androidGradle = "com.android.tools.build:gradle:${versions.gradlePlugin}"
+        private const val gradlePluginVersion = "4.1.1" // also in buildSrc build.gradle.kts file
+
+        const val androidGradle = "com.android.tools.build:gradle:${gradlePluginVersion}"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         const val navSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigationVersion}"
         const val daggerHiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${versions.daggerHilt}"
@@ -91,64 +71,92 @@ object deps {
 
     object kotlin {
 
+        private const val kotlinCoroutinesCoreVersion = "1.4.2"
+
         const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinCoroutinesCore}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinCoroutinesCoreVersion}"
 
     }
 
     object androidX {
 
-        const val appCompat = "androidx.appcompat:appcompat:${versions.appCompat}"
+        private const val appCompatVersion = "1.2.0"
+        private const val constraintLayoutVersion = "2.0.2"
+        private const val recyclerViewVersion = "1.1.0"
+        private const val lifecycleVersion = "2.2.0"
+        private const val coreKtxVersion = "1.3.1"
+        private const val fragmentKtxVersion = "1.2.5"
+        private const val liveDataKtxVersion = "2.2.0"
+        private const val daggerHiltAssistedInjectionVersion = "1.0.0-alpha02"
+
+        const val appCompat = "androidx.appcompat:appcompat:${appCompatVersion}"
         const val navFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${versions.navigationVersion}"
         const val navUiKtx = "androidx.navigation:navigation-ui-ktx:${versions.navigationVersion}"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
-        const val recyclerView = "androidx.recyclerview:recyclerview:${versions.recyclerView}"
-        const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}"
-        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${versions.lifecycle}"
-        const val coreKtx = "androidx.core:core-ktx:${versions.coreKtx}"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:${versions.fragmentKtx}"
-        const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${versions.liveDataKtx}"
-        const val daggerHiltAssistedInjection = "androidx.hilt:hilt-lifecycle-viewmodel:${versions.daggerHiltAssistedInjection}"
-        const val daggerHiltAssistedInjectionCompiler = "androidx.hilt:hilt-compiler:${versions.daggerHiltAssistedInjection}"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
+        const val recyclerView = "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
+        const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${lifecycleVersion}"
+        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${lifecycleVersion}"
+        const val coreKtx = "androidx.core:core-ktx:${coreKtxVersion}"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:${fragmentKtxVersion}"
+        const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${liveDataKtxVersion}"
+        const val daggerHiltAssistedInjection = "androidx.hilt:hilt-lifecycle-viewmodel:${daggerHiltAssistedInjectionVersion}"
+        const val daggerHiltAssistedInjectionCompiler = "androidx.hilt:hilt-compiler:${daggerHiltAssistedInjectionVersion}"
 
     }
 
     object google {
 
+        private const val materialComponentsVersion = "1.3.0-alpha02"
+
         const val daggerHilt = "com.google.dagger:hilt-android:${versions.daggerHilt}"
         const val daggerHiltCompiler = "com.google.dagger:hilt-android-compiler:${versions.daggerHilt}"
-        const val materialComponents = "com.google.android.material:material:${versions.materialComponents}"
+        const val materialComponents = "com.google.android.material:material:${materialComponentsVersion}"
 
     }
 
     object square {
 
-        const val picasso = "com.squareup.picasso:picasso:${versions.picasso}"
+        private const val picassoVersion = "2.71828"
+
+        const val picasso = "com.squareup.picasso:picasso:${picassoVersion}"
 
     }
 
     object commons {
 
-        const val commonsCore = "com.paulrybitskyi.commons:commons-core:${versions.commonsCore}"
-        const val commonsKtx = "com.paulrybitskyi.commons:commons-ktx:${versions.commonsKtx}"
-        const val commonsWidgets = "com.paulrybitskyi.commons:commons-widgets:${versions.commonsWidgets}"
-        const val commonsRecyclerView = "com.paulrybitskyi.commons:commons-recyclerview:${versions.commonsRecyclerView}"
-        const val commonsWindowAnims = "com.paulrybitskyi.commons:commons-window-anims:${versions.commonsWindowAnims}"
+        private const val commonsCoreVersion = "1.0.0"
+        private const val commonsKtxVersion = "1.0.0"
+        private const val commonsWidgetsVersion = "1.0.0"
+        private const val commonsRecyclerViewVersion = "1.0.0"
+        private const val commonsWindowAnimsVersion = "1.0.0"
+
+        const val commonsCore = "com.paulrybitskyi.commons:commons-core:${commonsCoreVersion}"
+        const val commonsKtx = "com.paulrybitskyi.commons:commons-ktx:${commonsKtxVersion}"
+        const val commonsWidgets = "com.paulrybitskyi.commons:commons-widgets:${commonsWidgetsVersion}"
+        const val commonsRecyclerView = "com.paulrybitskyi.commons:commons-recyclerview:${commonsRecyclerViewVersion}"
+        const val commonsWindowAnims = "com.paulrybitskyi.commons:commons-window-anims:${commonsWindowAnimsVersion}"
 
     }
 
     object misc {
 
-        const val dexter = "com.karumi:dexter:${versions.dexter}"
-        const val materialDialogs = "com.afollestad.material-dialogs:core:${versions.materialDialogs}"
-        const val pdfViewer = "com.github.barteksc:android-pdf-viewer:${versions.pdfViewer}"
+        private const val dexterVersion = "6.2.2"
+        private const val materialDialogsVersion = "0.9.6.0"
+        private const val pdfViewerVersion = "2.8.2"
+
+        const val dexter = "com.karumi:dexter:${dexterVersion}"
+        const val materialDialogs = "com.afollestad.material-dialogs:core:${materialDialogsVersion}"
+        const val pdfViewer = "com.github.barteksc:android-pdf-viewer:${pdfViewerVersion}"
 
     }
 
     object testing {
 
-        const val jUnit = "junit:junit:${versions.jUnit}"
-        const val jUnitExt = "androidx.test.ext:junit:${versions.jUnitExt}"
+        private const val jUnitVersion = "4.13.1"
+        private const val jUnitExtVersion = "1.1.1"
+
+        const val jUnit = "junit:junit:${jUnitVersion}"
+        const val jUnitExt = "androidx.test.ext:junit:${jUnitExtVersion}"
 
     }
 
