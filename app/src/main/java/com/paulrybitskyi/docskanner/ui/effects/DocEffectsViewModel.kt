@@ -31,6 +31,7 @@ import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docskanner.core.StringProvider
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
+import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -104,14 +105,16 @@ internal class DocEffectsViewModel @ViewModelInject constructor(
 
 
     private fun showFileNameInputDialog(finalDocument: Bitmap) {
-        val defaultFileName = pdfDocumentFileCreator.createDefaultPdfFileName()
+        val dialogContent = DialogContent.Input(
+            hint = stringProvider.getString(R.string.doc_effects_file_name_dialog_hint),
+            prefill = pdfDocumentFileCreator.createDefaultPdfFileName(),
+            callback = { onFileNameEntered(it, finalDocument) }
+        )
         val dialogConfig = DialogConfig(
+            content = dialogContent,
             title = stringProvider.getString(R.string.doc_effects_file_name_dialog_title),
-            inputHint = stringProvider.getString(R.string.doc_effects_file_name_dialog_hint),
-            inputPrefill = defaultFileName,
             negativeBtnText = stringProvider.getString(R.string.action_cancel),
-            positiveBtnText = stringProvider.getString(R.string.ok),
-            inputCallback = { onFileNameEntered(it, finalDocument) }
+            positiveBtnText = stringProvider.getString(R.string.ok)
         )
 
         dispatchCommand(DocEffectsCommands.ShowDialog(dialogConfig))

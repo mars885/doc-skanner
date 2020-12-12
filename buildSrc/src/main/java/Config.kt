@@ -141,11 +141,12 @@ object deps {
     object misc {
 
         private const val dexterVersion = "6.2.2"
-        private const val materialDialogsVersion = "0.9.6.0"
+        private const val materialDialogsVersion = "3.3.0"
         private const val pdfViewerVersion = "2.8.2"
 
         const val dexter = "com.karumi:dexter:${dexterVersion}"
-        const val materialDialogs = "com.afollestad.material-dialogs:core:${materialDialogsVersion}"
+        const val materialDialogsCore = "com.afollestad.material-dialogs:core:${materialDialogsVersion}"
+        const val materialDialogsInput = "com.afollestad.material-dialogs:input:${materialDialogsVersion}"
         const val pdfViewer = "com.github.barteksc:android-pdf-viewer:${pdfViewerVersion}"
 
     }

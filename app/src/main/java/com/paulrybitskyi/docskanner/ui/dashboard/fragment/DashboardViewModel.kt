@@ -34,6 +34,7 @@ import com.paulrybitskyi.docskanner.ui.views.docs.DocModel
 import com.paulrybitskyi.docskanner.ui.views.docs.DocsUiState
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogItem
+import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -120,9 +121,8 @@ internal class DashboardViewModel @ViewModelInject constructor(
         }
 
         val dialogConfig = DialogConfig(
-            title = stringProvider.getString(R.string.doc_preview_image_picker_dialog_title),
-            items = options,
-            itemsCallback = ::onImagePickerItemSelected
+            content = DialogContent.List(options, callback = ::onImagePickerItemSelected),
+            title = stringProvider.getString(R.string.doc_preview_image_picker_dialog_title)
         )
 
         return dialogConfig
@@ -162,9 +162,10 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
 
     fun onCameraPermissionDenied() {
+        val message = stringProvider.getString(R.string.error_camera_permission_not_granted)
         val dialogConfig = DialogConfig(
+            content = DialogContent.Info(message),
             title = stringProvider.getString(R.string.error),
-            content = stringProvider.getString(R.string.error_camera_permission_not_granted),
             positiveBtnText = stringProvider.getString(R.string.ok)
         )
 

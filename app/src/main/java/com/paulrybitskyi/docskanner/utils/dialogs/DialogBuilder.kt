@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
+@file:Suppress("CheckResult")
+
 package com.paulrybitskyi.docskanner.utils.dialogs
 
 import android.content.Context
 import com.afollestad.materialdialogs.MaterialDialog
-import com.paulrybitskyi.commons.ktx.getCompatColor
-import com.paulrybitskyi.commons.ktx.toColorStateList
+import com.afollestad.materialdialogs.callbacks.onDismiss
+import com.afollestad.materialdialogs.callbacks.onShow
+import com.afollestad.materialdialogs.input.getInputField
+import com.afollestad.materialdialogs.input.getInputLayout
+import com.afollestad.materialdialogs.input.input
+import com.afollestad.materialdialogs.list.listItems
+import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.paulrybitskyi.commons.ktx.*
 import com.paulrybitskyi.docskanner.R
 import javax.inject.Inject
 
@@ -35,94 +43,90 @@ internal class DialogBuilderImpl @Inject constructor() : DialogBuilder {
 
 
     override fun buildDialog(context: Context, config: DialogConfig): Dialog {
-        return MaterialDialog.Builder(context)
+        return MaterialDialog(context)
             .apply {
                 addTitle(config)
                 addContent(config)
-                addInput(config)
-                addListItems(config)
-                addNegativeText(config)
-                addPositiveText(config)
-                setCancellableFlag(config)
+                addButtons(config)
+                addFlags(config)
                 addListeners(config)
-                applyStyling(context)
             }
-            .build()
             .let(::DocSkannerDialog)
     }
 
 
-    private fun MaterialDialog.Builder.addTitle(config: DialogConfig) {
-        if(config.hasTitle) title(config.title)
+    private fun MaterialDialog.addTitle(config: DialogConfig) {
+        if(config.hasTitle) title(text = config.title)
     }
 
 
-    private fun MaterialDialog.Builder.addContent(config: DialogConfig) {
-        if(config.hasContent) content(config.content)
+    private fun MaterialDialog.addContent(config: DialogConfig) {
+        when(config.content) {
+            is DialogContent.Info -> constructInfoDialog(config.content)
+            is DialogContent.Input -> constructInputDialog(config.content)
+            is DialogContent.List -> constructListDialog(config.content)
+        }
     }
 
 
-    private fun MaterialDialog.Builder.addInput(config: DialogConfig) {
-        if(config.hasInput) {
-            input(config.inputHint, config.inputPrefill) { _, text ->
-                config.inputCallback?.invoke(text.toString())
+    private fun MaterialDialog.constructInfoDialog(info: DialogContent.Info) {
+        message(text = info.message)
+    }
+
+
+    private fun MaterialDialog.constructInputDialog(info: DialogContent.Input) {
+        input(hint = info.hint, prefill = info.prefill) { _, text ->
+            info.callback?.invoke(text.toString())
+        }
+
+        getInputLayout().boxBackgroundColor = context.getCompatColor(R.color.dialog_background_color)
+        getInputLayout().boxStrokeColor = context.getCompatColor(R.color.dialog_input_underline_color)
+
+        getInputField().clearPadding()
+        getInputField().bottomPadding = context.getDimensionPixelSize(R.dimen.dialog_input_bottom_padding)
+    }
+
+
+    private fun MaterialDialog.constructListDialog(info: DialogContent.List) {
+        val dialogItems = info.items.map(DialogItem::title)
+        val callback = { index: Int -> info.callback?.invoke(info.items[index]) }
+
+        if(info.mode == DialogListMode.STANDARD) {
+            listItems(items = dialogItems) { _, index, _ -> callback(index) }
+        } else if(info.mode == DialogListMode.SINGLE_CHOICE) {
+            listItemsSingleChoice(
+                items = dialogItems,
+                initialSelection = info.selectedItemIndex
+            ) { _, index, _ ->
+                callback(index)
             }
         }
     }
 
 
-    private fun MaterialDialog.Builder.addListItems(config: DialogConfig) {
-        if(config.hasItems) {
-            items(config.items.map(DialogItem::title))
-
-            if(config.hasItemsCallback) {
-                itemsCallback { _, _, index, _ ->
-                    config.itemsCallback?.invoke(config.items[index])
-                }
+    private fun MaterialDialog.addButtons(config: DialogConfig) {
+        if(config.hasNegativeBtnText) {
+            negativeButton(text = config.negativeBtnText) {
+                config.negativeBtnClick?.invoke()
             }
+        }
 
-            if(config.hasItemsCallbackSingleChoice && config.hasSelectedItemIndex) {
-                itemsCallbackSingleChoice(config.selectedItemIndex) { _, _, index, _ ->
-                    config.itemsCallbackSingleChoice?.invoke(config.items[index])
-                    true
-                }
+        if(config.hasPositiveBtnText) {
+            positiveButton(text = config.positiveBtnText) {
+                config.positiveBtnClick?.invoke()
             }
         }
     }
 
 
-    private fun MaterialDialog.Builder.addNegativeText(config: DialogConfig) {
-        if(config.hasNegativeBtnText) negativeText(config.negativeBtnText)
-    }
-
-
-    private fun MaterialDialog.Builder.addPositiveText(config: DialogConfig) {
-        if(config.hasPositiveBtnText) positiveText(config.positiveBtnText)
-    }
-
-
-    private fun MaterialDialog.Builder.setCancellableFlag(config: DialogConfig) {
+    private fun MaterialDialog.addFlags(config: DialogConfig) {
         cancelable(config.isCancelable)
     }
 
 
-    private fun MaterialDialog.Builder.addListeners(config: DialogConfig) {
-        onNegative { _, _ -> config.negativeBtnClick?.invoke() }
-        onPositive { _, _ -> config.positiveBtnClick?.invoke() }
-
-        showListener { config.onShown?.invoke() }
-        dismissListener { config.onDismiss?.invoke() }
-    }
-
-
-    private fun MaterialDialog.Builder.applyStyling(context: Context) {
-        backgroundColor(context.getCompatColor(R.color.dialog_background_color))
-        titleColor(context.getCompatColor(R.color.dialog_title_color))
-        contentColor(context.getCompatColor(R.color.dialog_text_color))
-        itemsColor(context.getCompatColor(R.color.dialog_text_color))
-        choiceWidgetColor(context.getCompatColor(R.color.dialog_widget_color).toColorStateList())
-        positiveColor(context.getCompatColor(R.color.dialog_button_color))
-        negativeColor(context.getCompatColor(R.color.dialog_button_color))
+    private fun MaterialDialog.addListeners(config: DialogConfig) {
+        onShow { config.onShown?.invoke() }
+        onDismiss { config.onDismiss?.invoke() }
     }
 
 

@@ -25,6 +25,10 @@
     <dimen name="toolbar_progress_bar_size">35dp</dimen>
     <dimen name="toolbar_progress_bar_margin">10dp</dimen>
 
+    <!-- Dialogs -->
+    <dimen name="dialog_corner_radius">8dp</dimen>
+    <dimen name="dialog_input_bottom_padding">5dp</dimen>
+
     <!-- InfoView -->
     <dimen name="default_info_view_horizontal_margin">30dp</dimen>
     <dimen name="default_info_view_icon_size">80dp</dimen>

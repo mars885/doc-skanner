@@ -29,6 +29,7 @@ import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docskanner.core.StringProvider
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
+import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -61,9 +62,10 @@ internal class SplashViewModel @ViewModelInject constructor(
 
 
     fun onStoragePermissionDenied() {
+        val message = stringProvider.getString(R.string.error_storage_permission_not_granted)
         val dialogConfig = DialogConfig(
+            content = DialogContent.Info(message),
             title = stringProvider.getString(R.string.error),
-            content = stringProvider.getString(R.string.error_storage_permission_not_granted),
             positiveBtnText = stringProvider.getString(R.string.ok),
             isCancelable = false,
             onDismiss = ::exit

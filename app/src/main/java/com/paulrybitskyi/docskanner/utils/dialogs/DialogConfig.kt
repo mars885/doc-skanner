@@ -18,18 +18,11 @@ package com.paulrybitskyi.docskanner.utils.dialogs
 
 
 internal class DialogConfig(
+    val content: DialogContent,
     val title: String = "",
-    val content: String = "",
-    val inputHint: String = "",
-    val inputPrefill: String = "",
-    val items: List<DialogItem> = emptyList(),
-    val selectedItemIndex: Int = -1,
     val negativeBtnText: String = "",
     val positiveBtnText: String = "",
     val isCancelable: Boolean = true,
-    val inputCallback: ((String) -> Unit)? = null,
-    val itemsCallback: ((DialogItem) -> Unit)? = null,
-    val itemsCallbackSingleChoice: ((DialogItem) -> Unit)? = null,
     val negativeBtnClick: (() -> Unit)? = null,
     val positiveBtnClick: (() -> Unit)? = null,
     val onShown: (() -> Unit)? = null,
@@ -39,33 +32,39 @@ internal class DialogConfig(
     val hasTitle: Boolean
         get() = title.isNotBlank()
 
-    val hasContent: Boolean
-        get() = content.isNotBlank()
-
-    val hasInput: Boolean
-        get() = (
-            inputHint.isNotBlank() &&
-            inputPrefill.isNotBlank() &&
-            inputCallback != null
-        )
-
-    val hasItems: Boolean
-        get() = items.isNotEmpty()
-
-    val hasSelectedItemIndex: Boolean
-        get() = (selectedItemIndex != -1)
-
     val hasNegativeBtnText: Boolean
         get() = negativeBtnText.isNotBlank()
 
     val hasPositiveBtnText: Boolean
         get() = positiveBtnText.isNotBlank()
 
-    val hasItemsCallback: Boolean
-        get() = (itemsCallback != null)
+}
 
-    val hasItemsCallbackSingleChoice: Boolean
-        get() = (itemsCallbackSingleChoice != null)
+
+internal sealed class DialogContent {
+
+    class Info(val message: String): DialogContent()
+
+    class Input(
+        val hint: String = "",
+        val prefill: String = "",
+        val callback: ((String) -> Unit)?
+    ): DialogContent()
+
+    class List(
+        val items: kotlin.collections.List<DialogItem>,
+        val selectedItemIndex: Int = -1,
+        val mode: DialogListMode = DialogListMode.STANDARD,
+        val callback: ((DialogItem) -> Unit)?
+    ): DialogContent()
+
+}
+
+
+internal enum class DialogListMode {
+
+    STANDARD,
+    SINGLE_CHOICE
 
 }
 

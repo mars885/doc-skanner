@@ -38,8 +38,9 @@
     <!-- Dialogs -->
     <color name="dialog_background_color">@color/colorPrimary</color>
     <color name="dialog_title_color">@color/colorPrimaryText</color>
-    <color name="dialog_text_color">@color/colorPrimaryText</color>
+    <color name="dialog_content_color">@color/colorPrimaryText</color>
     <color name="dialog_widget_color">@color/colorAccent</color>
+    <color name="dialog_input_underline_color">@color/colorAccent</color>
     <color name="dialog_button_color">@color/colorPrimaryText</color>
 
     <!-- DocView -->

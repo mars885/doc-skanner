@@ -18,14 +18,25 @@
 
 <resources>
 
-    <style name="DocSkannerTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="DocSkannerTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowBackground">@color/colorContentContainer</item>
         <item name="android:navigationBarColor">@color/colorNavigationBar</item>
+        <item name="android:colorControlActivated">@color/colorAccent</item>    <!-- EditText's Cursor Color -->
+
+        <item name="md_corner_radius">@dimen/dialog_corner_radius</item>
+        <item name="md_background_color">@color/dialog_background_color</item>
+        <item name="md_color_title">@color/dialog_title_color</item>
+        <item name="md_color_content">@color/dialog_content_color</item>
+        <item name="md_color_widget">@color/dialog_widget_color</item>
+        <item name="md_color_widget_unchecked">@color/dialog_widget_color</item>
+        <item name="md_color_button_text">@color/colorPrimaryText</item>
     </style>
+
+    <style name="DefStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"/>
 
     <style name="DocSkannerTheme.SplashScreen">
         <item name="android:windowBackground">@drawable/splash_screen_background</item>

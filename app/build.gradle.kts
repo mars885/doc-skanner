@@ -85,8 +85,9 @@ dependencies {
     implementation(deps.commons.commonsRecyclerView)
 
     implementation(deps.misc.dexter)
-    implementation(deps.misc.materialDialogs)
     implementation(deps.misc.pdfViewer)
+    implementation(deps.misc.materialDialogsCore)
+    implementation(deps.misc.materialDialogsInput)
 
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)
