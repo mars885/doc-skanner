@@ -124,14 +124,16 @@ object deps {
 
     object commons {
 
-        private const val commonsCoreVersion = "1.0.0"
-        private const val commonsKtxVersion = "1.0.0"
-        private const val commonsWidgetsVersion = "1.0.0"
+        private const val commonsCoreVersion = "1.0.1"
+        private const val commonsKtxVersion = "1.0.1"
+        private const val commonsNavigationVersion = "1.0.1"
+        private const val commonsWidgetsVersion = "1.0.1"
         private const val commonsRecyclerViewVersion = "1.0.0"
         private const val commonsWindowAnimsVersion = "1.0.0"
 
         const val commonsCore = "com.paulrybitskyi.commons:commons-core:${commonsCoreVersion}"
         const val commonsKtx = "com.paulrybitskyi.commons:commons-ktx:${commonsKtxVersion}"
+        const val commonsNavigation = "com.paulrybitskyi.commons:commons-navigation:${commonsNavigationVersion}"
         const val commonsWidgets = "com.paulrybitskyi.commons:commons-widgets:${commonsWidgetsVersion}"
         const val commonsRecyclerView = "com.paulrybitskyi.commons:commons-recyclerview:${commonsRecyclerViewVersion}"
         const val commonsWindowAnims = "com.paulrybitskyi.commons:commons-window-anims:${commonsWindowAnimsVersion}"

@@ -25,6 +25,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.karumi.dexter.Dexter
 import com.paulrybitskyi.commons.ktx.onClick
+import com.paulrybitskyi.commons.navigation.navController
+import com.paulrybitskyi.commons.utils.viewBinding
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.databinding.FragmentDashboardBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
@@ -34,9 +36,7 @@ import com.paulrybitskyi.docskanner.utils.dialogs.Dialog
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
-import com.paulrybitskyi.docskanner.utils.utils.navController
 import com.paulrybitskyi.docskanner.core.utils.withListener
-import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

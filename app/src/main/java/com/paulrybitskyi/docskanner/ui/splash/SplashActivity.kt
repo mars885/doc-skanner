@@ -3,6 +3,7 @@ package com.paulrybitskyi.docskanner.ui.splash
 import android.Manifest
 import androidx.activity.viewModels
 import com.karumi.dexter.Dexter
+import com.paulrybitskyi.commons.utils.viewBinding
 import com.paulrybitskyi.docskanner.databinding.ActivitySplashBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseActivity
 import com.paulrybitskyi.docskanner.ui.base.events.Command
@@ -13,7 +14,6 @@ import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
 import com.paulrybitskyi.docskanner.core.utils.withListener
-import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

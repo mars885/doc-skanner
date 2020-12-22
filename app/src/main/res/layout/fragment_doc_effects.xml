@@ -44,7 +44,7 @@
 
     </com.paulrybitskyi.commons.widgets.toolbar.Toolbar>
 
-    <com.paulrybitskyi.docskanner.ui.views.CrutchInfoView
+    <com.paulrybitskyi.commons.widgets.InfoView
         android:id="@+id/magicColorEffectIv"
         app:infoView_icon="@drawable/auto_fix"
         app:infoView_titleText="@string/doc_effects_magic_color_effect"
@@ -53,7 +53,7 @@
         style="@style/DocSkanner.Effects.Effect"
         tools:ignore="MissingConstraints"/>
 
-    <com.paulrybitskyi.docskanner.ui.views.CrutchInfoView
+    <com.paulrybitskyi.commons.widgets.InfoView
         android:id="@+id/grayModeEffectIv"
         app:infoView_icon="@drawable/cloud"
         app:infoView_titleText="@string/doc_effects_gray_mode_effect"
@@ -62,7 +62,7 @@
         style="@style/DocSkanner.Effects.Effect"
         tools:ignore="MissingConstraints"/>
 
-    <com.paulrybitskyi.docskanner.ui.views.CrutchInfoView
+    <com.paulrybitskyi.commons.widgets.InfoView
         android:id="@+id/blackAndWhiteEffectIv"
         app:infoView_icon="@drawable/invert_colors"
         app:infoView_titleText="@string/doc_effects_black_and_white_effect"

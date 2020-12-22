@@ -20,6 +20,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.paulrybitskyi.commons.ktx.onClick
 import com.paulrybitskyi.commons.ktx.removeElevation
+import com.paulrybitskyi.commons.navigation.navController
+import com.paulrybitskyi.commons.utils.viewBinding
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.databinding.FragmentDocEffectsBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
@@ -30,8 +32,6 @@ import com.paulrybitskyi.docskanner.utils.dialogs.Dialog
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
-import com.paulrybitskyi.docskanner.utils.utils.navController
-import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -67,13 +67,13 @@ internal class DocEffectsFragment : BaseFragment<
 
 
     private fun initEffects() = with(viewBinding) {
-        magicColorEffectIv.isTitleOneLiner = true
+        magicColorEffectIv.isTitleTextOneLiner = true
         magicColorEffectIv.onClick { viewModel.onMagicColorEffectClicked() }
 
-        grayModeEffectIv.isTitleOneLiner = true
+        grayModeEffectIv.isTitleTextOneLiner = true
         grayModeEffectIv.onClick { viewModel.onGrayModeEffectClicked() }
 
-        blackAndWhiteEffectIv.isTitleOneLiner = true
+        blackAndWhiteEffectIv.isTitleTextOneLiner = true
         blackAndWhiteEffectIv.onClick { viewModel.onBlackAndWhiteEffectClicked() }
     }
 

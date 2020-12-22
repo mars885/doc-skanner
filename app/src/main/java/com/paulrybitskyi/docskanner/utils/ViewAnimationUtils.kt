@@ -14,12 +14,32 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.utils.utils
+package com.paulrybitskyi.docskanner.utils
 
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
+import android.view.View
+import android.view.animation.DecelerateInterpolator
 
 
-internal val Fragment.navController: NavController
-    get() = findNavController()
+private const val DATA_SET_ANIMATION_DURATION = 500L
+private val DATA_SET_ANIMATION_INTERPOLATOR = DecelerateInterpolator(1.5F)
+
+
+internal fun View.fadeIn() {
+    animate()
+        .alpha(1f)
+        .setDuration(DATA_SET_ANIMATION_DURATION)
+        .setInterpolator(DATA_SET_ANIMATION_INTERPOLATOR)
+        .start()
+}
+
+
+internal fun View.resetAnimation() {
+    cancelActiveAnimations()
+    alpha = 0f
+}
+
+
+internal fun View.cancelActiveAnimations() {
+    clearAnimation()
+    animate().cancel()
+}

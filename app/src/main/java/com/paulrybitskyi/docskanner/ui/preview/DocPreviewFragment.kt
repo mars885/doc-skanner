@@ -21,12 +21,12 @@ import com.paulrybitskyi.commons.ktx.getDimensionPixelSize
 import com.paulrybitskyi.commons.ktx.makeGone
 import com.paulrybitskyi.commons.ktx.makeVisible
 import com.paulrybitskyi.commons.ktx.removeElevation
+import com.paulrybitskyi.commons.navigation.navController
+import com.paulrybitskyi.commons.utils.viewBinding
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.databinding.FragmentDocPreviewBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
 import com.paulrybitskyi.docskanner.ui.base.events.Route
-import com.paulrybitskyi.docskanner.utils.utils.navController
-import com.paulrybitskyi.docskanner.utils.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

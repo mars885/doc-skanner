@@ -80,6 +80,7 @@ dependencies {
 
     implementation(deps.commons.commonsCore)
     implementation(deps.commons.commonsKtx)
+    implementation(deps.commons.commonsNavigation)
     implementation(deps.commons.commonsWidgets)
     implementation(deps.commons.commonsWindowAnims)
     implementation(deps.commons.commonsRecyclerView)

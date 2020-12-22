@@ -51,6 +51,8 @@ dependencies {
     implementation(deps.kotlin.stdLib)
     implementation(deps.kotlin.coroutinesCore)
 
+    implementation(deps.commons.commonsKtx)
+
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)
 }

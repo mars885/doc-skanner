@@ -17,11 +17,11 @@
 package com.paulrybitskyi.docskanner.data.usecases
 
 import android.os.FileObserver
+import com.paulrybitskyi.commons.ktx.fileList
+import com.paulrybitskyi.commons.ktx.newFileObserver
 import com.paulrybitskyi.docskanner.core.AppStorageFolderProvider
 import com.paulrybitskyi.docskanner.core.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
-import com.paulrybitskyi.docskanner.core.utils.fileList
-import com.paulrybitskyi.docskanner.core.utils.newFileObserver
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.Flow

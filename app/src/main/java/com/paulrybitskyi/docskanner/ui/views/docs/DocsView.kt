@@ -31,8 +31,8 @@ import com.paulrybitskyi.commons.recyclerview.utils.disableChangeAnimations
 import com.paulrybitskyi.commons.utils.observeChanges
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.databinding.ViewDocsBinding
-import com.paulrybitskyi.docskanner.utils.utils.fadeIn
-import com.paulrybitskyi.docskanner.utils.utils.resetAnimation
+import com.paulrybitskyi.docskanner.utils.fadeIn
+import com.paulrybitskyi.docskanner.utils.resetAnimation
 
 internal class DocsView @JvmOverloads constructor(
     context: Context,
