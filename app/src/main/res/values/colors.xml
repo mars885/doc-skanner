@@ -52,7 +52,7 @@
     <!-- ImageCropperView -->
     <color name="image_cropper_valid_shape_line_color">#00be75</color>
     <color name="image_cropper_invalid_shape_line_color">#cc2e4e</color>
-    <color name="image_cropper_pointer_background_color">#00000000</color>
+    <color name="image_cropper_pointer_background_color">#881191d0</color>
     <color name="image_cropper_pointer_stroke_color">@color/colorAccent</color>
 
     <!-- DashboardFragment -->
@@ -67,6 +67,5 @@
     <!-- DocEffectsFragment -->
     <color name="doc_effects_effect_view_background_color">@color/colorPrimary</color>
     <color name="doc_effects_effect_view_content_color">@color/colorSecondaryText</color>
-
 
 </resources>

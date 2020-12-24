@@ -61,8 +61,8 @@
     <dimen name="doc_cropper_image_margin">16dp</dimen>
 
     <!-- ImageCropperView -->
-    <dimen name="image_cropper_pointer_size">32dp</dimen>
-    <dimen name="image_cropper_pointer_stroke_width">2dp</dimen>
+    <dimen name="image_cropper_pointer_size">20dp</dimen>
+    <dimen name="image_cropper_pointer_stroke_width">1.5dp</dimen>
     <dimen name="image_cropper_line_stroke_width">1dp</dimen>
 
     <!-- DashboardFragment -->
