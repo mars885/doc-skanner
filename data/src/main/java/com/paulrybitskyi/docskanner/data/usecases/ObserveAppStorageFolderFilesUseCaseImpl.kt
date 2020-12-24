@@ -23,7 +23,6 @@ import com.paulrybitskyi.docskanner.core.AppStorageFolderProvider
 import com.paulrybitskyi.docskanner.core.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
@@ -38,22 +37,28 @@ internal class ObserveAppStorageFolderFilesUseCaseImpl @Inject constructor(
 ) : ObserveAppStorageFolderFilesUseCase {
 
 
+    private companion object {
+
+        private const val FILE_EVENTS = (
+            FileObserver.MODIFY or FileObserver.ATTRIB or
+            FileObserver.MOVED_FROM or FileObserver.MOVED_TO or
+            FileObserver.CREATE or FileObserver.DELETE or
+            FileObserver.DELETE_SELF
+        )
+
+    }
+
+
     override suspend fun execute(params: Unit): Flow<List<File>> {
         return callbackFlow {
             val appStorageFolder = appStorageFolderProvider.getAppStorageFolder()
-            val events = (
-                FileObserver.MODIFY or FileObserver.ATTRIB or
-                FileObserver.MOVED_FROM or FileObserver.MOVED_TO or
-                FileObserver.CREATE or FileObserver.DELETE or
-                FileObserver.DELETE_SELF
-            )
-            val fileObserver = appStorageFolder.newFileObserver(events) { _, _ ->
-                sendBlocking(appStorageFolder.fileList())
+            val fileObserver = appStorageFolder.newFileObserver(FILE_EVENTS) { _, _ ->
+                offer(appStorageFolder.fileList())
             }
 
             fileObserver.startWatching()
+            offer(appStorageFolder.fileList())
 
-            sendBlocking(appStorageFolder.fileList())
             awaitClose { fileObserver.stopWatching() }
         }
         .flowOn(dispatcherProvider.computation)
