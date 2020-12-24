@@ -18,11 +18,10 @@ package com.paulrybitskyi.docskanner.ui.preview
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 
 
@@ -34,14 +33,21 @@ internal class DocPreviewViewModel @ViewModelInject constructor(
 ) : BaseViewModel() {
 
 
+    private val _toolbarTitle = MutableLiveData<String>()
     private val _docFile = MutableLiveData<File>()
 
-    val toolbarTitle: LiveData<String> = Transformations.map(_docFile, File::getName)
+    val toolbarTitle: LiveData<String> = _toolbarTitle
     val docFile: LiveData<File> = _docFile
 
 
-    init {
-        _docFile.value = createFile()
+    fun loadData(fileEmissionDelay: Long) {
+        viewModelScope.launch {
+            val file = createFile()
+
+            _toolbarTitle.value = file.name
+            delay(fileEmissionDelay)
+            _docFile.value = file
+        }
     }
 
 
