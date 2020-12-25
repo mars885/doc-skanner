@@ -58,7 +58,6 @@ dependencies {
     implementation(project(deps.local.data))
     implementation(project(deps.local.core))
     implementation(project(deps.local.imageProcessing))
-    implementation(project(deps.local.openCv))
 
     implementation(deps.kotlin.stdLib)
     implementation(deps.kotlin.coroutinesCore)
