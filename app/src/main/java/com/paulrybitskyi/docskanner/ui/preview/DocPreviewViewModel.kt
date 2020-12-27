@@ -19,6 +19,7 @@ package com.paulrybitskyi.docskanner.ui.preview
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -40,12 +41,17 @@ internal class DocPreviewViewModel @ViewModelInject constructor(
     val docFile: LiveData<File> = _docFile
 
 
-    fun loadData(fileEmissionDelay: Long) {
+    init {
+        initData()
+    }
+
+
+    private fun initData() {
         viewModelScope.launch {
             val file = createFile()
 
             _toolbarTitle.value = file.name
-            delay(fileEmissionDelay)
+            delay(Constants.DEFAULT_WINDOW_ANIMATION_DURATION)
             _docFile.value = file
         }
     }

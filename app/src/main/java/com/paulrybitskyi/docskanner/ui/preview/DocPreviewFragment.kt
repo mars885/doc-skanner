@@ -27,7 +27,6 @@ import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.databinding.FragmentDocPreviewBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
 import com.paulrybitskyi.docskanner.ui.base.events.Route
-import com.paulrybitskyi.docskanner.utils.defaultWindowAnimationDuration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -89,13 +88,6 @@ internal class DocPreviewFragment : BaseFragment<
         progressBar.makeGone()
         pdfView.makeGone()
         infoView.makeVisible()
-    }
-
-
-    override fun onLoadData() {
-        super.onLoadData()
-
-        viewModel.loadData(requireContext().defaultWindowAnimationDuration())
     }
 
 
