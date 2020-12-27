@@ -19,8 +19,8 @@ package com.paulrybitskyi.docskanner.ui.preview
 import com.paulrybitskyi.docskanner.ui.base.events.Route
 
 
-internal sealed class DocPreviewRoutes : Route {
+internal sealed class DocPreviewRoute : Route {
 
-    object NavigateBack : DocPreviewRoutes()
+    object NavigateBack : DocPreviewRoute()
 
 }

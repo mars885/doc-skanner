@@ -41,6 +41,7 @@
     <color name="dialog_content_color">@color/colorPrimaryText</color>
     <color name="dialog_widget_color">@color/colorAccent</color>
     <color name="dialog_input_underline_color">@color/colorAccent</color>
+    <color name="dialog_input_text_color">@color/colorPrimaryText</color>
     <color name="dialog_button_color">@color/colorPrimaryText</color>
 
     <!-- DocView -->
@@ -49,11 +50,11 @@
     <color name="doc_name_color">@color/colorSecondaryText</color>
     <color name="doc_details_color">@color/colorSecondaryDarkText</color>
 
-    <!-- ImageCropperView -->
-    <color name="image_cropper_valid_shape_line_color">#00be75</color>
-    <color name="image_cropper_invalid_shape_line_color">#cc2e4e</color>
-    <color name="image_cropper_pointer_background_color">#881191d0</color>
-    <color name="image_cropper_pointer_stroke_color">@color/colorAccent</color>
+    <!-- DocCropAreaView -->
+    <color name="doc_crop_area_valid_shape_line_color">#00be75</color>
+    <color name="doc_crop_area_invalid_shape_line_color">#cc2e4e</color>
+    <color name="doc_crop_area_pointer_background_color">#881191d0</color>
+    <color name="doc_crop_area_pointer_stroke_color">@color/colorAccent</color>
 
     <!-- DashboardFragment -->
     <color name="dashboard_docs_background">@color/colorContentContainer</color>
@@ -64,8 +65,8 @@
     <color name="doc_preview_container_background">@color/colorContentContainer</color>
     <color name="doc_preview_artificial_shadow">#66000000</color>
 
-    <!-- DocEffectsFragment -->
-    <color name="doc_effects_effect_view_background_color">@color/colorPrimary</color>
-    <color name="doc_effects_effect_view_content_color">@color/colorSecondaryText</color>
+    <!-- DocEditorFragment -->
+    <color name="doc_editor_effect_view_background_color">@color/colorPrimary</color>
+    <color name="doc_editor_effect_view_content_color">@color/colorSecondaryText</color>
 
 </resources>

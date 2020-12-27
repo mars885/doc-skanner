@@ -95,7 +95,7 @@ internal class DocPreviewFragment : BaseFragment<
         super.onRoute(route)
 
         when(route) {
-            is DocPreviewRoutes.NavigateBack -> navigateBack()
+            is DocPreviewRoute.NavigateBack -> navigateBack()
         }
     }
 

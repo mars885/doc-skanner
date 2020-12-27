@@ -20,19 +20,22 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
-import com.paulrybitskyi.docskanner.core.PermissionVerifier
+import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.core.utils.combine
+import com.paulrybitskyi.docskanner.core.utils.onError
+import com.paulrybitskyi.docskanner.core.utils.onSuccess
+import com.paulrybitskyi.docskanner.core.verifiers.PermissionVerifier
 import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
 import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
-import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
-import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.imageprocessing.ImageProcessorInitializer
+import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
+import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommand
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import java.io.File
 
 internal class SplashViewModel @ViewModelInject constructor(
     private val imageProcessorInitializer: ImageProcessorInitializer,
@@ -49,7 +52,7 @@ internal class SplashViewModel @ViewModelInject constructor(
             return
         }
 
-        dispatchCommand(SplashCommands.RequestStoragePermission)
+        dispatchCommand(SplashCommand.RequestStoragePermission)
     }
 
 
@@ -68,7 +71,7 @@ internal class SplashViewModel @ViewModelInject constructor(
             onDismiss = ::exit
         )
 
-        dispatchCommand(SplashCommands.ShowDialog(dialogConfig))
+        dispatchCommand(SplashCommand.ShowDialog(dialogConfig))
     }
 
 
@@ -84,19 +87,21 @@ internal class SplashViewModel @ViewModelInject constructor(
                 createAppStorageFolder(),
                 clearAppCache()
             )
-            .onCompletion { onInitializationFlowCompleted(it) }
-            .catch { onInitializationFlowFailed() }
+            .onSuccess { onInitializationFlowSucceeded() }
+            .onError { onInitializationFlowFailed() }
             .collect()
         }
     }
 
 
     private fun initImageProcessor(): Flow<Unit> {
-        return flow { emit(imageProcessorInitializer.init()) }
+        return flow {
+            imageProcessorInitializer.init()
+        }
     }
 
 
-    private suspend fun createAppStorageFolder(): Flow<File> {
+    private suspend fun createAppStorageFolder(): Flow<Unit> {
         return createAppStorageFolderUseCase.execute(Unit)
     }
 
@@ -106,23 +111,21 @@ internal class SplashViewModel @ViewModelInject constructor(
     }
 
 
+    private fun onInitializationFlowSucceeded() {
+        route(SplashRoute.Dashboard)
+    }
+
+
     private fun onInitializationFlowFailed() {
         val message = stringProvider.getString(R.string.error_initialization_failed)
 
-        dispatchCommand(GeneralCommands.ShowLongToast(message))
+        dispatchCommand(GeneralCommand.ShowLongToast(message))
         exit()
     }
 
 
-    private fun onInitializationFlowCompleted(error: Throwable?) {
-        if(error != null) return
-
-        route(SplashRoutes.Dashboard)
-    }
-
-
     private fun exit() {
-        route(SplashRoutes.Exit)
+        route(SplashRoute.Exit)
     }
 
 

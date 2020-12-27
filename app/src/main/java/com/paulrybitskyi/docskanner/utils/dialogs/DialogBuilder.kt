@@ -27,7 +27,10 @@ import com.afollestad.materialdialogs.input.getInputLayout
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItems
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
-import com.paulrybitskyi.commons.ktx.*
+import com.paulrybitskyi.commons.ktx.bottomPadding
+import com.paulrybitskyi.commons.ktx.clearPadding
+import com.paulrybitskyi.commons.ktx.getCompatColor
+import com.paulrybitskyi.commons.ktx.getDimensionPixelSize
 import com.paulrybitskyi.docskanner.R
 import javax.inject.Inject
 
@@ -82,6 +85,8 @@ internal class DialogBuilderImpl @Inject constructor() : DialogBuilder {
         getInputLayout().boxBackgroundColor = context.getCompatColor(R.color.dialog_background_color)
         getInputLayout().boxStrokeColor = context.getCompatColor(R.color.dialog_input_underline_color)
 
+        getInputField().setTextColor(context.getCompatColor(R.color.dialog_input_text_color))
+        getInputField().setHintTextColor(context.getCompatColor(R.color.dialog_input_text_color))
         getInputField().clearPadding()
         getInputField().bottomPadding = context.getDimensionPixelSize(R.dimen.dialog_input_bottom_padding)
     }

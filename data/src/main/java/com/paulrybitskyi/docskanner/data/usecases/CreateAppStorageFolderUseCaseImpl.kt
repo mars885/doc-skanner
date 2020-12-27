@@ -22,7 +22,6 @@ import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -33,8 +32,8 @@ internal class CreateAppStorageFolderUseCaseImpl @Inject constructor(
 ) : CreateAppStorageFolderUseCase {
 
 
-    override suspend fun execute(params: Unit): Flow<File> {
-        return flow {
+    override suspend fun execute(params: Unit): Flow<Unit> {
+        return flow<Unit> {
             val appStorageFolder = appStorageFolderProvider.getAppStorageFolder()
 
             if(!appStorageFolder.exists()) {
@@ -42,10 +41,8 @@ internal class CreateAppStorageFolderUseCaseImpl @Inject constructor(
             }
 
             if(!appStorageFolder.exists()) {
-                throw IllegalStateException("Could not create the storage folder.")
+                throw IllegalStateException("Could not create the app's storage folder.")
             }
-
-            emit(appStorageFolder)
         }
         .flowOn(dispatcherProvider.io)
     }

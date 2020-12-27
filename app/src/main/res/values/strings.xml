@@ -38,31 +38,34 @@
     <string name="error_storage_permission_not_granted">The app cannot proceed further without access to the phone\'s media. Please try again.</string>
     <string name="error_camera_permission_not_granted">Cannot take an image without access to the camera. Please try again.</string>
     <string name="error_initialization_failed">Could not initialize the app. Please try again later.</string>
-    <string name="error_cannot_crop">Cannot crop. Please readjust cropping area.</string>
-    <string name="error_cropping_failed">Could not crop the image. Please try again later.</string>
+    <string name="error_cannot_process_gallery_image">Cannot process gallery image. Please try again.</string>
+    <string name="error_cannot_crop">Cannot crop. Please readjust the crop area.</string>
+    <string name="error_scan_failed">Could not scan the document. Please try again later.</string>
     <string name="error_effect_application_failed">Could not apply the effect. Please try again later.</string>
-    <string name="error_bitmap_saving">Could not save the image. Please try again.</string>
+    <string name="error_image_to_file_conversion">Could not save the image. Please try again.</string>
+    <string name="error_invalid_doc_file_name">The provided file name should end with \".pdf\" extension. Please try again.</string>"
     <string name="error_pdf_document_creation_failed">Could not create a PDF document. Please try again.</string>
-    <string name="error_invalid_file_name">The provided file name is invalid. Please try again.</string>"
     <string name="error_unknown_message">Oops! Something went wrong.</string>
 
     <!-- DashboardFragment -->
     <string name="dashboard_toolbar_title">Dashboard</string>
-    <string name="dashboard_info_view_title">No Documents Found</string>
+
+    <!-- DocsView -->
+    <string name="docs_info_view_title">No documents have been scanned yet</string>
 
     <!-- DocPreviewFragment -->
     <string name="doc_preview_info_view_title">Cannot not open the file!</string>
     <string name="doc_preview_image_picker_dialog_title">Choose an image from</string>
 
-    <!-- DocScanningFragment -->
-    <string name="doc_scanning_toolbar_title">Scanning</string>
+    <!-- DocScannerFragment -->
+    <string name="doc_scanner_toolbar_title">Scanner</string>
 
-    <!-- DocEffectsFragment -->
-    <string name="doc_effects_toolbar_title">Effects</string>
-    <string name="doc_effects_magic_color_effect">Magic Color</string>
-    <string name="doc_effects_gray_mode_effect">Gray Mode</string>
-    <string name="doc_effects_black_and_white_effect">Black &amp; White</string>
-    <string name="doc_effects_file_name_dialog_title">PDF File Name</string>
-    <string name="doc_effects_file_name_dialog_hint">Enter a file name</string>
+    <!-- DocEditorFragment -->
+    <string name="doc_editor_toolbar_title">Editor</string>
+    <string name="doc_editor_magic_color_effect">Magic Color</string>
+    <string name="doc_editor_gray_mode_effect">Gray Mode</string>
+    <string name="doc_editor_black_and_white_effect">Black &amp; White</string>
+    <string name="doc_editor_file_name_dialog_title">PDF File Name</string>
+    <string name="doc_editor_file_name_dialog_hint">Enter a file name</string>
 
 </resources>

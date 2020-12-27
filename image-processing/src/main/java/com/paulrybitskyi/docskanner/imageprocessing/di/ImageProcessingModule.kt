@@ -18,14 +18,16 @@ package com.paulrybitskyi.docskanner.imageprocessing.di
 
 import com.paulrybitskyi.docskanner.imageprocessing.ImageProcessorInitializer
 import com.paulrybitskyi.docskanner.imageprocessing.ImageProcessorInitializerImpl
-import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactory
-import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactoryImpl
-import com.paulrybitskyi.docskanner.imageprocessing.cropping.ImagePerspectiveTransformer
-import com.paulrybitskyi.docskanner.imageprocessing.cropping.OpenCvImagePerspectiveTransformer
+import com.paulrybitskyi.docskanner.imageprocessing.crop.ImagePerspectiveTransformer
+import com.paulrybitskyi.docskanner.imageprocessing.crop.OpenCvImagePerspectiveTransformer
+import com.paulrybitskyi.docskanner.imageprocessing.crop.transform.CropTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.crop.transform.CropTransformationFactoryImpl
+import com.paulrybitskyi.docskanner.imageprocessing.detector.DocCoordsOrderer
+import com.paulrybitskyi.docskanner.imageprocessing.detector.DocCoordsOrdererImpl
+import com.paulrybitskyi.docskanner.imageprocessing.detector.DocShapeDetector
+import com.paulrybitskyi.docskanner.imageprocessing.detector.OpenCvDocShapeDetector
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactory
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactoryImpl
-import com.paulrybitskyi.docskanner.imageprocessing.highlight.ImageHighlightFinder
-import com.paulrybitskyi.docskanner.imageprocessing.highlight.OpenCvImageHighlightFinder
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -43,6 +45,18 @@ internal interface ImageProcessingModule {
 
 
     @Binds
+    fun bindDocCoordsOrderer(
+        sorter: DocCoordsOrdererImpl
+    ): DocCoordsOrderer
+
+
+    @Binds
+    fun bindDocShapeDetector(
+        detector: OpenCvDocShapeDetector
+    ): DocShapeDetector
+
+
+    @Binds
     fun bindImageEffectTransformationFactory(
         transformationFactory: ImageEffectTransformationFactoryImpl
     ): ImageEffectTransformationFactory
@@ -55,15 +69,9 @@ internal interface ImageProcessingModule {
 
 
     @Binds
-    fun bindImageHighlightFinder(
-        highlightFinder: OpenCvImageHighlightFinder
-    ): ImageHighlightFinder
-
-
-    @Binds
-    fun bindCroppingTransformationFactory(
-        factory: CroppingTransformationFactoryImpl
-    ): CroppingTransformationFactory
+    fun bindCropTransformationFactory(
+        factory: CropTransformationFactoryImpl
+    ): CropTransformationFactory
 
 
 }

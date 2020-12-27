@@ -16,33 +16,23 @@
 
 package com.paulrybitskyi.docskanner.ui.dashboard.fragment
 
-import com.paulrybitskyi.docskanner.core.DocDetailsBuilder
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocModelFactory
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocModelFactoryImpl
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocsUiStateFactoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-internal object DashboardModule {
+internal interface DashboardModule {
 
+    @Binds
+    fun bindDocUiStateFactory(factory: DocsUiStateFactoryImpl): DocsUiStateFactory
 
-    @Provides
-    fun provideDocsUiStateFactory(
-        docModelFactory: DocModelFactory
-    ): DocsUiStateFactory {
-        return DocsUiStateFactoryImpl(docModelFactory)
-    }
-
-
-    @Provides
-    fun provideDocModelFactory(docDetailsBuilder: DocDetailsBuilder): DocModelFactory {
-        return DocModelFactoryImpl(docDetailsBuilder)
-    }
-
+    @Binds
+    fun bindDocModelFactory(factory: DocModelFactoryImpl): DocModelFactory
 
 }

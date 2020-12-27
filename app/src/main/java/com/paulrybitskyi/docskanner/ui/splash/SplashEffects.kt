@@ -21,7 +21,7 @@ import com.paulrybitskyi.docskanner.ui.base.events.Route
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 
 
-internal sealed class SplashCommands : Command {
+internal sealed class SplashCommand : Command {
 
     object RequestStoragePermission : Command
 
@@ -30,10 +30,10 @@ internal sealed class SplashCommands : Command {
 }
 
 
-internal sealed class SplashRoutes : Route {
+internal sealed class SplashRoute : Route {
 
-    object Dashboard : SplashRoutes()
+    object Dashboard : SplashRoute()
 
-    object Exit : SplashRoutes()
+    object Exit : SplashRoute()
 
 }

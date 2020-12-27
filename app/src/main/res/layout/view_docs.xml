@@ -48,7 +48,7 @@
         android:id="@+id/infoView"
         android:layout_gravity="center"
         app:infoView_icon="@drawable/file_document_multiple_outline"
-        app:infoView_titleText="@string/dashboard_info_view_title"
+        app:infoView_titleText="@string/docs_info_view_title"
         style="@style/DocSkanner.InfoView"/>
 
 </merge>

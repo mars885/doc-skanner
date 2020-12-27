@@ -18,6 +18,7 @@ package com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping
 
 import com.paulrybitskyi.docskanner.ui.views.docs.DocsUiState
 import java.io.File
+import javax.inject.Inject
 
 
 internal interface DocsUiStateFactory {
@@ -31,7 +32,7 @@ internal interface DocsUiStateFactory {
 }
 
 
-internal class DocsUiStateFactoryImpl(
+internal class DocsUiStateFactoryImpl @Inject constructor(
     private val docModelFactory: DocModelFactory
 ) : DocsUiStateFactory {
 

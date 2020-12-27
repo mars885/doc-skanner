@@ -35,15 +35,13 @@ internal class ClearAppCacheUseCaseImpl @Inject constructor(
 
 
     override suspend fun execute(params: Unit): Flow<Unit> {
-        return flow {
+        return flow<Unit> {
             val cacheFolder = applicationContext.cacheDir
             val cacheFiles = cacheFolder.fileList()
 
             for(cacheFile in cacheFiles) {
                 if(cacheFile.exists()) cacheFile.delete()
             }
-
-            emit(Unit)
         }
         .flowOn(dispatcherProvider.io)
     }

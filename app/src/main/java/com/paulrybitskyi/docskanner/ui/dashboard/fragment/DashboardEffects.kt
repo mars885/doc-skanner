@@ -20,25 +20,26 @@ import android.net.Uri
 import com.paulrybitskyi.docskanner.ui.base.events.Command
 import com.paulrybitskyi.docskanner.ui.base.events.Route
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
+import java.io.File
 
 
-internal sealed class DashboardCommands : Command {
+internal sealed class DashboardCommand : Command {
 
-    class ShowDialog(val config: DialogConfig): DashboardCommands()
+    class ShowDialog(val config: DialogConfig): DashboardCommand()
 
-    object RequestCameraPermission: DashboardCommands()
+    object RequestCameraPermission: DashboardCommand()
 
-    class TakeCameraImage(val destinationUri: Uri): DashboardCommands()
+    class TakeCameraImage(val destinationUri: Uri): DashboardCommand()
 
-    object PickGalleryImage: DashboardCommands()
+    object PickGalleryImage: DashboardCommand()
 
 }
 
 
-internal sealed class DashboardRoutes : Route {
+internal sealed class DashboardRoute : Route {
 
-    data class DocPreview(val filePath: String): DashboardRoutes()
+    data class DocPreview(val docFile: File): DashboardRoute()
 
-    data class DocScanning(val docFile: Uri): DashboardRoutes()
+    data class DocScanner(val docImageFile: File): DashboardRoute()
 
 }

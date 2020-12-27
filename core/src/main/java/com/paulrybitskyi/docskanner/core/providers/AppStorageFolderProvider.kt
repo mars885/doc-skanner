@@ -33,7 +33,7 @@ internal class AppStorageFolderProviderImpl @Inject constructor() : AppStorageFo
 
     private companion object {
 
-        private const val APP_STORAGE_FOLDER_NAME = "DocsSkanner"
+        private const val APP_STORAGE_FOLDER_NAME = "DocSkanner"
 
     }
 

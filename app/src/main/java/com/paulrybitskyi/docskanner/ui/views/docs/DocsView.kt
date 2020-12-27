@@ -58,7 +58,6 @@ internal class DocsView @JvmOverloads constructor(
 
     init {
         initRecyclerView()
-        initInfoView()
         initDefaults()
     }
 
@@ -102,11 +101,6 @@ internal class DocsView @JvmOverloads constructor(
             sideFlags = SpacingItemDecorator.SIDE_BOTTOM,
             itemExclusionPolicy = LastItemExclusionPolicy()
         )
-    }
-
-
-    private fun initInfoView() = with(binding.infoView) {
-        isDescriptionTextVisible = false
     }
 
 

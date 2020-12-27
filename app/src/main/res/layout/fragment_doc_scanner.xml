@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2020 Paul Rybitskyi, paul.rybitskyi.work@gmail.com
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorContentContainer">
+
+    <com.paulrybitskyi.commons.widgets.toolbar.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:toolbar_titleText="@string/doc_scanner_toolbar_title"
+        app:toolbar_leftButtonIcon="@drawable/arrow_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/DocSkanner.Toolbar"/>
+
+    <com.paulrybitskyi.docskanner.ui.views.scanner.DocScannerView
+        android:id="@+id/scannerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/doc_scanner_view_vertical_margin"
+        android:layout_marginBottom="@dimen/doc_scanner_view_vertical_margin"
+        android:layout_marginStart="@dimen/doc_scanner_view_horizontal_margin"
+        android:layout_marginEnd="@dimen/doc_scanner_view_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/rotateLeftBtnTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/rotateLeftBtnTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/doc_scanner_button_margin"
+        android:layout_marginEnd="@dimen/doc_scanner_rotate_button_touch_margin"
+        android:layout_marginBottom="@dimen/doc_scanner_button_margin"
+        android:text="@string/action_rotate_left"
+        app:layout_constraintBottom_toTopOf="@+id/confirmBtnTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rotateRightBtnTv"
+        style="@style/DocSkanner.Button"/>
+
+    <TextView
+        android:id="@+id/rotateRightBtnTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/doc_scanner_rotate_button_touch_margin"
+        android:layout_marginEnd="@dimen/doc_scanner_button_margin"
+        android:layout_marginBottom="@dimen/doc_scanner_button_margin"
+        android:text="@string/action_rotate_right"
+        app:layout_constraintBottom_toTopOf="@+id/confirmBtnTv"
+        app:layout_constraintStart_toEndOf="@id/rotateLeftBtnTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/DocSkanner.Button"/>
+
+    <TextView
+        android:id="@+id/confirmBtnTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/doc_scanner_button_margin"
+        android:layout_marginEnd="@dimen/doc_scanner_button_margin"
+        android:layout_marginBottom="@dimen/doc_scanner_button_margin"
+        android:text="@string/action_confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/DocSkanner.Button"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

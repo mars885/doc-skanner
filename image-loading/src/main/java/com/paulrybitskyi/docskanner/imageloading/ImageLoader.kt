@@ -51,6 +51,7 @@ internal class ImageLoaderImpl @Inject constructor(
         val requestCreator = when(config.source) {
             is Config.Source.Url -> picasso.load(config.source.url)
             is Config.Source.Uri -> picasso.load(config.source.uri)
+            is Config.Source.File -> picasso.load(config.source.file)
         }
 
         if(config.shouldCenterCrop) requestCreator.centerCrop()

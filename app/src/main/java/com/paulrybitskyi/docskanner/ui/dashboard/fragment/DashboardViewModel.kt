@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.ui.dashboard.fragment
 
 import android.Manifest.permission.CAMERA
-import android.content.Context
 import android.net.Uri
 import androidx.core.net.toUri
 import androidx.hilt.lifecycle.ViewModelInject
@@ -25,40 +24,45 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
-import com.paulrybitskyi.docskanner.core.*
+import com.paulrybitskyi.docskanner.core.factories.ShareableUriFactory
+import com.paulrybitskyi.docskanner.core.factories.TemporaryImageFileFactory
 import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.core.providers.StringProvider
+import com.paulrybitskyi.docskanner.core.utils.onError
+import com.paulrybitskyi.docskanner.core.utils.onSuccess
+import com.paulrybitskyi.docskanner.core.verifiers.CameraPresenceVerifier
+import com.paulrybitskyi.docskanner.core.verifiers.PermissionVerifier
+import com.paulrybitskyi.docskanner.domain.CopyFileUseCase
 import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
-import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
+import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommand
 import com.paulrybitskyi.docskanner.ui.dashboard.fragment.mapping.DocsUiStateFactory
 import com.paulrybitskyi.docskanner.ui.views.docs.DocModel
 import com.paulrybitskyi.docskanner.ui.views.docs.DocsUiState
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
-import com.paulrybitskyi.docskanner.utils.dialogs.DialogItem
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.paulrybitskyi.docskanner.utils.dialogs.DialogItem
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import java.io.File
 
 
 internal class DashboardViewModel @ViewModelInject constructor(
-    @ApplicationContext private val applicationContext: Context,
     private val observeAppStorageFolderFilesUseCase: ObserveAppStorageFolderFilesUseCase,
+    private val copyFileUseCase: CopyFileUseCase,
     private val docsUiStateFactory: DocsUiStateFactory,
     private val dispatcherProvider: DispatcherProvider,
     private val stringProvider: StringProvider,
     private val cameraPresenceVerifier: CameraPresenceVerifier,
     private val permissionVerifier: PermissionVerifier,
-    private val temporaryImageFileCreator: TemporaryImageFileCreator,
+    private val temporaryImageFileFactory: TemporaryImageFileFactory,
     private val shareableUriFactory: ShareableUriFactory
 ) : BaseViewModel() {
 
 
     private var isLoadingData = false
 
-    private var cameraImageUri: Uri? = null
+    private var cameraImageFile: File? = null
 
     private val _toolbarProgressBarVisibility = MutableLiveData(false)
     private val _uiState = MutableLiveData<DocsUiState>(DocsUiState.Empty)
@@ -88,10 +92,10 @@ internal class DashboardViewModel @ViewModelInject constructor(
                 emit(docsUiStateFactory.createWithLoadingState())
             }
             .onCompletion { isLoadingData = false }
-            .catch {
+            .onError {
                 val errorMessage = stringProvider.getString(R.string.error_unknown_message)
 
-                dispatchCommand(GeneralCommands.ShowShortToast(errorMessage))
+                dispatchCommand(GeneralCommand.ShowShortToast(errorMessage))
                 emit(docsUiStateFactory.createWithEmptyState())
             }
             .collect(_uiState::setValue)
@@ -99,7 +103,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
 
     fun onDocClicked(model: DocModel) {
-        route(DashboardRoutes.DocPreview(model.filePath))
+        route(DashboardRoute.DocPreview(File(model.filePath)))
     }
 
 
@@ -109,7 +113,7 @@ internal class DashboardViewModel @ViewModelInject constructor(
 
 
     private fun showImagePickerDialog() {
-        dispatchCommand(DashboardCommands.ShowDialog(constructImagePickerDialogConfig()))
+        dispatchCommand(DashboardCommand.ShowDialog(constructImagePickerDialogConfig()))
     }
 
 
@@ -145,16 +149,17 @@ internal class DashboardViewModel @ViewModelInject constructor(
             return
         }
 
-        dispatchCommand(DashboardCommands.RequestCameraPermission)
+        dispatchCommand(DashboardCommand.RequestCameraPermission)
     }
 
 
     private fun takeCameraImage() {
-        val imageFile = temporaryImageFileCreator.createTempImageFile()
+        val imageFile = temporaryImageFileFactory.createTempImageFile()
         val imageUri = shareableUriFactory.createShareableUri(imageFile)
-            .also { cameraImageUri = it }
 
-        dispatchCommand(DashboardCommands.TakeCameraImage(imageUri))
+        cameraImageFile = imageFile
+
+        dispatchCommand(DashboardCommand.TakeCameraImage(imageUri))
     }
 
 
@@ -171,41 +176,57 @@ internal class DashboardViewModel @ViewModelInject constructor(
             positiveBtnText = stringProvider.getString(R.string.ok)
         )
 
-        dispatchCommand(DashboardCommands.ShowDialog(dialogConfig))
+        dispatchCommand(DashboardCommand.ShowDialog(dialogConfig))
     }
 
 
     fun onCameraImageTaken() {
-        route(DashboardRoutes.DocScanning(checkNotNull(cameraImageUri)))
+        route(DashboardRoute.DocScanner(checkNotNull(cameraImageFile)))
     }
 
 
     private fun onGalleryOptionSelected() {
-        dispatchCommand(DashboardCommands.PickGalleryImage)
+        dispatchCommand(DashboardCommand.PickGalleryImage)
     }
 
 
     fun onGalleryImagePicked(imageUri: Uri) {
-        _toolbarProgressBarVisibility.value = true
-
-        viewModelScope.launch(dispatcherProvider.io) {
+        viewModelScope.launch {
             copyGalleryImage(imageUri)
         }
     }
 
 
-    private suspend fun copyGalleryImage(galleryImageUri: Uri) {
-        val contentResolver = applicationContext.contentResolver
-        val sourceImageIs = contentResolver.openInputStream(galleryImageUri)
-        val destImageFile = temporaryImageFileCreator.createTempImageFile()
-        val destImageOs = destImageFile.outputStream()
+    private suspend fun copyGalleryImage(imageUri: Uri) {
+        val galleryImageCopy = temporaryImageFileFactory.createTempImageFile()
+        val useCaseParams = CopyFileUseCase.Params(
+            source = imageUri,
+            destination = galleryImageCopy.toUri()
+        )
 
-        sourceImageIs?.copyTo(destImageOs)
+        copyFileUseCase.execute(useCaseParams)
+            .onStart { showToolbarProgressBar() }
+            .onSuccess {
+                hideToolbarProgressBar()
+                route(DashboardRoute.DocScanner(galleryImageCopy))
+            }
+            .onError {
+                hideToolbarProgressBar()
 
-        withContext(dispatcherProvider.main) {
-            _toolbarProgressBarVisibility.value = false
-            route(DashboardRoutes.DocScanning(destImageFile.toUri()))
-        }
+                val text = stringProvider.getString(R.string.error_cannot_process_gallery_image)
+                dispatchCommand(GeneralCommand.ShowLongToast(text))
+            }
+            .collect()
+    }
+
+
+    private fun showToolbarProgressBar() {
+        _toolbarProgressBarVisibility.value = true
+    }
+
+
+    private fun hideToolbarProgressBar() {
+        _toolbarProgressBarVisibility.value = false
     }
 
 

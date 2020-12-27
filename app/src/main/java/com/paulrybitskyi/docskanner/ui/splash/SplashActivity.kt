@@ -4,6 +4,7 @@ import android.Manifest
 import androidx.activity.viewModels
 import com.karumi.dexter.Dexter
 import com.paulrybitskyi.commons.utils.viewBinding
+import com.paulrybitskyi.docskanner.core.utils.withListener
 import com.paulrybitskyi.docskanner.databinding.ActivitySplashBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseActivity
 import com.paulrybitskyi.docskanner.ui.base.events.Command
@@ -13,7 +14,6 @@ import com.paulrybitskyi.docskanner.utils.dialogs.Dialog
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
-import com.paulrybitskyi.docskanner.core.utils.withListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,8 +40,8 @@ internal class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewMo
         super.onHandleCommand(command)
 
         when(command) {
-            is SplashCommands.RequestStoragePermission -> requestStoragePermission()
-            is SplashCommands.ShowDialog -> showDialog(command.config)
+            is SplashCommand.RequestStoragePermission -> requestStoragePermission()
+            is SplashCommand.ShowDialog -> showDialog(command.config)
         }
     }
 
@@ -67,8 +67,8 @@ internal class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewMo
         super.onRoute(route)
 
         when(route) {
-            is SplashRoutes.Dashboard -> navigateToDashboard()
-            is SplashRoutes.Exit -> exitTheApp()
+            is SplashRoute.Dashboard -> navigateToDashboard()
+            is SplashRoute.Exit -> exitTheApp()
         }
     }
 

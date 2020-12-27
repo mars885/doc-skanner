@@ -81,3 +81,29 @@ fun <T1, T2, T3, T4, T5> combine(
         Tuple5(t1, t2, t3, t4, t5)
     }
 }
+
+
+fun <T> Flow<T>.onSuccess(
+    action: suspend FlowCollector<T>.() -> Unit
+): Flow<T> {
+    return onCompletion { error ->
+        if(error == null) action()
+    }
+}
+
+
+fun <T> Flow<T>.onError(
+    action: suspend FlowCollector<T>.(Throwable) -> Unit
+): Flow<T> {
+    return catch(action)
+}
+
+
+fun <T> Flow<T>.onEachError(
+    action: suspend FlowCollector<T>.(Throwable) -> Unit
+): Flow<T> {
+    return onError { error ->
+        action(error)
+        throw error
+    }
+}

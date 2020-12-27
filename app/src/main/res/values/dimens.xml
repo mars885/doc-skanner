@@ -57,13 +57,13 @@
     <dimen name="doc_details_horizontal_margin">15dp</dimen>
     <dimen name="doc_details_text_size">14sp</dimen>
 
-    <!-- DocCropperView -->
-    <dimen name="doc_cropper_image_margin">16dp</dimen>
+    <!-- DocScannerView -->
+    <dimen name="doc_scanner_image_margin">16dp</dimen>
 
-    <!-- ImageCropperView -->
-    <dimen name="image_cropper_pointer_size">20dp</dimen>
-    <dimen name="image_cropper_pointer_stroke_width">1.5dp</dimen>
-    <dimen name="image_cropper_line_stroke_width">1dp</dimen>
+    <!-- DocCropAreaView -->
+    <dimen name="doc_crop_area_pointer_size">20dp</dimen>
+    <dimen name="doc_crop_area_pointer_stroke_width">1.5dp</dimen>
+    <dimen name="doc_crop_area_line_stroke_width">1dp</dimen>
 
     <!-- DashboardFragment -->
     <dimen name="dashboard_scan_btn_margin">16dp</dimen>
@@ -72,20 +72,20 @@
     <!-- DocPreviewFragment -->
     <dimen name="doc_preview_page_spacing">5dp</dimen>
 
-    <!-- DocScanningFragment -->
-    <dimen name="doc_scanning_cropper_vertical_margin">16dp</dimen>
-    <dimen name="doc_scanning_cropper_horizontal_margin">16dp</dimen>
-    <dimen name="doc_scanning_button_margin">16dp</dimen>
-    <dimen name="doc_scanning_rotate_button_touch_margin">8dp</dimen>
+    <!-- DocScannerFragment -->
+    <dimen name="doc_scanner_view_vertical_margin">16dp</dimen>
+    <dimen name="doc_scanner_view_horizontal_margin">16dp</dimen>
+    <dimen name="doc_scanner_button_margin">16dp</dimen>
+    <dimen name="doc_scanner_rotate_button_touch_margin">8dp</dimen>
 
-    <!-- DocEffectsFragment -->
-    <dimen name="doc_effects_effect_view_icon_size">30dp</dimen>
-    <dimen name="doc_effects_effect_view_title_size">15sp</dimen>
-    <dimen name="doc_effects_effect_view_padding_top">10dp</dimen>
-    <dimen name="doc_effects_effect_view_padding_bottom">15dp</dimen>
-    <dimen name="doc_effects_effect_view_horizontal_padding">10dp</dimen>
-    <dimen name="doc_effects_image_vertical_margin">30dp</dimen>
-    <dimen name="doc_effects_image_horizontal_margin">20dp</dimen>
-    <dimen name="doc_effects_button_margin">16dp</dimen>
+    <!-- DocEditorFragment -->
+    <dimen name="doc_editor_effect_view_icon_size">30dp</dimen>
+    <dimen name="doc_editor_effect_view_title_size">15sp</dimen>
+    <dimen name="doc_editor_effect_view_padding_top">10dp</dimen>
+    <dimen name="doc_editor_effect_view_padding_bottom">15dp</dimen>
+    <dimen name="doc_editor_effect_view_horizontal_padding">10dp</dimen>
+    <dimen name="doc_editor_view_vertical_margin">30dp</dimen>
+    <dimen name="doc_editor_view_horizontal_margin">20dp</dimen>
+    <dimen name="doc_editor_button_margin">16dp</dimen>
 
 </resources>

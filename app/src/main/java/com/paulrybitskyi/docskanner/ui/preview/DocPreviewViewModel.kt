@@ -18,7 +18,10 @@ package com.paulrybitskyi.docskanner.ui.preview
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import kotlinx.coroutines.delay
@@ -26,7 +29,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 
-private const val PARAM_DOC_FILE_PATH = "doc_file_path"
+private const val PARAM_DOC_FILE = "doc_file"
 
 
 internal class DocPreviewViewModel @ViewModelInject constructor(
@@ -48,7 +51,7 @@ internal class DocPreviewViewModel @ViewModelInject constructor(
 
     private fun initData() {
         viewModelScope.launch {
-            val file = createFile()
+            val file = checkNotNull(savedStateHandle.get<File>(PARAM_DOC_FILE))
 
             _toolbarTitle.value = file.name
             delay(Constants.DEFAULT_WINDOW_ANIMATION_DURATION)
@@ -57,16 +60,8 @@ internal class DocPreviewViewModel @ViewModelInject constructor(
     }
 
 
-    private fun createFile(): File {
-        val docFilePath = checkNotNull(savedStateHandle.get<String>(PARAM_DOC_FILE_PATH))
-        val docFile = File(docFilePath)
-
-        return docFile
-    }
-
-
     fun onToolbarLeftButtonClicked() {
-        route(DocPreviewRoutes.NavigateBack)
+        route(DocPreviewRoute.NavigateBack)
     }
 
 

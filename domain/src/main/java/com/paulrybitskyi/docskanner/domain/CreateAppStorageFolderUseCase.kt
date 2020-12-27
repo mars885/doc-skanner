@@ -17,6 +17,5 @@
 package com.paulrybitskyi.docskanner.domain
 
 import kotlinx.coroutines.flow.Flow
-import java.io.File
 
-interface CreateAppStorageFolderUseCase : UseCase<Unit, Flow<File>>
+interface CreateAppStorageFolderUseCase : UseCase<Unit, Flow<Unit>>

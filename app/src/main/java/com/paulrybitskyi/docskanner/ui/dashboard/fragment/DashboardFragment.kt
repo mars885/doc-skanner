@@ -28,6 +28,7 @@ import com.paulrybitskyi.commons.ktx.onClick
 import com.paulrybitskyi.commons.navigation.navController
 import com.paulrybitskyi.commons.utils.viewBinding
 import com.paulrybitskyi.docskanner.R
+import com.paulrybitskyi.docskanner.core.utils.withListener
 import com.paulrybitskyi.docskanner.databinding.FragmentDashboardBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
 import com.paulrybitskyi.docskanner.ui.base.events.Command
@@ -36,8 +37,8 @@ import com.paulrybitskyi.docskanner.utils.dialogs.Dialog
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogBuilder
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.show
-import com.paulrybitskyi.docskanner.core.utils.withListener
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 import javax.inject.Inject
 
 
@@ -90,12 +91,12 @@ internal class DashboardFragment : BaseFragment<
     override fun onBindViewModel() = with(viewModel) {
         super.onBindViewModel()
 
-        observeToolbarVisibility()
+        observeToolbarProgressBarVisibility()
         observeDocsUiState()
     }
 
 
-    private fun DashboardViewModel.observeToolbarVisibility() {
+    private fun DashboardViewModel.observeToolbarProgressBarVisibility() {
         toolbarProgressBarVisibility.observe(viewLifecycleOwner) {
             viewBinding.toolbarPb.isVisible = it
         }
@@ -113,10 +114,10 @@ internal class DashboardFragment : BaseFragment<
         super.onHandleCommand(command)
 
         when(command) {
-            is DashboardCommands.ShowDialog -> showDialog(command.config)
-            is DashboardCommands.RequestCameraPermission -> requestCameraPermission()
-            is DashboardCommands.TakeCameraImage -> takeCameraImage(command.destinationUri)
-            is DashboardCommands.PickGalleryImage -> pickGalleryImage()
+            is DashboardCommand.ShowDialog -> showDialog(command.config)
+            is DashboardCommand.RequestCameraPermission -> requestCameraPermission()
+            is DashboardCommand.TakeCameraImage -> takeCameraImage(command.destinationUri)
+            is DashboardCommand.PickGalleryImage -> pickGalleryImage()
         }
     }
 
@@ -139,19 +140,19 @@ internal class DashboardFragment : BaseFragment<
 
 
     private fun takeCameraImage(destinationUri: Uri) {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            .apply { putExtra(MediaStore.EXTRA_OUTPUT, destinationUri) }
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+            putExtra(MediaStore.EXTRA_OUTPUT, destinationUri)
+        }
 
         startActivityForResult(intent, REQUEST_CODE_CAMERA)
     }
 
 
     private fun pickGalleryImage() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-            .apply {
-                type = "image/*"
-                addCategory(Intent.CATEGORY_OPENABLE)
-            }
+        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+            addCategory(Intent.CATEGORY_OPENABLE)
+        }
 
         startActivityForResult(intent, REQUEST_CODE_GALLERY)
     }
@@ -173,19 +174,19 @@ internal class DashboardFragment : BaseFragment<
         super.onRoute(route)
 
         when(route) {
-            is DashboardRoutes.DocPreview -> navigateToDocPreviewScreen(route.filePath)
-            is DashboardRoutes.DocScanning -> navigateToDocScanningScreen(route.docFile)
+            is DashboardRoute.DocPreview -> navigateToDocPreviewScreen(route.docFile)
+            is DashboardRoute.DocScanner -> navigateToDocScannerScreen(route.docImageFile)
         }
     }
 
 
-    private fun navigateToDocPreviewScreen(docFilePath: String) {
-        navController.navigate(DashboardFragmentDirections.actionDocPreviewFragment(docFilePath))
+    private fun navigateToDocPreviewScreen(docFile: File) {
+        navController.navigate(DashboardFragmentDirections.actionDocPreviewFragment(docFile))
     }
 
 
-    private fun navigateToDocScanningScreen(docFile: Uri) {
-        navController.navigate(DashboardFragmentDirections.actionDocScanningFragment(docFile))
+    private fun navigateToDocScannerScreen(docImageFile: File) {
+        navController.navigate(DashboardFragmentDirections.actionDocScannerFragment(docImageFile))
     }
 
 

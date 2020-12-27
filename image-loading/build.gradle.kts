@@ -45,8 +45,6 @@ android {
 }
 
 dependencies {
-    implementation(project(deps.local.core))
-
     implementation(deps.kotlin.stdLib)
     implementation(deps.square.picasso)
 

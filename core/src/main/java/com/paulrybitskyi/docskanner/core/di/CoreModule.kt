@@ -16,8 +16,8 @@
 
 package com.paulrybitskyi.docskanner.core.di
 
-import com.paulrybitskyi.docskanner.core.*
-import com.paulrybitskyi.docskanner.core.TemporaryImageFileCreator
+import com.paulrybitskyi.docskanner.core.DocDetailsBuilder
+import com.paulrybitskyi.docskanner.core.DocDetailsBuilderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,21 +28,6 @@ import dagger.hilt.android.components.ApplicationComponent
 internal interface CoreModule {
 
     @Binds
-    fun bindCameraPresenceVerifier(verifier: CameraPresenceVerifierImpl): CameraPresenceVerifier
-
-    @Binds
     fun bindDocDetailsBuilder(builder: DocDetailsBuilderImpl): DocDetailsBuilder
-
-    @Binds
-    fun bindPdfDocumentFileCreator(fileCreator: PdfDocumentFileCreatorImpl): PdfDocumentFileCreator
-
-    @Binds
-    fun bindPermissionVerifier(verifier: PermissionVerifierImpl): PermissionVerifier
-
-    @Binds
-    fun bindShareableUriFactory(factoryImpl: ShareableUriFactoryImpl): ShareableUriFactory
-
-    @Binds
-    fun bindTemporaryImageFileCreator(fileCreator: TemporaryImageFileCreatorImpl): TemporaryImageFileCreator
 
 }

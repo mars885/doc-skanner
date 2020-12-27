@@ -44,6 +44,8 @@ class Config private constructor(
 
         data class Uri(val uri: android.net.Uri): Source()
 
+        data class File(val file: java.io.File): Source()
+
     }
 
 

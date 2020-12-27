@@ -17,11 +17,7 @@
 package com.paulrybitskyi.docskanner.data.di
 
 import com.paulrybitskyi.docskanner.data.usecases.*
-import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
-import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
-import com.paulrybitskyi.docskanner.domain.CreatePdfDocumentUseCase
-import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
-import com.paulrybitskyi.docskanner.domain.SaveBitmapToFileUseCase
+import com.paulrybitskyi.docskanner.domain.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,15 +29,27 @@ internal interface UseCasesModule {
 
 
     @Binds
-    fun bindCreateAppStorageFolderUseCase(
-        useCase: CreateAppStorageFolderUseCaseImpl
-    ): CreateAppStorageFolderUseCase
-
-
-    @Binds
     fun bindClearAppCacheUseCase(
         useCase: ClearAppCacheUseCaseImpl
     ): ClearAppCacheUseCase
+
+
+    @Binds
+    fun bindConvertImageToPdfUseCase(
+        useCase: ConvertImageToPdfUseCaseImpl
+    ): ConvertImageToPdfUseCase
+
+
+    @Binds
+    fun bindCopyFileUseCase(
+        useCase: CopyFileUseCaseImpl
+    ): CopyFileUseCase
+
+
+    @Binds
+    fun bindCreateAppStorageFolderUseCase(
+        useCase: CreateAppStorageFolderUseCaseImpl
+    ): CreateAppStorageFolderUseCase
 
 
     @Binds
@@ -51,15 +59,9 @@ internal interface UseCasesModule {
 
 
     @Binds
-    fun bindSaveBitmapToFileUseCase(
-        useCase: SaveBitmapToFileUseCaseUseCaseImpl
-    ): SaveBitmapToFileUseCase
-
-
-    @Binds
-    fun bindCreatePdfDocumentUseCase(
-        useCase: CreatePdfDocumentUseCaseImpl
-    ): CreatePdfDocumentUseCase
+    fun bindSaveImageToFileUseCase(
+        useCase: SaveImageToFileUseCaseImpl
+    ): SaveImageToFileUseCase
 
 
 }

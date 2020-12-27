@@ -17,9 +17,6 @@
 package com.paulrybitskyi.docskanner.core.di
 
 import com.paulrybitskyi.docskanner.core.providers.*
-import com.paulrybitskyi.docskanner.core.providers.AppStorageFolderProviderImpl
-import com.paulrybitskyi.docskanner.core.providers.DispatcherProviderImpl
-import com.paulrybitskyi.docskanner.core.providers.StringProviderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -31,6 +28,9 @@ internal interface ProvidersModule {
 
     @Binds
     fun bindAppStorageFolderProvider(provider: AppStorageFolderProviderImpl): AppStorageFolderProvider
+
+    @Binds
+    fun bindCoroutineScopeProvider(provider: CoroutineScopeProviderImpl): CoroutineScopeProvider
 
     @Binds
     fun bindDispatcherProvider(provider: DispatcherProviderImpl): DispatcherProvider
