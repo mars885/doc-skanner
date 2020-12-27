@@ -17,7 +17,7 @@
 package com.paulrybitskyi.docskanner.data.usecases
 
 import android.graphics.pdf.PdfDocument
-import com.paulrybitskyi.docskanner.core.DispatcherProvider
+import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.CreatePdfDocumentUseCase
 import com.paulrybitskyi.docskanner.domain.CreatePdfDocumentUseCase.Params
 import kotlinx.coroutines.flow.Flow

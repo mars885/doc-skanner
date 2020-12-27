@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.core.di
 
 import com.paulrybitskyi.docskanner.core.*
-import com.paulrybitskyi.docskanner.core.DispatcherProviderImpl
 import com.paulrybitskyi.docskanner.core.OpenCvInitializerImpl
 import com.paulrybitskyi.docskanner.core.TemporaryImageFileCreator
 import dagger.Binds
@@ -30,22 +29,10 @@ import dagger.hilt.android.components.ApplicationComponent
 internal interface CoreModule {
 
     @Binds
-    fun bindAppStorageFolderProvider(provider: AppStorageFolderProviderImpl): AppStorageFolderProvider
-
-    @Binds
     fun bindCameraPresenceVerifier(verifier: CameraPresenceVerifierImpl): CameraPresenceVerifier
 
     @Binds
-    fun bindDispatcherProvider(provider: DispatcherProviderImpl): DispatcherProvider
-
-    @Binds
-    fun bindDocDateFormatter(formatter: DocDateFormatterImpl): DocDateFormatter
-
-    @Binds
     fun bindDocDetailsBuilder(builder: DocDetailsBuilderImpl): DocDetailsBuilder
-
-    @Binds
-    fun bindDocSizeFormatter(formatter: DocSizeFormatterImpl): DocSizeFormatter
 
     @Binds
     fun bindOpenCvInitializer(initializer: OpenCvInitializerImpl): OpenCvInitializer
@@ -58,9 +45,6 @@ internal interface CoreModule {
 
     @Binds
     fun bindShareableUriFactory(factoryImpl: ShareableUriFactoryImpl): ShareableUriFactory
-
-    @Binds
-    fun bindStringProvider(provider: StringProviderImpl): StringProvider
 
     @Binds
     fun bindTemporaryImageFileCreator(fileCreator: TemporaryImageFileCreatorImpl): TemporaryImageFileCreator

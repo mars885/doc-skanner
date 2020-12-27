@@ -16,6 +16,8 @@
 
 package com.paulrybitskyi.docskanner.core
 
+import com.paulrybitskyi.docskanner.core.formatters.DocDateFormatter
+import com.paulrybitskyi.docskanner.core.formatters.DocSizeFormatter
 import java.io.File
 import javax.inject.Inject
 

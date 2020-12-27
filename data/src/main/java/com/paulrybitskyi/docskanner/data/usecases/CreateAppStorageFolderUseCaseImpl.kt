@@ -16,8 +16,8 @@
 
 package com.paulrybitskyi.docskanner.data.usecases
 
-import com.paulrybitskyi.docskanner.core.AppStorageFolderProvider
-import com.paulrybitskyi.docskanner.core.DispatcherProvider
+import com.paulrybitskyi.docskanner.core.providers.AppStorageFolderProvider
+import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

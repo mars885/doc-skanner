@@ -29,7 +29,7 @@ import com.paulrybitskyi.commons.ktx.layoutInflater
 import com.paulrybitskyi.commons.ktx.showToast
 import com.paulrybitskyi.commons.utils.observeChanges
 import com.paulrybitskyi.docskanner.R
-import com.paulrybitskyi.docskanner.core.StringProvider
+import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.databinding.ViewDocCropperBinding
 import com.paulrybitskyi.docskanner.image.processing.Config
 import com.paulrybitskyi.docskanner.image.processing.ImageLoader

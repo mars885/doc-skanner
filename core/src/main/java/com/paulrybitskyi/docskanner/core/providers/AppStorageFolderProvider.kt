@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.core
+package com.paulrybitskyi.docskanner.core.providers
 
 import android.os.Environment
 import java.io.File

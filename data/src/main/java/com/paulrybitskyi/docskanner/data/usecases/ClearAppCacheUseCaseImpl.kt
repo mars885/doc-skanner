@@ -18,7 +18,7 @@ package com.paulrybitskyi.docskanner.data.usecases
 
 import android.content.Context
 import com.paulrybitskyi.commons.ktx.fileList
-import com.paulrybitskyi.docskanner.core.DispatcherProvider
+import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow

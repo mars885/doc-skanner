@@ -29,7 +29,7 @@ import com.paulrybitskyi.docskanner.domain.CreatePdfDocumentUseCase
 import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.core.StringProvider
+import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import kotlinx.coroutines.delay

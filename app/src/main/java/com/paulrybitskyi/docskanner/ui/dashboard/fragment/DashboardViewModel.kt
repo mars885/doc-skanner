@@ -26,6 +26,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.core.*
+import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
+import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands

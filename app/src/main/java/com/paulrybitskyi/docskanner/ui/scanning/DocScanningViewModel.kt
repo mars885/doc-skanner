@@ -31,7 +31,7 @@ import com.paulrybitskyi.docskanner.domain.SaveBitmapToFileUseCase
 import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.core.StringProvider
+import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect

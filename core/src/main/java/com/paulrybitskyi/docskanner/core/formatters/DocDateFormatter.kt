@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.core
+package com.paulrybitskyi.docskanner.core.formatters
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext

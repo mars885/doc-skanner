@@ -16,6 +16,7 @@
 
 package com.paulrybitskyi.docskanner.core
 
+import com.paulrybitskyi.docskanner.core.providers.AppStorageFolderProvider
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*

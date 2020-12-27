@@ -27,7 +27,7 @@ import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
 import com.paulrybitskyi.docskanner.domain.InitOpenCvLibraryUseCase
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
-import com.paulrybitskyi.docskanner.core.StringProvider
+import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import kotlinx.coroutines.flow.Flow

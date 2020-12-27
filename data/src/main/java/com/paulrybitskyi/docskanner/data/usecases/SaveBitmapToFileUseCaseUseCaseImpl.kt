@@ -17,7 +17,7 @@
 package com.paulrybitskyi.docskanner.data.usecases
 
 import android.graphics.Bitmap
-import com.paulrybitskyi.docskanner.core.DispatcherProvider
+import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.SaveBitmapToFileUseCase
 import com.paulrybitskyi.docskanner.domain.SaveBitmapToFileUseCase.Params
 import kotlinx.coroutines.flow.Flow
