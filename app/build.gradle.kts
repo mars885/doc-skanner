@@ -58,6 +58,7 @@ dependencies {
     implementation(project(deps.local.data))
     implementation(project(deps.local.core))
     implementation(project(deps.local.imageLoading))
+    implementation(project(deps.local.imageProcessing))
 
     implementation(deps.kotlin.stdLib)
     implementation(deps.kotlin.coroutinesCore)

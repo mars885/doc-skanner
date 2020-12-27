@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.effects
+package com.paulrybitskyi.docskanner.imageprocessing.effects
 
 import com.paulrybitskyi.docskanner.imageloading.Transformation
-import com.paulrybitskyi.docskanner.imageloading.effects.transforms.BinaryTransformation
-import com.paulrybitskyi.docskanner.imageloading.effects.transforms.GrayscaleTransformation
-import com.paulrybitskyi.docskanner.imageloading.effects.transforms.MagicColorTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.BinaryTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.GrayscaleTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.MagicColorTransformation
 import javax.inject.Inject
 import javax.inject.Provider
 

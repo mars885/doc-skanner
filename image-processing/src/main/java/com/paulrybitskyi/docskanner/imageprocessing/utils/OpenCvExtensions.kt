@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.utils
+package com.paulrybitskyi.docskanner.imageprocessing.utils
 
 import android.graphics.Bitmap
 import android.graphics.PointF

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.cropping
+package com.paulrybitskyi.docskanner.imageprocessing.cropping
 
 import android.graphics.Bitmap
 import android.graphics.PointF
-import com.paulrybitskyi.docskanner.imageloading.cropping.ImagePerspectiveTransformer.ImagePerspectiveCoords
-import com.paulrybitskyi.docskanner.imageloading.utils.toBitmap
-import com.paulrybitskyi.docskanner.imageloading.utils.toMat
-import com.paulrybitskyi.docskanner.imageloading.utils.toPoint
+import com.paulrybitskyi.docskanner.imageprocessing.cropping.ImagePerspectiveTransformer.ImagePerspectiveCoords
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toBitmap
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toPoint
 import org.opencv.core.Mat
 import org.opencv.core.MatOfPoint2f
 import org.opencv.core.Point

@@ -45,10 +45,8 @@ android {
 }
 
 dependencies {
-    implementation(project(deps.local.core))
-
-    implementation(deps.kotlin.stdLib)
-    implementation(deps.square.picasso)
+    implementation(project(deps.local.openCv))
+    implementation(project(deps.local.imageLoading))
 
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)

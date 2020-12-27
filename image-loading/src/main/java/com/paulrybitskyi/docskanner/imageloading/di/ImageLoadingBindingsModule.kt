@@ -16,33 +16,18 @@
 
 package com.paulrybitskyi.docskanner.imageloading.di
 
-import android.content.Context
-import android.graphics.Bitmap
-import com.squareup.picasso.LruCache
-import com.squareup.picasso.Picasso
+import com.paulrybitskyi.docskanner.imageloading.ImageLoader
+import com.paulrybitskyi.docskanner.imageloading.ImageLoaderImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-internal object ImageProcessingModule {
+internal interface ImageLoadingBindingsModule {
 
-
-    @Singleton
-    @Provides
-    fun providePicasso(@ApplicationContext context: Context): Picasso {
-        // Disabling cache
-        val cacheSizeInBytes = 1
-
-        return Picasso.Builder(context)
-            .defaultBitmapConfig(Bitmap.Config.ARGB_8888)
-            .memoryCache(LruCache(cacheSizeInBytes))
-            .build()
-    }
-
+    @Binds
+    fun bindImageLoader(imageLoader: ImageLoaderImpl): ImageLoader
 
 }

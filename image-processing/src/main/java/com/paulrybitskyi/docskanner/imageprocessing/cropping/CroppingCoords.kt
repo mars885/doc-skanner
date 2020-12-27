@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.cropping
+package com.paulrybitskyi.docskanner.imageprocessing.cropping
 
 import android.graphics.PointF
 

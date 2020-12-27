@@ -35,7 +35,7 @@ import com.paulrybitskyi.docskanner.imageloading.Config
 import com.paulrybitskyi.docskanner.imageloading.ImageLoader
 import com.paulrybitskyi.docskanner.imageloading.Target
 import com.paulrybitskyi.docskanner.imageloading.TargetAdapter
-import com.paulrybitskyi.docskanner.imageloading.cropping.CroppingTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactory
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 import javax.inject.Inject

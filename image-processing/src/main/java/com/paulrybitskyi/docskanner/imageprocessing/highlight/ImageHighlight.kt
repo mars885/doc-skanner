@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.highlight
+package com.paulrybitskyi.docskanner.imageprocessing.highlight
 
 import android.graphics.PointF
 

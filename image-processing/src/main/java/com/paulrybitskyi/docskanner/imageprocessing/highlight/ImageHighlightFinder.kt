@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.highlight
+package com.paulrybitskyi.docskanner.imageprocessing.highlight
 
 import android.graphics.Bitmap
 import android.graphics.PointF
-import com.paulrybitskyi.docskanner.imageloading.utils.toMat
-import com.paulrybitskyi.docskanner.imageloading.utils.toMatOfPoint
-import com.paulrybitskyi.docskanner.imageloading.utils.toMatOfPoint2f
-import com.paulrybitskyi.docskanner.imageloading.utils.toPointF
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toMatOfPoint
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toMatOfPoint2f
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toPointF
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 import javax.inject.Inject

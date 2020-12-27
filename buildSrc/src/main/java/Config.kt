@@ -65,6 +65,7 @@ object deps {
         const val data = ":data"
         const val core = ":core"
         const val imageLoading = ":image-loading"
+        const val imageProcessing = ":image-processing"
         const val openCv = ":openCVLibrary3413"
 
     }

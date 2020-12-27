@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.effects.transforms
+package com.paulrybitskyi.docskanner.imageprocessing.effects.transforms
 
 import android.graphics.Bitmap
 import com.paulrybitskyi.docskanner.imageloading.Transformation
-import com.paulrybitskyi.docskanner.imageloading.effects.ImageEffectApplier
+import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectApplier
 
-internal class MagicColorTransformation(
+internal class GrayscaleTransformation(
     private val imageEffectApplier: ImageEffectApplier
 ) : Transformation {
 
 
-    override val key = "MagicColor"
+    override val key = "Grayscale"
 
 
     override fun transform(source: Bitmap): Bitmap {
-        return imageEffectApplier.applyMagicColorEffect(source)
+        return imageEffectApplier.applyGrayscaleEffect(source)
             .also { if(it != source) source.recycle() }
     }
 

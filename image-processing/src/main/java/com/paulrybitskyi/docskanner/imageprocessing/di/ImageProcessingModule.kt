@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.di
+package com.paulrybitskyi.docskanner.imageprocessing.di
 
-import com.paulrybitskyi.docskanner.imageloading.ImageLoader
-import com.paulrybitskyi.docskanner.imageloading.ImageLoaderImpl
-import com.paulrybitskyi.docskanner.imageloading.cropping.CroppingTransformationFactory
-import com.paulrybitskyi.docskanner.imageloading.cropping.CroppingTransformationFactoryImpl
-import com.paulrybitskyi.docskanner.imageloading.cropping.ImagePerspectiveTransformer
-import com.paulrybitskyi.docskanner.imageloading.cropping.OpenCvImagePerspectiveTransformer
-import com.paulrybitskyi.docskanner.imageloading.effects.ImageEffectTransformationFactory
-import com.paulrybitskyi.docskanner.imageloading.effects.ImageEffectTransformationFactoryImpl
-import com.paulrybitskyi.docskanner.imageloading.highlight.ImageHighlightFinder
-import com.paulrybitskyi.docskanner.imageloading.highlight.OpenCvImageHighlightFinder
+import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactoryImpl
+import com.paulrybitskyi.docskanner.imageprocessing.cropping.ImagePerspectiveTransformer
+import com.paulrybitskyi.docskanner.imageprocessing.cropping.OpenCvImagePerspectiveTransformer
+import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactoryImpl
+import com.paulrybitskyi.docskanner.imageprocessing.highlight.ImageHighlightFinder
+import com.paulrybitskyi.docskanner.imageprocessing.highlight.OpenCvImageHighlightFinder
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,13 +31,7 @@ import dagger.hilt.android.components.ApplicationComponent
 
 @Module
 @InstallIn(ApplicationComponent::class)
-internal interface ImageProcessingBindingsModule {
-
-
-    @Binds
-    fun bindImageLoader(
-        imageLoader: ImageLoaderImpl
-    ): ImageLoader
+internal interface ImageProcessingModule {
 
 
     @Binds

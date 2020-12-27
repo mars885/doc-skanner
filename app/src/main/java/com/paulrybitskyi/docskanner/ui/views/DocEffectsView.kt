@@ -34,7 +34,7 @@ import com.paulrybitskyi.docskanner.imageloading.ImageLoader
 import com.paulrybitskyi.docskanner.imageloading.Target
 import com.paulrybitskyi.docskanner.imageloading.TargetAdapter
 import com.paulrybitskyi.docskanner.imageloading.Transformation
-import com.paulrybitskyi.docskanner.imageloading.effects.ImageEffectTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactory
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 import javax.inject.Inject

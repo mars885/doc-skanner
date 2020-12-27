@@ -14,24 +14,23 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.utils
+package com.paulrybitskyi.docskanner.imageprocessing.effects.transforms
 
 import android.graphics.Bitmap
-import com.squareup.picasso.Transformation
-import com.paulrybitskyi.docskanner.imageloading.Transformation as MyTransformation
+import com.paulrybitskyi.docskanner.imageloading.Transformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectApplier
 
-internal class PicassoTransformation(
-    private val transformation: MyTransformation
+internal class BinaryTransformation(
+    private val imageEffectApplier: ImageEffectApplier
 ) : Transformation {
 
 
+    override val key = "Binary"
+
+
     override fun transform(source: Bitmap): Bitmap {
-        return transformation.transform(source)
-    }
-
-
-    override fun key(): String {
-        return transformation.key
+        return imageEffectApplier.applyBinaryEffect(source)
+            .also { if(it != source) source.recycle() }
     }
 
 

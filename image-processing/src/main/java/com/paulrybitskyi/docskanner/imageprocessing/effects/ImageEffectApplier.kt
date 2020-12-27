@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.effects
+package com.paulrybitskyi.docskanner.imageprocessing.effects
 
 import android.graphics.Bitmap
-import com.paulrybitskyi.docskanner.imageloading.utils.toBitmap
-import com.paulrybitskyi.docskanner.imageloading.utils.toMat
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toBitmap
+import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
 import org.opencv.core.Mat
 import org.opencv.imgproc.Imgproc
 import javax.inject.Inject

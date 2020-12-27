@@ -14,24 +14,20 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.imageloading.effects.transforms
+package com.paulrybitskyi.docskanner.imageprocessing
 
-import android.graphics.Bitmap
-import com.paulrybitskyi.docskanner.imageloading.Transformation
-import com.paulrybitskyi.docskanner.imageloading.effects.ImageEffectApplier
+import org.junit.Test
 
-internal class BinaryTransformation(
-    private val imageEffectApplier: ImageEffectApplier
-) : Transformation {
+import org.junit.Assert.*
 
-
-    override val key = "Binary"
-
-
-    override fun transform(source: Bitmap): Bitmap {
-        return imageEffectApplier.applyBinaryEffect(source)
-            .also { if(it != source) source.recycle() }
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+class ExampleUnitTest {
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
     }
-
-
 }
