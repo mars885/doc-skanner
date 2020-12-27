@@ -24,21 +24,18 @@ import com.paulrybitskyi.docskanner.core.PermissionVerifier
 import com.paulrybitskyi.docskanner.core.utils.combine
 import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
 import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
-import com.paulrybitskyi.docskanner.domain.InitOpenCvLibraryUseCase
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommands
 import com.paulrybitskyi.docskanner.core.providers.StringProvider
+import com.paulrybitskyi.docskanner.imageprocessing.ImageProcessorInitializer
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
 
 internal class SplashViewModel @ViewModelInject constructor(
-    private val initOpenCvLibraryUseCase: InitOpenCvLibraryUseCase,
+    private val imageProcessorInitializer: ImageProcessorInitializer,
     private val createAppStorageFolderUseCase: CreateAppStorageFolderUseCase,
     private val clearAppCacheUseCase: ClearAppCacheUseCase,
     private val permissionVerifier: PermissionVerifier,
@@ -83,7 +80,7 @@ internal class SplashViewModel @ViewModelInject constructor(
     private fun runInitializationFlow() {
         viewModelScope.launch {
             combine(
-                initOpenCvLibrary(),
+                initImageProcessor(),
                 createAppStorageFolder(),
                 clearAppCache()
             )
@@ -94,8 +91,8 @@ internal class SplashViewModel @ViewModelInject constructor(
     }
 
 
-    private suspend fun initOpenCvLibrary(): Flow<Unit> {
-        return initOpenCvLibraryUseCase.execute(Unit)
+    private fun initImageProcessor(): Flow<Unit> {
+        return flow { emit(imageProcessorInitializer.init()) }
     }
 
 

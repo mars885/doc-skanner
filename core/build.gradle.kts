@@ -45,8 +45,6 @@ android {
 }
 
 dependencies {
-    implementation(project(deps.local.openCv))
-
     implementation(deps.androidX.appCompat)
     implementation(deps.androidX.lifecycleCommonJava8)
 

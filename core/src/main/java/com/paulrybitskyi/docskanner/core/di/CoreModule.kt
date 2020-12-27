@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.core.di
 
 import com.paulrybitskyi.docskanner.core.*
-import com.paulrybitskyi.docskanner.core.OpenCvInitializerImpl
 import com.paulrybitskyi.docskanner.core.TemporaryImageFileCreator
 import dagger.Binds
 import dagger.Module
@@ -33,9 +32,6 @@ internal interface CoreModule {
 
     @Binds
     fun bindDocDetailsBuilder(builder: DocDetailsBuilderImpl): DocDetailsBuilder
-
-    @Binds
-    fun bindOpenCvInitializer(initializer: OpenCvInitializerImpl): OpenCvInitializer
 
     @Binds
     fun bindPdfDocumentFileCreator(fileCreator: PdfDocumentFileCreatorImpl): PdfDocumentFileCreator

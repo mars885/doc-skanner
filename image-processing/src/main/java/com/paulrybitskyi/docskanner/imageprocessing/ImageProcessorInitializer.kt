@@ -14,8 +14,27 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.domain
+package com.paulrybitskyi.docskanner.imageprocessing
 
-import kotlinx.coroutines.flow.Flow
+import org.opencv.android.OpenCVLoader
+import javax.inject.Inject
 
-interface InitOpenCvLibraryUseCase : UseCase<Unit, Flow<Unit>>
+
+interface ImageProcessorInitializer {
+
+    fun init()
+
+}
+
+
+internal class ImageProcessorInitializerImpl @Inject constructor() : ImageProcessorInitializer {
+
+
+    override fun init() {
+        if(!OpenCVLoader.initDebug()) {
+            throw IllegalStateException("Could not initialize the image processor.")
+        }
+    }
+
+
+}

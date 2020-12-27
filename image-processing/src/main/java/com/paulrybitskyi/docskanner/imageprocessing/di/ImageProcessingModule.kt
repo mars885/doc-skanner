@@ -16,6 +16,8 @@
 
 package com.paulrybitskyi.docskanner.imageprocessing.di
 
+import com.paulrybitskyi.docskanner.imageprocessing.ImageProcessorInitializer
+import com.paulrybitskyi.docskanner.imageprocessing.ImageProcessorInitializerImpl
 import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactory
 import com.paulrybitskyi.docskanner.imageprocessing.cropping.CroppingTransformationFactoryImpl
 import com.paulrybitskyi.docskanner.imageprocessing.cropping.ImagePerspectiveTransformer
@@ -32,6 +34,12 @@ import dagger.hilt.android.components.ApplicationComponent
 @Module
 @InstallIn(ApplicationComponent::class)
 internal interface ImageProcessingModule {
+
+
+    @Binds
+    fun bindImageProcessorInitializer(
+        initializer: ImageProcessorInitializerImpl
+    ): ImageProcessorInitializer
 
 
     @Binds

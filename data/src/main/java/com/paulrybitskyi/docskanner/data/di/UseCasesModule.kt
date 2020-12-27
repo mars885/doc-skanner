@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.data.di
 
 import com.paulrybitskyi.docskanner.data.usecases.*
-import com.paulrybitskyi.docskanner.domain.*
 import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
 import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
 import com.paulrybitskyi.docskanner.domain.CreatePdfDocumentUseCase
@@ -31,12 +30,6 @@ import dagger.hilt.android.components.ApplicationComponent
 @Module
 @InstallIn(ApplicationComponent::class)
 internal interface UseCasesModule {
-
-
-    @Binds
-    fun bindInitOpenCvLibraryUseCase(
-        useCase: InitOpenCvLibraryUseCaseImpl
-    ): InitOpenCvLibraryUseCase
 
 
     @Binds
