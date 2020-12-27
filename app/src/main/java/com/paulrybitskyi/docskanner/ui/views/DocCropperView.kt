@@ -31,11 +31,11 @@ import com.paulrybitskyi.commons.utils.observeChanges
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.core.providers.StringProvider
 import com.paulrybitskyi.docskanner.databinding.ViewDocCropperBinding
-import com.paulrybitskyi.docskanner.image.processing.Config
-import com.paulrybitskyi.docskanner.image.processing.ImageLoader
-import com.paulrybitskyi.docskanner.image.processing.Target
-import com.paulrybitskyi.docskanner.image.processing.TargetAdapter
-import com.paulrybitskyi.docskanner.image.processing.cropping.CroppingTransformationFactory
+import com.paulrybitskyi.docskanner.imageloading.Config
+import com.paulrybitskyi.docskanner.imageloading.ImageLoader
+import com.paulrybitskyi.docskanner.imageloading.Target
+import com.paulrybitskyi.docskanner.imageloading.TargetAdapter
+import com.paulrybitskyi.docskanner.imageloading.cropping.CroppingTransformationFactory
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 import javax.inject.Inject

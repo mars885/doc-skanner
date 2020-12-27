@@ -15,11 +15,9 @@
  */
 
 plugins {
-    androidApplication()
+    androidLibrary()
     kotlinAndroid()
     kotlinKapt()
-    navSafeArgsKotlin()
-    daggerHiltAndroid()
 }
 
 android {
@@ -29,9 +27,6 @@ android {
     defaultConfig {
         minSdkVersion(appConfig.minSdkVersion)
         targetSdkVersion(appConfig.targetSdkVersion)
-        versionCode = appConfig.versionCode
-        versionName = appConfig.versionName
-        applicationId = appConfig.applicationId
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,10 +38,6 @@ android {
         }
     }
 
-    buildFeatures {
-        viewBinding = true
-    }
-
     compileOptions {
         sourceCompatibility = appConfig.javaCompatibilityVersion
         targetCompatibility = appConfig.javaCompatibilityVersion
@@ -54,46 +45,14 @@ android {
 }
 
 dependencies {
-    implementation(project(deps.local.domain))
-    implementation(project(deps.local.data))
     implementation(project(deps.local.core))
-    implementation(project(deps.local.imageLoading))
+    implementation(project(deps.local.openCv))
 
     implementation(deps.kotlin.stdLib)
-    implementation(deps.kotlin.coroutinesCore)
-
-    implementation(deps.androidX.appCompat)
-    implementation(deps.androidX.navFragmentKtx)
-    implementation(deps.androidX.navUiKtx)
-    implementation(deps.androidX.constraintLayout)
-    implementation(deps.androidX.recyclerView)
-    implementation(deps.androidX.lifecycleCommonJava8)
-    implementation(deps.androidX.lifecycleViewModel)
-    implementation(deps.androidX.coreKtx)
-    implementation(deps.androidX.fragmentKtx)
-    implementation(deps.androidX.liveDataKtx)
-
-    implementation(deps.google.materialComponents)
-
     implementation(deps.square.picasso)
-
-    implementation(deps.commons.commonsCore)
-    implementation(deps.commons.commonsKtx)
-    implementation(deps.commons.commonsNavigation)
-    implementation(deps.commons.commonsWidgets)
-    implementation(deps.commons.commonsWindowAnims)
-    implementation(deps.commons.commonsRecyclerView)
-
-    implementation(deps.misc.dexter)
-    implementation(deps.misc.pdfViewer)
-    implementation(deps.misc.materialDialogsCore)
-    implementation(deps.misc.materialDialogsInput)
 
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)
-
-    implementation(deps.androidX.daggerHiltAssistedInjection)
-    kapt(deps.androidX.daggerHiltAssistedInjectionCompiler)
 
     testImplementation(deps.testing.jUnit)
     androidTestImplementation(deps.testing.jUnitExt)

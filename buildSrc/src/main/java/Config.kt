@@ -64,7 +64,7 @@ object deps {
         const val domain = ":domain"
         const val data = ":data"
         const val core = ":core"
-        const val imageProcessing = ":image-processing"
+        const val imageLoading = ":image-loading"
         const val openCv = ":openCVLibrary3413"
 
     }

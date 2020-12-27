@@ -34,10 +34,10 @@ import com.paulrybitskyi.commons.SdkInfo
 import com.paulrybitskyi.commons.ktx.getColor
 import com.paulrybitskyi.commons.ktx.getDimension
 import com.paulrybitskyi.docskanner.R
-import com.paulrybitskyi.docskanner.image.processing.cropping.CroppingCoords
-import com.paulrybitskyi.docskanner.image.processing.highlight.ImageHighlight
-import com.paulrybitskyi.docskanner.image.processing.highlight.ImageHighlightFactory
-import com.paulrybitskyi.docskanner.image.processing.highlight.ImageHighlightFinder
+import com.paulrybitskyi.docskanner.imageloading.cropping.CroppingCoords
+import com.paulrybitskyi.docskanner.imageloading.highlight.ImageHighlight
+import com.paulrybitskyi.docskanner.imageloading.highlight.ImageHighlightFactory
+import com.paulrybitskyi.docskanner.imageloading.highlight.ImageHighlightFinder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlin.math.abs
