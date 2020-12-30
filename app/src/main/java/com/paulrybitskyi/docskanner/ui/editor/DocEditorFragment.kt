@@ -86,7 +86,7 @@ internal class DocEditorFragment : BaseFragment<
 
     private fun initButtons() = with(viewBinding) {
         clearEffectBtnTv.onClick { viewModel.onClearButtonClicked() }
-        saveBtnTv.onClick { docEditorView.applyEffect(viewModel::onSaveButtonClicked) }
+        saveBtnTv.onClick { docEditorView.getFinalDoc(viewModel::onSaveButtonClicked) }
     }
 
 

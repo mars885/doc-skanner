@@ -31,6 +31,7 @@ import com.paulrybitskyi.docskanner.databinding.ViewDocEditorBinding
 import com.paulrybitskyi.docskanner.imageloading.*
 import com.paulrybitskyi.docskanner.imageloading.Target
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.resize.ResizeTransformationFactory
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import javax.inject.Inject
@@ -41,6 +42,14 @@ internal class DocEditorView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
+
+
+    private companion object {
+
+        private const val DOCUMENT_MAX_WIDTH = 1080
+        private const val DOCUMENT_MAX_HEIGHT = 1920
+
+    }
 
 
     private val hasImageFile: Boolean
@@ -61,13 +70,14 @@ internal class DocEditorView @JvmOverloads constructor(
         reloadImage()
     }
 
-    var effect by observeChanges<Effect?>(null) { oldEffect, newEffect ->
+    var effect by observeChanges(Effect.NONE) { oldEffect, newEffect ->
         if(newEffect != oldEffect) reloadImage()
     }
 
     @Inject lateinit var stringProvider: StringProvider
     @Inject lateinit var imageLoader: ImageLoader
     @Inject lateinit var imageEffectTransformationFactory: ImageEffectTransformationFactory
+    @Inject lateinit var resizeTransformationFactory: ResizeTransformationFactory
 
     var onApplyingEffectStarted: (() -> Unit)? = null
     var onApplyingEffectFinished: (() -> Unit)? = null
@@ -102,7 +112,7 @@ internal class DocEditorView @JvmOverloads constructor(
             Config.Builder()
                 .centerInside()
                 .resize(width, height)
-                .apply { effect?.createTransformation()?.let(::transformation) }
+                .apply { effect.createTransformation()?.let(::transformation) }
                 .source(Config.Source.File(checkNotNull(imageFile)))
                 .destination(Config.Destination.View(binding.imageView))
                 .onSuccess(::onImageLoaded)
@@ -126,7 +136,7 @@ internal class DocEditorView @JvmOverloads constructor(
     }
 
 
-    fun applyEffect(onSuccess: (Bitmap) -> Unit) {
+    fun getFinalDoc(onSuccess: (Bitmap) -> Unit) {
         if(!hasImageFile) return
 
         docWithEffectTarget = TargetAdapter(
@@ -141,7 +151,11 @@ internal class DocEditorView @JvmOverloads constructor(
 
         imageLoader.loadImage(
             Config.Builder()
-                .apply { effect?.createTransformation()?.let(::transformation) }
+                .apply {
+                    // Resizing image with the B&W effect will degrade its quality a lot
+                    if(effect != Effect.BLACK_AND_WHITE) transformation(createResizeTransformation())
+                    effect.createTransformation()?.let(::transformation)
+                }
                 .source(Config.Source.File(checkNotNull(imageFile)))
                 .destination(Config.Destination.Callback(checkNotNull(docWithEffectTarget)))
                 .build()
@@ -153,6 +167,14 @@ internal class DocEditorView @JvmOverloads constructor(
         onApplyingEffectFinished?.invoke()
 
         context.showToast(stringProvider.getString(R.string.error_effect_application_failed))
+    }
+
+
+    private fun createResizeTransformation(): Transformation {
+        return resizeTransformationFactory.createResizeTransformation(
+            maxWidth = DOCUMENT_MAX_WIDTH,
+            maxHeight = DOCUMENT_MAX_HEIGHT
+        )
     }
 
 

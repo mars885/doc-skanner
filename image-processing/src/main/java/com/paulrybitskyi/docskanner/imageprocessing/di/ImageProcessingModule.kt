@@ -28,6 +28,8 @@ import com.paulrybitskyi.docskanner.imageprocessing.detector.DocShapeDetector
 import com.paulrybitskyi.docskanner.imageprocessing.detector.OpenCvDocShapeDetector
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactory
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectTransformationFactoryImpl
+import com.paulrybitskyi.docskanner.imageprocessing.resize.ResizeTransformationFactory
+import com.paulrybitskyi.docskanner.imageprocessing.resize.ResizeTransformationFactoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -60,6 +62,12 @@ internal interface ImageProcessingModule {
     fun bindImageEffectTransformationFactory(
         transformationFactory: ImageEffectTransformationFactoryImpl
     ): ImageEffectTransformationFactory
+
+
+    @Binds
+    fun bindResizeTransformationFactory(
+        transformationFactory: ResizeTransformationFactoryImpl
+    ): ResizeTransformationFactory
 
 
     @Binds
