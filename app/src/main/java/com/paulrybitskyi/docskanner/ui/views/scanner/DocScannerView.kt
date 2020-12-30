@@ -224,7 +224,6 @@ internal class DocScannerView @JvmOverloads constructor(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        currentBitmap?.recycle()
         coroutineScopeProvider.cancelChildren()
     }
 

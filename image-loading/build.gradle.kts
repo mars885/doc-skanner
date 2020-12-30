@@ -47,6 +47,7 @@ android {
 dependencies {
     implementation(deps.kotlin.stdLib)
     implementation(deps.square.picasso)
+    implementation(deps.commons.commonsKtx)
 
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)

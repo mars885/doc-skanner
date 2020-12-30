@@ -16,8 +16,10 @@
 
 package com.paulrybitskyi.docskanner.imageloading.di
 
+import android.app.ActivityManager
 import android.content.Context
 import android.graphics.Bitmap
+import com.paulrybitskyi.commons.ktx.getSystemService
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
 import dagger.Module
@@ -35,8 +37,9 @@ internal object ImageLoadingModule {
     @Singleton
     @Provides
     fun providePicasso(@ApplicationContext context: Context): Picasso {
-        // Disabling cache
-        val cacheSizeInBytes = 1
+        val activityManager = context.getSystemService<ActivityManager>()
+        // ~5% of the available heap
+        val cacheSizeInBytes = (1024 * 1024 * activityManager.memoryClass / 20)
 
         return Picasso.Builder(context)
             .defaultBitmapConfig(Bitmap.Config.ARGB_8888)

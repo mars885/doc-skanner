@@ -178,11 +178,4 @@ internal class DocEditorView @JvmOverloads constructor(
     }
 
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-
-        currentBitmap?.recycle()
-    }
-
-
 }
