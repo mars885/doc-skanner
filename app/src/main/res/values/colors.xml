@@ -50,11 +50,11 @@
     <color name="doc_name_color">@color/colorSecondaryText</color>
     <color name="doc_details_color">@color/colorSecondaryDarkText</color>
 
-    <!-- DocCropAreaView -->
-    <color name="doc_crop_area_valid_shape_line_color">#00be75</color>
-    <color name="doc_crop_area_invalid_shape_line_color">#cc2e4e</color>
-    <color name="doc_crop_area_pointer_background_color">#881191d0</color>
-    <color name="doc_crop_area_pointer_stroke_color">@color/colorAccent</color>
+    <!-- DocCropBorderView -->
+    <color name="doc_crop_border_valid_shape_line_color">#00be75</color>
+    <color name="doc_crop_border_invalid_shape_line_color">#cc2e4e</color>
+    <color name="doc_crop_border_handle_stroke_color">@color/colorAccent</color>
+    <color name="doc_crop_border_handle_inner_color">#881191d0</color>
 
     <!-- DashboardFragment -->
     <color name="dashboard_docs_background">@color/colorContentContainer</color>

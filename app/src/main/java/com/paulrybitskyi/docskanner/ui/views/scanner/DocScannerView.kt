@@ -40,7 +40,7 @@ import com.paulrybitskyi.docskanner.imageprocessing.crop.transform.CropTransform
 import com.paulrybitskyi.docskanner.imageprocessing.crop.transform.Size
 import com.paulrybitskyi.docskanner.imageprocessing.detector.DocShapeDetector
 import com.paulrybitskyi.docskanner.ui.views.scanner.crop.toCropCoords
-import com.paulrybitskyi.docskanner.ui.views.scanner.crop.toDocCropArea
+import com.paulrybitskyi.docskanner.ui.views.scanner.crop.toDocCropBorder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -55,7 +55,7 @@ internal class DocScannerView @JvmOverloads constructor(
 
 
     private val imageMargin = context.getDimensionPixelSize(R.dimen.doc_scanner_image_margin)
-    private val docCropAreaPointerSize = context.getDimensionPixelSize(R.dimen.doc_crop_area_pointer_size)
+    private val docCropBorderHandleSize = context.getDimensionPixelSize(R.dimen.doc_crop_border_handle_size)
 
     private val hasImageFile: Boolean
         get() = (imageFile != null)
@@ -64,9 +64,9 @@ internal class DocScannerView @JvmOverloads constructor(
         set(value) { binding.imageView.isVisible = value }
         get() = binding.imageView.isVisible
 
-    private var isDocCropAreaVisible: Boolean
-        set(value) { binding.docCropAreaView.isVisible = value }
-        get() = binding.docCropAreaView.isVisible
+    private var isDocCropBorderVisible: Boolean
+        set(value) { binding.docCropBorderView.isVisible = value }
+        get() = binding.docCropBorderView.isVisible
 
     private var isProgressBarVisible: Boolean
         set(value) { binding.progressBar.isVisible = value }
@@ -106,7 +106,7 @@ internal class DocScannerView @JvmOverloads constructor(
 
 
     private fun initDefaults() {
-        isDocCropAreaVisible = false
+        isDocCropBorderVisible = false
         isProgressBarVisible = false
     }
 
@@ -125,7 +125,7 @@ internal class DocScannerView @JvmOverloads constructor(
         if(!hasImageFile) return
 
         isImageVisible = true
-        isDocCropAreaVisible = false
+        isDocCropBorderVisible = false
         isProgressBarVisible = true
 
         val imageWidth = (width - (2 * imageMargin))
@@ -145,17 +145,17 @@ internal class DocScannerView @JvmOverloads constructor(
 
 
     private fun onImageLoaded() {
-        resetDocCropArea()
+        resetDocCropBorder()
         isProgressBarVisible = false
     }
 
 
-    private fun resetDocCropArea() {
+    private fun resetDocCropBorder() {
         val currentBitmap = checkNotNull(currentBitmap)
 
-        binding.docCropAreaView.updateLayoutParams {
-            this.width = (currentBitmap.width + docCropAreaPointerSize)
-            this.height = (currentBitmap.height + docCropAreaPointerSize)
+        binding.docCropBorderView.updateLayoutParams {
+            this.width = (currentBitmap.width + docCropBorderHandleSize)
+            this.height = (currentBitmap.height + docCropBorderHandleSize)
         }
 
         detectDocumentShape(currentBitmap)
@@ -164,7 +164,7 @@ internal class DocScannerView @JvmOverloads constructor(
 
     private fun detectDocumentShape(currentBitmap: Bitmap) {
         if(!shouldRunShapeDetection) {
-            isDocCropAreaVisible = true
+            isDocCropBorderVisible = true
             return
         }
 
@@ -172,10 +172,10 @@ internal class DocScannerView @JvmOverloads constructor(
             val docShape = docShapeDetector.detectShape(currentBitmap)
 
             withContext(dispatcherProvider.main) {
-                binding.docCropAreaView.setCropArea(docShape.toDocCropArea())
+                binding.docCropBorderView.setCropBorder(docShape.toDocCropBorder())
 
                 shouldRunShapeDetection = false
-                isDocCropAreaVisible = true
+                isDocCropBorderVisible = true
             }
         }
     }
@@ -184,15 +184,15 @@ internal class DocScannerView @JvmOverloads constructor(
     fun scanDocument(onSuccess: (Bitmap) -> Unit) {
         if(!hasImageFile) return
 
-        if(!binding.docCropAreaView.hasValidArea()) {
+        if(!binding.docCropBorderView.hasValidBorder()) {
             context.showToast(stringProvider.getString(R.string.error_cannot_crop))
             return
         }
 
-        val docCropArea = checkNotNull(binding.docCropAreaView.getCropArea())
+        val docCropBorder = checkNotNull(binding.docCropBorderView.getCropBorder())
         val viewSize = Size(binding.imageView.width.toFloat(), binding.imageView.height.toFloat())
         val cropTransformation = cropTransformationFactory.createCropTransformation(
-            cropCoords = docCropArea.toCropCoords(),
+            cropCoords = docCropBorder.toCropCoords(),
             viewSize = viewSize
         )
 
@@ -202,7 +202,7 @@ internal class DocScannerView @JvmOverloads constructor(
         )
 
         isImageVisible = false
-        isDocCropAreaVisible = false
+        isDocCropBorderVisible = false
         isProgressBarVisible = true
 
         imageLoader.loadImage(

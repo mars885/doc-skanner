@@ -22,6 +22,17 @@ import javax.inject.Inject
 
 interface DocCoordsOrderer {
 
+    /**
+     * Orders a list of document coordinates and returns them
+     * in the ordered way. If ordering cannot be achieved, null
+     * is returned.
+     *
+     * @param coords a list of coordinates of a document with
+     * no particular order applied
+     *
+     * @return a data structure with ordered coordinates or null
+     * if ordering cannot be achieved
+     */
     fun order(coords: List<PointF>): DocShape?
 
 }
@@ -30,7 +41,7 @@ interface DocCoordsOrderer {
 internal class DocCoordsOrdererImpl @Inject constructor() : DocCoordsOrderer {
 
 
-    internal companion object {
+    private companion object {
 
         val STUB_COORD = PointF(-1f, -1f)
 

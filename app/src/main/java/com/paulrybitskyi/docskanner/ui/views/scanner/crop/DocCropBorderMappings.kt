@@ -20,7 +20,7 @@ import com.paulrybitskyi.docskanner.imageprocessing.crop.transform.CropCoords
 import com.paulrybitskyi.docskanner.imageprocessing.detector.DocShape
 
 
-internal fun DocCropArea.toCropCoords(): CropCoords {
+internal fun DocCropBorder.toCropCoords(): CropCoords {
     return CropCoords(
         topLeftCoord = topLeftCoord,
         topRightCoord = topRightCoord,
@@ -30,8 +30,8 @@ internal fun DocCropArea.toCropCoords(): CropCoords {
 }
 
 
-internal fun DocShape.toDocCropArea(): DocCropArea {
-    return DocCropArea(
+internal fun DocShape.toDocCropBorder(): DocCropBorder {
+    return DocCropBorder(
         topLeftCoord = topLeftCoord,
         topRightCoord = topRightCoord,
         bottomLeftCoord = bottomLeftCoord,

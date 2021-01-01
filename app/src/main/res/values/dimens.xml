@@ -60,10 +60,11 @@
     <!-- DocScannerView -->
     <dimen name="doc_scanner_image_margin">16dp</dimen>
 
-    <!-- DocCropAreaView -->
-    <dimen name="doc_crop_area_pointer_size">20dp</dimen>
-    <dimen name="doc_crop_area_pointer_stroke_width">1.5dp</dimen>
-    <dimen name="doc_crop_area_line_stroke_width">1dp</dimen>
+    <!-- DocCropBorderView -->
+    <dimen name="doc_crop_border_handle_size">20dp</dimen>
+    <dimen name="doc_crop_border_handle_size_deviation">1dp</dimen>
+    <dimen name="doc_crop_border_handle_stroke_width">1.5dp</dimen>
+    <dimen name="doc_crop_border_shape_line_width">1dp</dimen>
 
     <!-- DashboardFragment -->
     <dimen name="dashboard_scan_btn_margin">16dp</dimen>
