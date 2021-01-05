@@ -45,7 +45,7 @@ internal class CropTransformation(
             }
             .let(::fromList)
 
-        val imagePerspectiveCoords = ImagePerspectiveTransformer.InputCoords(
+        val shourceShapeCoords = ImagePerspectiveTransformer.SourceShapeCoords(
             topLeftCoord = scaledCoords.topLeftCoord,
             topRightCoord = scaledCoords.topRightCoord,
             bottomLeftCoord = scaledCoords.bottomLeftCoord,
@@ -53,8 +53,8 @@ internal class CropTransformation(
         )
 
         val finalBitmap = imagePerspectiveTransformer.transformPerspective(
-            image = source,
-            inputCoords = imagePerspectiveCoords
+            sourceImage = source,
+            sourceShapeCoords = shourceShapeCoords
         )
 
         if(finalBitmap != source) {

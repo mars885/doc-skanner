@@ -18,7 +18,7 @@ package com.paulrybitskyi.docskanner.imageprocessing.crop
 
 import android.graphics.Bitmap
 import android.graphics.PointF
-import com.paulrybitskyi.docskanner.imageprocessing.crop.ImagePerspectiveTransformer.InputCoords
+import com.paulrybitskyi.docskanner.imageprocessing.crop.ImagePerspectiveTransformer.SourceShapeCoords
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toBitmap
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toPoint
@@ -33,14 +33,14 @@ import kotlin.math.sqrt
 
 interface ImagePerspectiveTransformer {
 
-    data class InputCoords(
+    data class SourceShapeCoords(
         val topLeftCoord: PointF,
         val topRightCoord: PointF,
         val bottomLeftCoord: PointF,
         val bottomRightCoord: PointF
     )
 
-    fun transformPerspective(image: Bitmap, inputCoords: InputCoords): Bitmap
+    fun transformPerspective(sourceImage: Bitmap, sourceShapeCoords: SourceShapeCoords): Bitmap
 
 }
 
@@ -48,34 +48,35 @@ interface ImagePerspectiveTransformer {
 internal class OpenCvImagePerspectiveTransformer @Inject constructor() : ImagePerspectiveTransformer {
 
 
-    override fun transformPerspective(image: Bitmap, inputCoords: InputCoords): Bitmap {
-        val imageMat = image.toMat()
-        val cornerPointMat = createCornerCoordsMat(inputCoords)
-        val rectangleSize = calculateRectangleSize(inputCoords)
-        val resultImageMat = Mat.zeros(rectangleSize, imageMat.type())
-        val imageOutline = calculateImageOutline(resultImageMat)
-        val transformationMat = Imgproc.getPerspectiveTransform(cornerPointMat, imageOutline)
+    override fun transformPerspective(sourceImage: Bitmap, sourceShapeCoords: SourceShapeCoords): Bitmap {
+        val sourceImageMat = sourceImage.toMat()
+        val sourceShapeCoordsMat = sourceShapeCoords.toMat()
+        val destImageSize = computeDestinationImageSize(sourceShapeCoords)
+        val destImageMat = Mat.zeros(destImageSize, sourceImageMat.type())
+        val destShapeCoordsMat = computeDestinationShapeCoordsMat(destImageMat)
+        val transformationMat = Imgproc.getPerspectiveTransform(sourceShapeCoordsMat, destShapeCoordsMat)
 
-        Imgproc.warpPerspective(imageMat, resultImageMat, transformationMat, rectangleSize)
+        Imgproc.warpPerspective(sourceImageMat, destImageMat, transformationMat, destImageSize)
 
-        return resultImageMat.toBitmap()
+        return destImageMat.toBitmap()
+            .also { sourceImageMat.release() }
     }
 
 
-    private fun createCornerCoordsMat(perspectiveCoords: InputCoords): MatOfPoint2f {
-        val coordsArray = arrayOf(
-            perspectiveCoords.topLeftCoord.toPoint(),
-            perspectiveCoords.topRightCoord.toPoint(),
-            perspectiveCoords.bottomLeftCoord.toPoint(),
-            perspectiveCoords.bottomRightCoord.toPoint()
+    private fun SourceShapeCoords.toMat(): MatOfPoint2f {
+        val shapeCoordsArray = arrayOf(
+            topLeftCoord.toPoint(),
+            topRightCoord.toPoint(),
+            bottomLeftCoord.toPoint(),
+            bottomRightCoord.toPoint()
         )
-        val coordsMat = MatOfPoint2f().apply { fromArray(*coordsArray) }
+        val shapeCoordsMat = MatOfPoint2f().apply { fromArray(*shapeCoordsArray) }
 
-        return coordsMat
+        return shapeCoordsMat
     }
 
 
-    private fun calculateRectangleSize(coords: InputCoords): Size {
+    private fun computeDestinationImageSize(coords: SourceShapeCoords): Size {
         val topDistance = calculateDistance(coords.topLeftCoord.toPoint(), coords.topRightCoord.toPoint())
         val bottomDistance = calculateDistance(coords.bottomLeftCoord.toPoint(), coords.bottomRightCoord.toPoint())
         val leftDistance = calculateDistance(coords.topLeftCoord.toPoint(), coords.bottomLeftCoord.toPoint())
@@ -96,7 +97,7 @@ internal class OpenCvImagePerspectiveTransformer @Inject constructor() : ImagePe
     }
 
 
-    private fun calculateImageOutline(imageMat: Mat): MatOfPoint2f {
+    private fun computeDestinationShapeCoordsMat(imageMat: Mat): MatOfPoint2f {
         val topLeftCoord = Point(0.0, 0.0)
         val topRightCoord = Point(imageMat.cols().toDouble(), 0.0)
         val bottomLeftCoord = Point(0.0, imageMat.rows().toDouble())
