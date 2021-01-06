@@ -19,9 +19,6 @@ package com.paulrybitskyi.docskanner.imageprocessing.effects
 import android.graphics.Bitmap
 import com.paulrybitskyi.docskanner.imageprocessing.utils.*
 import com.paulrybitskyi.docskanner.imageprocessing.utils.applyGrayscaleEffect
-import com.paulrybitskyi.docskanner.imageprocessing.utils.createCopy
-import com.paulrybitskyi.docskanner.imageprocessing.utils.toBitmap
-import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
 import org.opencv.core.CvType
 import org.opencv.core.Mat
 import org.opencv.imgproc.Imgproc

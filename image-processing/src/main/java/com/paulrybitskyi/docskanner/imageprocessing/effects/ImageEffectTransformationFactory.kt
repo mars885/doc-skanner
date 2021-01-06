@@ -17,9 +17,9 @@
 package com.paulrybitskyi.docskanner.imageprocessing.effects
 
 import com.paulrybitskyi.docskanner.imageloading.Transformation
-import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.SimpleThresholdTransformation
-import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.GrayscaleTransformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.AdaptiveThresholdTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.GrayscaleTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.SimpleThresholdTransformation
 import javax.inject.Inject
 import javax.inject.Provider
 

@@ -19,7 +19,6 @@ package com.paulrybitskyi.docskanner.imageprocessing.detector
 import android.graphics.Bitmap
 import android.graphics.PointF
 import com.paulrybitskyi.docskanner.imageprocessing.utils.*
-import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toPointF
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
