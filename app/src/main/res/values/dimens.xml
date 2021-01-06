@@ -80,11 +80,11 @@
     <dimen name="doc_scanner_rotate_button_touch_margin">8dp</dimen>
 
     <!-- DocEditorFragment -->
-    <dimen name="doc_editor_effect_view_icon_size">30dp</dimen>
-    <dimen name="doc_editor_effect_view_title_size">15sp</dimen>
-    <dimen name="doc_editor_effect_view_padding_top">10dp</dimen>
-    <dimen name="doc_editor_effect_view_padding_bottom">15dp</dimen>
-    <dimen name="doc_editor_effect_view_horizontal_padding">10dp</dimen>
+    <dimen name="doc_editor_effect_icon_size">30dp</dimen>
+    <dimen name="doc_editor_effect_title_size">15sp</dimen>
+    <dimen name="doc_editor_effect_padding_top">10dp</dimen>
+    <dimen name="doc_editor_effect_padding_bottom">15dp</dimen>
+    <dimen name="doc_editor_effect_horizontal_padding">10dp</dimen>
     <dimen name="doc_editor_view_vertical_margin">30dp</dimen>
     <dimen name="doc_editor_view_horizontal_margin">20dp</dimen>
     <dimen name="doc_editor_button_margin">16dp</dimen>

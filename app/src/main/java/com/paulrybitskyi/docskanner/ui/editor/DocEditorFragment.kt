@@ -18,10 +18,12 @@ package com.paulrybitskyi.docskanner.ui.editor
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import com.paulrybitskyi.commons.ktx.getColor
 import com.paulrybitskyi.commons.ktx.onClick
 import com.paulrybitskyi.commons.ktx.removeElevation
 import com.paulrybitskyi.commons.navigation.navController
 import com.paulrybitskyi.commons.utils.viewBinding
+import com.paulrybitskyi.commons.widgets.InfoView
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.databinding.FragmentDocEditorBinding
 import com.paulrybitskyi.docskanner.ui.base.BaseFragment
@@ -45,9 +47,28 @@ internal class DocEditorFragment : BaseFragment<
     override val viewBinding by viewBinding(FragmentDocEditorBinding::bind)
     override val viewModel by viewModels<DocEditorViewModel>()
 
+    private var effectStateDefaultContentColor = -1
+    private var effectStateSelectedContentColor = -1
+
+    private lateinit var effectViews: Array<InfoView>
+
     @Inject lateinit var dialogBuilder: DialogBuilder
 
     private var dialog: Dialog? = null
+
+
+    override fun onPreInit() {
+        super.onPreInit()
+
+        effectStateDefaultContentColor = getColor(R.color.doc_editor_effect_state_default_content_color)
+        effectStateSelectedContentColor = getColor(R.color.doc_editor_effect_state_selected_content_color)
+
+        effectViews = arrayOf(
+            viewBinding.grayEffectIv,
+            viewBinding.firstBnwEffectIv,
+            viewBinding.secondBnwEffectIv
+        )
+    }
 
 
     override fun onInit() {
@@ -120,6 +141,22 @@ internal class DocEditorFragment : BaseFragment<
     }
 
 
+    private fun selectEffectView(effectView: InfoView) {
+        clearEffectViewSelection()
+
+        effectView.iconColor = effectStateSelectedContentColor
+        effectView.titleTextColor = effectStateSelectedContentColor
+    }
+
+
+    private fun clearEffectViewSelection() {
+        effectViews.forEach {
+            it.iconColor = effectStateDefaultContentColor
+            it.titleTextColor = effectStateDefaultContentColor
+        }
+    }
+
+
     override fun onHandleCommand(command: Command) {
         super.onHandleCommand(command)
 
@@ -133,22 +170,27 @@ internal class DocEditorFragment : BaseFragment<
     }
 
 
-    private fun applyGrayEffect() {
-        viewBinding.docEditorView.effect = DocEditorView.Effect.GRAY
+    private fun applyGrayEffect() = with(viewBinding) {
+        docEditorView.effect = DocEditorView.Effect.GRAY
+        selectEffectView(grayEffectIv)
     }
 
 
-    private fun applyFirstBawEffect() {
-        viewBinding.docEditorView.effect = DocEditorView.Effect.BAW_1
+    private fun applyFirstBawEffect() = with(viewBinding) {
+        docEditorView.effect = DocEditorView.Effect.BAW_1
+        selectEffectView(firstBnwEffectIv)
     }
 
 
-    private fun applySecondBawEffect() {
-        viewBinding.docEditorView.effect = DocEditorView.Effect.BAW_2
+    private fun applySecondBawEffect() = with(viewBinding) {
+        docEditorView.effect = DocEditorView.Effect.BAW_2
+        selectEffectView(secondBnwEffectIv)
     }
 
 
     private fun clearEffect() {
+        clearEffectViewSelection()
+
         viewBinding.docEditorView.effect = DocEditorView.Effect.NONE
     }
 

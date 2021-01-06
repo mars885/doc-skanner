@@ -66,7 +66,8 @@
     <color name="doc_preview_artificial_shadow">#66000000</color>
 
     <!-- DocEditorFragment -->
-    <color name="doc_editor_effect_view_background_color">@color/colorPrimary</color>
-    <color name="doc_editor_effect_view_content_color">@color/colorSecondaryText</color>
+    <color name="doc_editor_effect_background_color">@color/colorPrimary</color>
+    <color name="doc_editor_effect_state_default_content_color">@color/colorSecondaryText</color>
+    <color name="doc_editor_effect_state_selected_content_color">#06c47b</color>
 
 </resources>
