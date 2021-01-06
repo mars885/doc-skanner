@@ -23,11 +23,11 @@ import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 
 internal sealed class DocEditorCommand : Command {
 
-    object ApplyMagicColorEffect : DocEditorCommand()
+    object ApplyGrayEffect : DocEditorCommand()
 
-    object ApplyGrayModeEffect : DocEditorCommand()
+    object ApplyFirstBawEffect : DocEditorCommand()
 
-    object ApplyBlackAndWhiteEffect : DocEditorCommand()
+    object ApplySecondBawEffect : DocEditorCommand()
 
     object ClearEffect : DocEditorCommand()
 

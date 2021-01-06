@@ -20,16 +20,16 @@ import android.graphics.Bitmap
 import com.paulrybitskyi.docskanner.imageloading.Transformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectApplier
 
-internal class BinaryTransformation(
+internal class AdaptiveThresholdTransformation(
     private val imageEffectApplier: ImageEffectApplier
 ) : Transformation {
 
 
-    override val key = "Binary"
+    override val key = "AdaptiveThreshold"
 
 
     override fun transform(source: Bitmap): Bitmap {
-        return imageEffectApplier.applyBinaryEffect(source)
+        return imageEffectApplier.applyAdaptiveThresholdEffect(source)
             .also { if(it != source) source.recycle() }
     }
 

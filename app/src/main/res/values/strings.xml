@@ -62,9 +62,9 @@
 
     <!-- DocEditorFragment -->
     <string name="doc_editor_toolbar_title">Editor</string>
-    <string name="doc_editor_magic_color_effect">Magic Color</string>
-    <string name="doc_editor_gray_mode_effect">Gray Mode</string>
-    <string name="doc_editor_black_and_white_effect">Black &amp; White</string>
+    <string name="doc_editor_gray_effect">Gray</string>
+    <string name="doc_editor_first_black_and_white_effect">B&amp;W</string>
+    <string name="doc_editor_second_black_and_white_effect">B&amp;W 2</string>
     <string name="doc_editor_file_name_dialog_title">PDF File Name</string>
     <string name="doc_editor_file_name_dialog_hint">Enter a file name</string>
 

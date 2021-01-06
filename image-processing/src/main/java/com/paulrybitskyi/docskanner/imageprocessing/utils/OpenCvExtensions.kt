@@ -24,8 +24,8 @@ import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 
 
-internal fun Mat.createCopy(): Mat {
-    return Mat(rows(), cols(), type())
+internal fun Mat.createCopy(type: Int = type()): Mat {
+    return Mat(rows(), cols(), type)
 }
 
 
@@ -42,6 +42,38 @@ internal fun Mat.toBitmap(): Bitmap {
 internal fun Mat.applyGrayscaleEffect(): Mat {
     return createCopy().also { outputMat ->
         Imgproc.cvtColor(this, outputMat, Imgproc.COLOR_BGR2GRAY)
+    }
+}
+
+
+internal fun Mat.applySimpleThreshold(
+    threshold: Double,
+    maxValue: Double,
+    type: Int
+): Mat {
+    return createCopy().also { outputMat ->
+        Imgproc.threshold(this, outputMat, threshold, maxValue, type)
+    }
+}
+
+
+internal fun Mat.applyAdaptiveThreshold(
+    maxValue: Double,
+    adaptiveMethod: Int,
+    thresholdType: Int,
+    blockSize: Int,
+    C: Double
+): Mat {
+    return createCopy().also { outputMat ->
+        Imgproc.adaptiveThreshold(
+            this,
+            outputMat,
+            maxValue,
+            adaptiveMethod,
+            thresholdType,
+            blockSize,
+            C
+        )
     }
 }
 
@@ -97,15 +129,14 @@ internal fun MatOfPoint.approxPolyCurve(
     val contourPerimeter = Imgproc.arcLength(contourMatFloat, isCurveClosed)
     val epsilon = (contourPerimeter * accuracyPercentage / 100.0)
 
-    return MatOfPoint2f()
-        .also { approximateCurve ->
-            Imgproc.approxPolyDP(
-                contourMatFloat,
-                approximateCurve,
-                epsilon,
-                isCurveClosed
-            )
-        }
+    return MatOfPoint2f().also { approximateCurve ->
+        Imgproc.approxPolyDP(
+            contourMatFloat,
+            approximateCurve,
+            epsilon,
+            isCurveClosed
+        )
+    }
 }
 
 

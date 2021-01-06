@@ -20,16 +20,16 @@ import android.graphics.Bitmap
 import com.paulrybitskyi.docskanner.imageloading.Transformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.ImageEffectApplier
 
-internal class MagicColorTransformation(
+internal class SimpleThresholdTransformation(
     private val imageEffectApplier: ImageEffectApplier
 ) : Transformation {
 
 
-    override val key = "MagicColor"
+    override val key = "SimpleThreshold"
 
 
     override fun transform(source: Bitmap): Bitmap {
-        return imageEffectApplier.applyMagicColorEffect(source)
+        return imageEffectApplier.applySimpleThresholdEffect(source)
             .also { if(it != source) source.recycle() }
     }
 

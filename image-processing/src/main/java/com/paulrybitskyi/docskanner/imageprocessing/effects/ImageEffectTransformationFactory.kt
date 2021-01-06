@@ -17,20 +17,20 @@
 package com.paulrybitskyi.docskanner.imageprocessing.effects
 
 import com.paulrybitskyi.docskanner.imageloading.Transformation
-import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.BinaryTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.SimpleThresholdTransformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.GrayscaleTransformation
-import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.MagicColorTransformation
+import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.AdaptiveThresholdTransformation
 import javax.inject.Inject
 import javax.inject.Provider
 
 
 interface ImageEffectTransformationFactory {
 
-    fun createMagicColorTransformation(): Transformation
-
     fun createGrayscaleTransformation(): Transformation
 
-    fun createBinaryTransformation(): Transformation
+    fun createFirstBinaryTransformation(): Transformation
+
+    fun createSecondBinaryTransformation(): Transformation
 
 }
 
@@ -40,18 +40,18 @@ internal class ImageEffectTransformationFactoryImpl @Inject constructor(
 ) : ImageEffectTransformationFactory {
 
 
-    override fun createMagicColorTransformation(): Transformation {
-        return MagicColorTransformation(imageEffectApplier.get())
-    }
-
-
     override fun createGrayscaleTransformation(): Transformation {
         return GrayscaleTransformation(imageEffectApplier.get())
     }
 
 
-    override fun createBinaryTransformation(): Transformation {
-        return BinaryTransformation(imageEffectApplier.get())
+    override fun createFirstBinaryTransformation(): Transformation {
+        return SimpleThresholdTransformation(imageEffectApplier.get())
+    }
+
+
+    override fun createSecondBinaryTransformation(): Transformation {
+        return AdaptiveThresholdTransformation(imageEffectApplier.get())
     }
 
 

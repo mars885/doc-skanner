@@ -67,14 +67,14 @@ internal class DocEditorFragment : BaseFragment<
 
 
     private fun initEffects() = with(viewBinding) {
-        magicColorEffectIv.isTitleTextOneLiner = true
-        magicColorEffectIv.onClick { viewModel.onMagicColorEffectClicked() }
+        grayEffectIv.isTitleTextOneLiner = true
+        grayEffectIv.onClick { viewModel.onGrayEffectClicked() }
 
-        grayModeEffectIv.isTitleTextOneLiner = true
-        grayModeEffectIv.onClick { viewModel.onGrayModeEffectClicked() }
+        firstBnwEffectIv.isTitleTextOneLiner = true
+        firstBnwEffectIv.onClick { viewModel.onFirstBawEffectClicked() }
 
-        blackAndWhiteEffectIv.isTitleTextOneLiner = true
-        blackAndWhiteEffectIv.onClick { viewModel.onBlackAndWhiteEffectClicked() }
+        secondBnwEffectIv.isTitleTextOneLiner = true
+        secondBnwEffectIv.onClick { viewModel.onSecondBawEffectClicked() }
     }
 
 
@@ -124,27 +124,27 @@ internal class DocEditorFragment : BaseFragment<
         super.onHandleCommand(command)
 
         when(command) {
-            is DocEditorCommand.ApplyMagicColorEffect -> applyMagicColorEffect()
-            is DocEditorCommand.ApplyGrayModeEffect -> applyGrayModeEffect()
-            is DocEditorCommand.ApplyBlackAndWhiteEffect -> applyBlackAndWhiteEffect()
+            is DocEditorCommand.ApplyGrayEffect -> applyGrayEffect()
+            is DocEditorCommand.ApplyFirstBawEffect -> applyFirstBawEffect()
+            is DocEditorCommand.ApplySecondBawEffect -> applySecondBawEffect()
             is DocEditorCommand.ClearEffect -> clearEffect()
             is DocEditorCommand.ShowDialog -> showDialog(command.config)
         }
     }
 
 
-    private fun applyMagicColorEffect() {
-        viewBinding.docEditorView.effect = DocEditorView.Effect.MAGIC_COLOR
+    private fun applyGrayEffect() {
+        viewBinding.docEditorView.effect = DocEditorView.Effect.GRAY
     }
 
 
-    private fun applyGrayModeEffect() {
-        viewBinding.docEditorView.effect = DocEditorView.Effect.GRAY_MODE
+    private fun applyFirstBawEffect() {
+        viewBinding.docEditorView.effect = DocEditorView.Effect.BAW_1
     }
 
 
-    private fun applyBlackAndWhiteEffect() {
-        viewBinding.docEditorView.effect = DocEditorView.Effect.BLACK_AND_WHITE
+    private fun applySecondBawEffect() {
+        viewBinding.docEditorView.effect = DocEditorView.Effect.BAW_2
     }
 
 

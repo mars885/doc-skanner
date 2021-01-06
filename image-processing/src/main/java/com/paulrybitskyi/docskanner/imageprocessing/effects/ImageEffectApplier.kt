@@ -17,8 +17,12 @@
 package com.paulrybitskyi.docskanner.imageprocessing.effects
 
 import android.graphics.Bitmap
+import com.paulrybitskyi.docskanner.imageprocessing.utils.*
+import com.paulrybitskyi.docskanner.imageprocessing.utils.applyGrayscaleEffect
+import com.paulrybitskyi.docskanner.imageprocessing.utils.createCopy
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toBitmap
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
+import org.opencv.core.CvType
 import org.opencv.core.Mat
 import org.opencv.imgproc.Imgproc
 import javax.inject.Inject
@@ -28,42 +32,26 @@ internal class ImageEffectApplier @Inject constructor() {
 
     private companion object {
 
-        private const val MAGIC_COLOR_EFFECT_CONTRAST = 1.25
-        private const val MAGIC_COLOR_EFFECT_BRIGHTNESS = 0.0
+        private const val THRESHOLD_MAX_VALUE = 255.0
 
-        private const val BINARY_EFFECT_THRESHOLD = 127.5
-        private const val BINARY_EFFECT_MAX_VALUE = 255.0
+        private const val SIMPLE_THRESHOLD_VALUE = 127.5
+        private const val ADAPTIVE_THRESHOLD_BLOCK_SIZE = 55
+        private const val ADAPTIVE_THRESHOLD_CONSTANT = 15.0
 
-    }
-
-
-    fun applyMagicColorEffect(source: Bitmap): Bitmap {
-        return applyEffect(source) { inputMat, outputMat ->
-            inputMat.convertTo(
-                outputMat,
-                -1,
-                MAGIC_COLOR_EFFECT_CONTRAST,
-                MAGIC_COLOR_EFFECT_BRIGHTNESS
-            )
-        }
     }
 
 
     fun applyGrayscaleEffect(source: Bitmap): Bitmap {
-        return applyEffect(source) { inputMat, outputMat ->
-            Imgproc.cvtColor(inputMat, outputMat, Imgproc.COLOR_BGR2GRAY)
-        }
+        return applyEffect(source, Mat::applyGrayscaleEffect)
     }
 
 
-    fun applyBinaryEffect(source: Bitmap): Bitmap {
+    fun applySimpleThresholdEffect(source: Bitmap): Bitmap {
         val grayscaleBitmap = applyGrayscaleEffect(source)
-        val binaryBitmap = applyEffect(grayscaleBitmap) { inputMat, outputMat ->
-            Imgproc.threshold(
-                inputMat,
-                outputMat,
-                BINARY_EFFECT_THRESHOLD,
-                BINARY_EFFECT_MAX_VALUE,
+        val binaryBitmap = applyEffect(grayscaleBitmap) { inputMat ->
+            inputMat.applySimpleThreshold(
+                SIMPLE_THRESHOLD_VALUE,
+                THRESHOLD_MAX_VALUE,
                 Imgproc.THRESH_BINARY
             )
         }
@@ -76,12 +64,38 @@ internal class ImageEffectApplier @Inject constructor() {
     }
 
 
-    private fun applyEffect(source: Bitmap, action: (Mat, Mat) -> Unit): Bitmap {
+    fun applyAdaptiveThresholdEffect(source: Bitmap): Bitmap {
+        val sourceMat = source.toMat()
+        val supposedlyGrayscaleMat = sourceMat.applyGrayscaleEffect()
+
+        sourceMat.release()
+
+        val grayscaleMat = supposedlyGrayscaleMat.createCopy(type = CvType.CV_8UC1)
+            .also { supposedlyGrayscaleMat.assignTo(it, CvType.CV_8UC1) }
+
+        supposedlyGrayscaleMat.release()
+
+        val binaryMat = grayscaleMat.applyAdaptiveThreshold(
+            maxValue = THRESHOLD_MAX_VALUE,
+            adaptiveMethod = Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C,
+            thresholdType = Imgproc.THRESH_BINARY,
+            blockSize = ADAPTIVE_THRESHOLD_BLOCK_SIZE,
+            C = ADAPTIVE_THRESHOLD_CONSTANT
+        )
+
+        grayscaleMat.release()
+
+        val binaryBitmap = binaryMat.toBitmap()
+
+        binaryMat.release()
+
+        return binaryBitmap
+    }
+
+
+    private fun applyEffect(source: Bitmap, action: (Mat) -> Mat): Bitmap {
         val inputMat = source.toMat()
-        val outputMat = Mat(inputMat.rows(), inputMat.cols(), inputMat.type())
-
-        action(inputMat, outputMat)
-
+        val outputMat = action(inputMat)
         val outputBitmap = outputMat.toBitmap()
 
         inputMat.release()

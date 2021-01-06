@@ -77,18 +77,18 @@ internal class DocEditorViewModel @ViewModelInject constructor(
     }
 
 
-    fun onMagicColorEffectClicked() {
-        dispatchCommand(DocEditorCommand.ApplyMagicColorEffect)
+    fun onGrayEffectClicked() {
+        dispatchCommand(DocEditorCommand.ApplyGrayEffect)
     }
 
 
-    fun onGrayModeEffectClicked() {
-        dispatchCommand(DocEditorCommand.ApplyGrayModeEffect)
+    fun onFirstBawEffectClicked() {
+        dispatchCommand(DocEditorCommand.ApplyFirstBawEffect)
     }
 
 
-    fun onBlackAndWhiteEffectClicked() {
-        dispatchCommand(DocEditorCommand.ApplyBlackAndWhiteEffect)
+    fun onSecondBawEffectClicked() {
+        dispatchCommand(DocEditorCommand.ApplySecondBawEffect)
     }
 
 

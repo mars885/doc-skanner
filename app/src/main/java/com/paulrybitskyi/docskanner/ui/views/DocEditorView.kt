@@ -18,7 +18,6 @@ package com.paulrybitskyi.docskanner.ui.views
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -59,9 +58,6 @@ internal class DocEditorView @JvmOverloads constructor(
         set(value) { binding.progressBar.isVisible = value }
         get() = binding.progressBar.isVisible
 
-    private val currentBitmap: Bitmap?
-        get() = (binding.imageView.drawable as? BitmapDrawable)?.bitmap
-
     private var docWithEffectTarget: Target? = null
 
     private val binding = ViewDocEditorBinding.inflate(context.layoutInflater, this)
@@ -86,9 +82,9 @@ internal class DocEditorView @JvmOverloads constructor(
     internal enum class Effect {
 
         NONE,
-        MAGIC_COLOR,
-        GRAY_MODE,
-        BLACK_AND_WHITE
+        GRAY,
+        BAW_1,
+        BAW_2
 
     }
 
@@ -124,9 +120,9 @@ internal class DocEditorView @JvmOverloads constructor(
     private fun Effect.createTransformation(): Transformation? {
         return when(this) {
             Effect.NONE -> null
-            Effect.MAGIC_COLOR -> imageEffectTransformationFactory.createMagicColorTransformation()
-            Effect.GRAY_MODE -> imageEffectTransformationFactory.createGrayscaleTransformation()
-            Effect.BLACK_AND_WHITE -> imageEffectTransformationFactory.createBinaryTransformation()
+            Effect.GRAY -> imageEffectTransformationFactory.createGrayscaleTransformation()
+            Effect.BAW_1 -> imageEffectTransformationFactory.createFirstBinaryTransformation()
+            Effect.BAW_2 -> imageEffectTransformationFactory.createSecondBinaryTransformation()
         }
     }
 
@@ -152,8 +148,8 @@ internal class DocEditorView @JvmOverloads constructor(
         imageLoader.loadImage(
             Config.Builder()
                 .apply {
-                    // Resizing image with the B&W effect will degrade its quality a lot
-                    if(effect != Effect.BLACK_AND_WHITE) transformation(createResizeTransformation())
+                    // Not resizing with the B&W effect since it will degrade quality a lot
+                    if(shouldResizeFinalDoc()) transformation(createResizeTransformation())
                     effect.createTransformation()?.let(::transformation)
                 }
                 .source(Config.Source.File(checkNotNull(imageFile)))
@@ -167,6 +163,11 @@ internal class DocEditorView @JvmOverloads constructor(
         onApplyingEffectFinished?.invoke()
 
         context.showToast(stringProvider.getString(R.string.error_effect_application_failed))
+    }
+
+
+    private fun shouldResizeFinalDoc(): Boolean {
+        return ((effect != Effect.BAW_1) && (effect != Effect.BAW_2))
     }
 
 
