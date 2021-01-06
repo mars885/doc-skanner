@@ -24,6 +24,7 @@ import com.paulrybitskyi.docskanner.imageprocessing.utils.toPointF
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 import javax.inject.Inject
+import kotlin.math.abs
 
 
 interface DocShapeDetector {
@@ -47,11 +48,14 @@ internal class OpenCvDocShapeDetector @Inject constructor(
         private const val CANNY_THRESHOLD_MIN = 75.0
         private const val CANNY_THRESHOLD_MAX = 200.0
 
-        private const val RECT_SIDE_COUNT = 4
-
         private const val LARGE_CONTOURS_LIMIT_COUNT = 5
 
         private const val CONTOUR_APPROX_ACCURACY_PERCENTAGE = 2.0
+
+        private const val RECT_SIDE_COUNT = 4
+
+        private const val SOURCE_IMAGE_AREA_THRESHOLD_MIN = 0.2
+        private const val SOURCE_IMAGE_AREA_THRESHOLD_MAX = 0.98
 
     }
 
@@ -90,11 +94,12 @@ internal class OpenCvDocShapeDetector @Inject constructor(
 
 
     private fun findLargestRectangleMat(imageMat: Mat): MatOfPoint2f? {
+        val imageArea = (imageMat.rows() * imageMat.cols())
         val grayscaleImageMat = applyGrayscaleEffect(imageMat)
         val smoothedImageMat = applyGaussianBlur(grayscaleImageMat)
         val imageEdgesMat = findImageEdges(smoothedImageMat)
         val imageContours = findImageContours(imageEdgesMat)
-        val largestRectContour = findLargestRectangularContour(imageContours)
+        val largestRectContour = findLargestRectangularContour(imageContours, imageArea)
 
         return largestRectContour
     }
@@ -124,14 +129,17 @@ internal class OpenCvDocShapeDetector @Inject constructor(
     }
 
 
-    private fun findLargestRectangularContour(contours: List<MatOfPoint>): MatOfPoint2f? {
+    private fun findLargestRectangularContour(
+        contours: List<MatOfPoint>,
+        sourceImageArea: Int
+    ): MatOfPoint2f? {
         val largeContours = contours.sortedByDescending(Imgproc::contourArea)
             .take(LARGE_CONTOURS_LIMIT_COUNT)
 
         for(largeContour in largeContours) {
             val approxCurve = approximatePolygonalCurve(largeContour)
 
-            if(approxCurve.rows() == RECT_SIDE_COUNT) {
+            if(isRectangle(approxCurve, sourceImageArea)) {
                 return approxCurve
             }
         }
@@ -145,6 +153,18 @@ internal class OpenCvDocShapeDetector @Inject constructor(
             accuracyPercentage = CONTOUR_APPROX_ACCURACY_PERCENTAGE,
             isCurveClosed = true
         )
+    }
+
+
+    private fun isRectangle(curve: MatOfPoint2f, sourceImageArea: Int): Boolean {
+        if(curve.rows() != RECT_SIDE_COUNT) return false
+
+        val curveArea = abs(Imgproc.contourArea(curve))
+        val minimumArea = (sourceImageArea * SOURCE_IMAGE_AREA_THRESHOLD_MIN)
+        val maximumArea = (sourceImageArea * SOURCE_IMAGE_AREA_THRESHOLD_MAX)
+        val hasAcceptableArea = ((curveArea > minimumArea) && (curveArea < maximumArea))
+
+        return hasAcceptableArea
     }
 
 
