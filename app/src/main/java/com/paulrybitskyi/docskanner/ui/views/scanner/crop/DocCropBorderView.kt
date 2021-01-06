@@ -173,7 +173,11 @@ internal class DocCropBorderView @JvmOverloads constructor(
 
     private fun initMagnifier() {
         if(SdkInfo.IS_AT_LEAST_PIE) {
-            magnifier = Magnifier.Builder(this).build()
+            magnifier = if(SdkInfo.IS_AT_LEAST_10) {
+                Magnifier.Builder(this).build()
+            } else {
+                Magnifier(this)
+            }
         }
     }
 
