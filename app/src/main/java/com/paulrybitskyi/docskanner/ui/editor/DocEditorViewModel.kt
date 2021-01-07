@@ -23,7 +23,6 @@ import androidx.lifecycle.*
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.core.factories.PdfDocumentFileNameFactory
 import com.paulrybitskyi.docskanner.core.providers.StringProvider
-import com.paulrybitskyi.docskanner.core.utils.combine
 import com.paulrybitskyi.docskanner.core.utils.onEachError
 import com.paulrybitskyi.docskanner.core.utils.onError
 import com.paulrybitskyi.docskanner.core.utils.onSuccess
@@ -39,6 +38,7 @@ import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.io.File
@@ -141,14 +141,12 @@ internal class DocEditorViewModel @ViewModelInject constructor(
 
     private fun runFinalizationFlow(fileName: String, documentImage: Bitmap) {
         viewModelScope.launch {
-            combine(
-                convertImageToPdf(fileName, documentImage),
-                clearAppCache()
-            )
-            .onStart { onFinalizationFlowStarted() }
-            .onSuccess { onFinalizationFlowFinished() }
-            .onError { onFinalizationFlowFailed() }
-            .collect()
+            convertImageToPdf(fileName, documentImage)
+                .flatMapConcat { clearAppCache() }
+                .onStart { onFinalizationFlowStarted() }
+                .onSuccess { onFinalizationFlowFinished() }
+                .onError { onFinalizationFlowFailed() }
+                .collect()
         }
     }
 
