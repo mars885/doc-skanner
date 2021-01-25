@@ -2,8 +2,9 @@
 An Android application that makes it possible to automatically scan and digitize documents from photos.
 
 ![](https://img.shields.io/badge/API-23%2B-orange.svg?style=flat)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html)
+![](https://github.com/mars885/doc-skanner/workflows/Build/badge.svg)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Screenshots
 <p align="center">
