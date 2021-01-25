@@ -46,4 +46,7 @@ android {
 dependencies {
     implementation(deps.kotlin.stdLib)
     implementation(deps.kotlin.coroutinesCore)
+
+    testImplementation(deps.testing.jUnit)
+    androidTestImplementation(deps.testing.jUnitExt)
 }
