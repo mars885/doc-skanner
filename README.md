@@ -1,9 +1,9 @@
 # DocSkanner
 An Android application that makes it possible to automatically scan and digitize documents from photos.
 
-![](https://img.shields.io/badge/API-23%2B-orange.svg?style=flat)
+![Min API](https://img.shields.io/badge/API-23%2B-orange.svg?style=flat)
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html)
-![](https://github.com/mars885/doc-skanner/workflows/Build/badge.svg)
+[![Build Status](https://github.com/mars885/doc-skanner/workflows/Build/badge.svg)](https://github.com/mars885/doc-skanner/actions)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Screenshots
