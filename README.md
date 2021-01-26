@@ -39,7 +39,9 @@ An Android application that makes it possible to automatically scan and digitize
 For more information about used dependencies, see [this](https://github.com/mars885/doc-skanner/blob/master/buildSrc/src/main/java/Config.kt) file.
 
 ## Download
-This project contains OpenCV native libraries for every mobile architecture (arm, mips, x86 and so on), which means that the APK size in raw form is enormous (~203 MB). If you want to take a quick look at the app and the size does not bother you, go ahead and download the latest APK from the [releases](https://github.com/mars885/doc-skanner/releases). If you want a smaller-sized APK, you can always clone the project and install it using Android Studio, which is smart enough to bundle only the native libraries for your phone's architecture and exclude others, resulting in a much smaller APK size (~30 MB).
+This project contains OpenCV native libraries for every mobile architecture, which means that the APK is split into multiple ones to prevent a one big [fat APK](https://en.wikipedia.org/wiki/Fat_binary). You can install the application in one of two ways:
+1. Go to the [releases](https://github.com/mars885/doc-skanner/releases) and download the APK for your phone's architecture. If you don't know it, [here](https://handstandsam.com/2016/01/28/determining-supported-processor-types-abis-for-an-android-device/) is a nice article describing how to determine it. If don't have time to read the article, then `arm64-v8a` should be a safe bet.
+2. Clone the project and install it using Android Studio.
 
 ## Resources
 1. [Canny Edge Detection](https://docs.opencv.org/master/da/d22/tutorial_py_canny.html). This tutorial explains the Canny edge detection algorithm, which plays a big role in identifying a document in the photo.
