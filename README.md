@@ -3,7 +3,7 @@ An Android application that makes it possible to automatically scan and digitize
 
 ![Min API](https://img.shields.io/badge/API-23%2B-orange.svg?style=flat)
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html)
-[![Build Status](https://github.com/mars885/doc-skanner/workflows/Build/badge.svg)](https://github.com/mars885/doc-skanner/actions)
+[![Build Status](![Build](https://github.com/mars885/doc-skanner/workflows/Build/badge.svg?branch=master))](https://github.com/mars885/doc-skanner/actions)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Screenshots
