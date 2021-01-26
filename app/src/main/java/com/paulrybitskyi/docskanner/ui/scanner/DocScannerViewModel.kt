@@ -18,7 +18,6 @@ package com.paulrybitskyi.docskanner.ui.scanner
 
 import android.graphics.Bitmap
 import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.liveData
@@ -32,16 +31,19 @@ import com.paulrybitskyi.docskanner.domain.SaveImageToFileUseCase
 import com.paulrybitskyi.docskanner.ui.Constants
 import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommand
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
+import javax.inject.Inject
 
 
 private const val PARAM_DOC_IMAGE_FILE = "doc_image_file"
 
 
-internal class DocScannerViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class DocScannerViewModel @Inject constructor(
     private val saveImageToFileUseCase: SaveImageToFileUseCase,
     private val temporaryImageFileFactory: TemporaryImageFileFactory,
     private val stringProvider: StringProvider,

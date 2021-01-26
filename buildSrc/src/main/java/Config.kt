@@ -39,7 +39,7 @@ object versions {
 
     const val kotlin = "1.4.21" // also in buildSrc build.gradle.kts file
     const val navigationVersion = "2.3.2"
-    const val daggerHilt = "2.28.3-alpha"
+    const val daggerHilt = "2.31.2-alpha"
     const val gradleVersionsPlugin = "0.36.0"
 
 }

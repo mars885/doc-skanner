@@ -18,7 +18,6 @@ package com.paulrybitskyi.docskanner.ui.editor
 
 import android.graphics.Bitmap
 import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.core.factories.PdfDocumentFileNameFactory
@@ -35,6 +34,7 @@ import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommand
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -42,12 +42,14 @@ import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.io.File
+import javax.inject.Inject
 
 
 private const val PARAM_DOC_IMAGE_FILE = "doc_image_file"
 
 
-internal class DocEditorViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class DocEditorViewModel @Inject constructor(
     private val convertImageToPdfUseCase: ConvertImageToPdfUseCase,
     private val clearAppCacheUseCase: ClearAppCacheUseCase,
     private val pdfDocumentFileNameFactory: PdfDocumentFileNameFactory,

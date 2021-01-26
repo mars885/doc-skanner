@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.ui.splash
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.core.providers.StringProvider
@@ -32,12 +31,15 @@ import com.paulrybitskyi.docskanner.ui.base.BaseViewModel
 import com.paulrybitskyi.docskanner.ui.base.events.commons.GeneralCommand
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-internal class SplashViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class SplashViewModel @Inject constructor(
     private val imageProcessorInitializer: ImageProcessorInitializer,
     private val createAppStorageFolderUseCase: CreateAppStorageFolderUseCase,
     private val clearAppCacheUseCase: ClearAppCacheUseCase,
