@@ -19,7 +19,6 @@ package com.paulrybitskyi.docskanner.ui.dashboard.fragment
 import android.Manifest.permission.CAMERA
 import android.net.Uri
 import androidx.core.net.toUri
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -42,12 +41,15 @@ import com.paulrybitskyi.docskanner.ui.views.docs.DocsUiState
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogConfig
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogContent
 import com.paulrybitskyi.docskanner.utils.dialogs.DialogItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
+import javax.inject.Inject
 
 
-internal class DashboardViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class DashboardViewModel @Inject constructor(
     private val observeAppStorageFolderFilesUseCase: ObserveAppStorageFolderFilesUseCase,
     private val copyFileUseCase: CopyFileUseCase,
     private val docsUiStateFactory: DocsUiStateFactory,
