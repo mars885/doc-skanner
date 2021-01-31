@@ -21,6 +21,7 @@ import com.paulrybitskyi.commons.ktx.arePermissionsDenied
 import com.paulrybitskyi.commons.ktx.arePermissionsGranted
 import com.paulrybitskyi.commons.ktx.isPermissionDenied
 import com.paulrybitskyi.commons.ktx.isPermissionGranted
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -38,6 +39,7 @@ interface PermissionVerifier {
 }
 
 
+@BindType
 internal class PermissionVerifierImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context
 ) : PermissionVerifier {

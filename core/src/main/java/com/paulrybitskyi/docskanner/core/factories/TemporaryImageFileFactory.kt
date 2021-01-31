@@ -17,6 +17,7 @@
 package com.paulrybitskyi.docskanner.core.factories
 
 import android.content.Context
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import javax.inject.Inject
@@ -29,6 +30,7 @@ interface TemporaryImageFileFactory {
 }
 
 
+@BindType
 internal class TemporaryImageFileFactoryImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context
 ) : TemporaryImageFileFactory {

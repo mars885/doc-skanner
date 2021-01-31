@@ -16,6 +16,7 @@
 
 package com.paulrybitskyi.docskanner.core.factories
 
+import com.paulrybitskyi.hiltbinder.BindType
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -28,6 +29,7 @@ interface PdfDocumentFileNameFactory {
 }
 
 
+@BindType
 internal class PdfDocumentFileNameFactoryImpl @Inject constructor() : PdfDocumentFileNameFactory {
 
 

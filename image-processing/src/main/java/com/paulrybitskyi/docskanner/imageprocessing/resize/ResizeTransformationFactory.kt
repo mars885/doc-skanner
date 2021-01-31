@@ -17,6 +17,7 @@
 package com.paulrybitskyi.docskanner.imageprocessing.resize
 
 import com.paulrybitskyi.docskanner.imageloading.Transformation
+import com.paulrybitskyi.hiltbinder.BindType
 import javax.inject.Inject
 
 
@@ -27,6 +28,7 @@ interface ResizeTransformationFactory {
 }
 
 
+@BindType
 internal class ResizeTransformationFactoryImpl @Inject constructor() : ResizeTransformationFactory {
 
 

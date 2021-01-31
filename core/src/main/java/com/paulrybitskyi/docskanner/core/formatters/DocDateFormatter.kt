@@ -17,6 +17,7 @@
 package com.paulrybitskyi.docskanner.core.formatters
 
 import android.content.Context
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,6 +31,7 @@ interface DocDateFormatter {
 }
 
 
+@BindType
 internal class DocDateFormatterImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context
 ) : DocDateFormatter {

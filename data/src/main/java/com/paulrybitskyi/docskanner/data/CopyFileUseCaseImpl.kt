@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.data.usecases
+package com.paulrybitskyi.docskanner.data
 
 import android.content.Context
 import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.CopyFileUseCase
 import com.paulrybitskyi.docskanner.domain.CopyFileUseCase.Params
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,6 +29,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@BindType
 internal class CopyFileUseCaseImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context,
     private val dispatcherProvider: DispatcherProvider

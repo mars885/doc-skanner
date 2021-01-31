@@ -17,6 +17,7 @@
 package com.paulrybitskyi.docskanner.core.factories
 
 import com.paulrybitskyi.docskanner.core.providers.AppStorageFolderProvider
+import com.paulrybitskyi.hiltbinder.BindType
 import java.io.File
 import javax.inject.Inject
 
@@ -28,6 +29,7 @@ interface PdfDocumentFileFactory {
 }
 
 
+@BindType
 internal class PdfDocumentFileFactoryImpl @Inject constructor(
     private val appStorageFolderProvider: AppStorageFolderProvider
 ) : PdfDocumentFileFactory {

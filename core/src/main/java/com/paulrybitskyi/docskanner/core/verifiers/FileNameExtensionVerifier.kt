@@ -16,6 +16,7 @@
 
 package com.paulrybitskyi.docskanner.core.verifiers
 
+import com.paulrybitskyi.hiltbinder.BindType
 import javax.inject.Inject
 
 
@@ -33,6 +34,7 @@ interface FileNameExtensionVerifier {
 }
 
 
+@BindType
 internal class FileNameExtensionVerifierImpl @Inject constructor() : FileNameExtensionVerifier {
 
 

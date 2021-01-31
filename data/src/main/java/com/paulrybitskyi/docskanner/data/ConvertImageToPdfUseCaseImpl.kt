@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.data.usecases
+package com.paulrybitskyi.docskanner.data
 
 import android.graphics.pdf.PdfDocument
 import com.paulrybitskyi.docskanner.core.factories.PdfDocumentFileFactory
 import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.ConvertImageToPdfUseCase
 import com.paulrybitskyi.docskanner.domain.ConvertImageToPdfUseCase.Params
+import com.paulrybitskyi.hiltbinder.BindType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -28,6 +29,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@BindType
 internal class ConvertImageToPdfUseCaseImpl @Inject constructor(
     private val pdfDocumentFileFactory: PdfDocumentFileFactory,
     private val dispatcherProvider: DispatcherProvider

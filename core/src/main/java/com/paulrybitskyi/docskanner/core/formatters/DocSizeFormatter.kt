@@ -18,6 +18,7 @@ package com.paulrybitskyi.docskanner.core.formatters
 
 import android.content.Context
 import android.text.format.Formatter
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import javax.inject.Inject
@@ -30,6 +31,7 @@ interface DocSizeFormatter {
 }
 
 
+@BindType
 internal class DocSizeFormatterImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context
 ) : DocSizeFormatter {

@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.data.usecases
+package com.paulrybitskyi.docskanner.data
 
-import android.content.Context
-import com.paulrybitskyi.commons.ktx.fileList
+import com.paulrybitskyi.docskanner.core.providers.AppStorageFolderProvider
 import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
-import com.paulrybitskyi.docskanner.domain.ClearAppCacheUseCase
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.paulrybitskyi.docskanner.domain.CreateAppStorageFolderUseCase
+import com.paulrybitskyi.hiltbinder.BindType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -28,19 +27,23 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class ClearAppCacheUseCaseImpl @Inject constructor(
-    @ApplicationContext private val applicationContext: Context,
+@BindType
+internal class CreateAppStorageFolderUseCaseImpl @Inject constructor(
+    private val appStorageFolderProvider: AppStorageFolderProvider,
     private val dispatcherProvider: DispatcherProvider
-) : ClearAppCacheUseCase {
+) : CreateAppStorageFolderUseCase {
 
 
     override suspend fun execute(params: Unit): Flow<Unit> {
         return flow<Unit> {
-            val cacheFolder = applicationContext.cacheDir
-            val cacheFiles = cacheFolder.fileList()
+            val appStorageFolder = appStorageFolderProvider.getAppStorageFolder()
 
-            for(cacheFile in cacheFiles) {
-                if(cacheFile.exists()) cacheFile.delete()
+            if(!appStorageFolder.exists()) {
+                appStorageFolder.mkdirs()
+            }
+
+            if(!appStorageFolder.exists()) {
+                throw IllegalStateException("Could not create the app's storage folder.")
             }
         }
         .flowOn(dispatcherProvider.io)

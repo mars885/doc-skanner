@@ -105,6 +105,9 @@ dependencies {
     implementation(deps.androidX.daggerHiltAssistedInjection)
     kapt(deps.androidX.daggerHiltAssistedInjectionCompiler)
 
+    implementation(deps.misc.hiltBinder)
+    kapt(deps.misc.hiltBinderCompiler)
+
     testImplementation(deps.testing.jUnit)
     androidTestImplementation(deps.testing.jUnitExt)
 }

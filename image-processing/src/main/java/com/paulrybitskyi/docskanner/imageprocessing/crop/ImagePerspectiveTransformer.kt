@@ -22,6 +22,7 @@ import com.paulrybitskyi.docskanner.imageprocessing.crop.ImagePerspectiveTransfo
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toBitmap
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toMat
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toPoint
+import com.paulrybitskyi.hiltbinder.BindType
 import org.opencv.core.Mat
 import org.opencv.core.MatOfPoint2f
 import org.opencv.core.Point
@@ -45,6 +46,7 @@ interface ImagePerspectiveTransformer {
 }
 
 
+@BindType
 internal class OpenCvImagePerspectiveTransformer @Inject constructor() : ImagePerspectiveTransformer {
 
 
