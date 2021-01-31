@@ -20,6 +20,7 @@ import com.paulrybitskyi.docskanner.imageloading.Transformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.AdaptiveThresholdTransformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.GrayscaleTransformation
 import com.paulrybitskyi.docskanner.imageprocessing.effects.transforms.SimpleThresholdTransformation
+import com.paulrybitskyi.hiltbinder.BindType
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -35,6 +36,7 @@ interface ImageEffectTransformationFactory {
 }
 
 
+@BindType
 internal class ImageEffectTransformationFactoryImpl @Inject constructor(
     private val imageEffectApplier: Provider<ImageEffectApplier>
 ) : ImageEffectTransformationFactory {

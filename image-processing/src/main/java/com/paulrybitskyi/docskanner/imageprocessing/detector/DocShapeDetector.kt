@@ -20,6 +20,7 @@ import android.graphics.Bitmap
 import android.graphics.PointF
 import com.paulrybitskyi.docskanner.imageprocessing.utils.*
 import com.paulrybitskyi.docskanner.imageprocessing.utils.toPointF
+import com.paulrybitskyi.hiltbinder.BindType
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 import javax.inject.Inject
@@ -33,6 +34,7 @@ interface DocShapeDetector {
 }
 
 
+@BindType
 internal class OpenCvDocShapeDetector @Inject constructor(
     private val docCoordsOrderer: DocCoordsOrderer
 ) : DocShapeDetector {

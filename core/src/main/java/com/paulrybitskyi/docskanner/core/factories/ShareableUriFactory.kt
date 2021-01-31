@@ -19,6 +19,7 @@ package com.paulrybitskyi.docskanner.core.factories
 import android.content.Context
 import android.net.Uri
 import androidx.core.content.FileProvider
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import javax.inject.Inject
@@ -31,6 +32,7 @@ interface ShareableUriFactory {
 }
 
 
+@BindType
 internal class ShareableUriFactoryImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context
 ) : ShareableUriFactory {

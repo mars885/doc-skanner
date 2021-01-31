@@ -18,6 +18,7 @@ package com.paulrybitskyi.docskanner.core
 
 import com.paulrybitskyi.docskanner.core.formatters.DocDateFormatter
 import com.paulrybitskyi.docskanner.core.formatters.DocSizeFormatter
+import com.paulrybitskyi.hiltbinder.BindType
 import java.io.File
 import javax.inject.Inject
 
@@ -29,6 +30,7 @@ interface DocDetailsBuilder {
 }
 
 
+@BindType
 internal class DocDetailsBuilderImpl @Inject constructor(
     private val docDateFormatter: DocDateFormatter,
     private val docSizeFormatter: DocSizeFormatter

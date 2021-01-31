@@ -20,6 +20,7 @@ import com.paulrybitskyi.docskanner.imageloading.Config.Destination
 import com.paulrybitskyi.docskanner.imageloading.utils.PicassoTarget
 import com.paulrybitskyi.docskanner.imageloading.utils.PicassoTransformation
 import com.paulrybitskyi.docskanner.imageloading.utils.into
+import com.paulrybitskyi.hiltbinder.BindType
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import java.util.concurrent.ConcurrentHashMap
@@ -37,6 +38,7 @@ interface ImageLoader {
 
 
 @Singleton
+@BindType
 internal class ImageLoaderImpl @Inject constructor(
     private val picasso: Picasso
 ) : ImageLoader {

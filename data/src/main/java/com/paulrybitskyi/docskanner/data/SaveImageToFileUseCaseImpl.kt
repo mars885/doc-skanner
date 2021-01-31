@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.data.usecases
+package com.paulrybitskyi.docskanner.data
 
 import android.graphics.Bitmap
 import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.SaveImageToFileUseCase
 import com.paulrybitskyi.docskanner.domain.SaveImageToFileUseCase.Params
+import com.paulrybitskyi.hiltbinder.BindType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -28,6 +29,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@BindType
 internal class SaveImageToFileUseCaseImpl @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : SaveImageToFileUseCase {

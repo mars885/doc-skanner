@@ -17,6 +17,7 @@
 package com.paulrybitskyi.docskanner.imageprocessing.detector
 
 import android.graphics.PointF
+import com.paulrybitskyi.hiltbinder.BindType
 import javax.inject.Inject
 
 
@@ -38,6 +39,7 @@ interface DocCoordsOrderer {
 }
 
 
+@BindType
 internal class DocCoordsOrdererImpl @Inject constructor() : DocCoordsOrderer {
 
 

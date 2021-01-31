@@ -18,6 +18,7 @@ package com.paulrybitskyi.docskanner.core.verifiers
 
 import android.content.Context
 import android.content.pm.PackageManager
+import com.paulrybitskyi.hiltbinder.BindType
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -29,6 +30,7 @@ interface CameraPresenceVerifier {
 }
 
 
+@BindType
 internal class CameraPresenceVerifierImpl @Inject constructor(
     @ApplicationContext private val applicationContext: Context
 ) : CameraPresenceVerifier {

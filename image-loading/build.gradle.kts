@@ -52,6 +52,9 @@ dependencies {
     implementation(deps.google.daggerHilt)
     kapt(deps.google.daggerHiltCompiler)
 
+    implementation(deps.misc.hiltBinder)
+    kapt(deps.misc.hiltBinderCompiler)
+
     testImplementation(deps.testing.jUnit)
     androidTestImplementation(deps.testing.jUnitExt)
 }

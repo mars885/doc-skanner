@@ -17,6 +17,7 @@
 package com.paulrybitskyi.docskanner.core.providers
 
 import android.os.Environment
+import com.paulrybitskyi.hiltbinder.BindType
 import java.io.File
 import javax.inject.Inject
 
@@ -28,6 +29,7 @@ interface AppStorageFolderProvider {
 }
 
 
+@BindType
 internal class AppStorageFolderProviderImpl @Inject constructor() : AppStorageFolderProvider {
 
 

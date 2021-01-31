@@ -18,6 +18,7 @@ package com.paulrybitskyi.docskanner.imageprocessing.crop.transform
 
 import com.paulrybitskyi.docskanner.imageloading.Transformation
 import com.paulrybitskyi.docskanner.imageprocessing.crop.ImagePerspectiveTransformer
+import com.paulrybitskyi.hiltbinder.BindType
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -29,6 +30,7 @@ interface CropTransformationFactory {
 }
 
 
+@BindType
 internal class CropTransformationFactoryImpl @Inject constructor(
     private val imagePerspectiveTransformer: Provider<ImagePerspectiveTransformer>
 ) : CropTransformationFactory {

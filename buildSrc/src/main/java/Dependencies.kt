@@ -146,11 +146,14 @@ object deps {
         private const val dexterVersion = "6.2.2"
         private const val materialDialogsVersion = "3.3.0"
         private const val pdfViewerVersion = "2.8.2"
+        private const val hiltBinderVersion = "1.0.0-alpha01"
 
         const val dexter = "com.karumi:dexter:${dexterVersion}"
         const val materialDialogsCore = "com.afollestad.material-dialogs:core:${materialDialogsVersion}"
         const val materialDialogsInput = "com.afollestad.material-dialogs:input:${materialDialogsVersion}"
         const val pdfViewer = "com.github.barteksc:android-pdf-viewer:${pdfViewerVersion}"
+        const val hiltBinder = "com.paulrybitskyi:hilt-binder:$hiltBinderVersion"
+        const val hiltBinderCompiler = "com.paulrybitskyi:hilt-binder-compiler:$hiltBinderVersion"
 
     }
 

@@ -16,6 +16,7 @@
 
 package com.paulrybitskyi.docskanner.imageprocessing
 
+import com.paulrybitskyi.hiltbinder.BindType
 import org.opencv.android.OpenCVLoader
 import javax.inject.Inject
 
@@ -27,6 +28,7 @@ interface ImageProcessorInitializer {
 }
 
 
+@BindType
 internal class ImageProcessorInitializerImpl @Inject constructor() : ImageProcessorInitializer {
 
 

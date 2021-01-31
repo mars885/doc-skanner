@@ -32,6 +32,7 @@ import com.paulrybitskyi.commons.ktx.clearPadding
 import com.paulrybitskyi.commons.ktx.getCompatColor
 import com.paulrybitskyi.commons.ktx.getDimensionPixelSize
 import com.paulrybitskyi.docskanner.R
+import com.paulrybitskyi.hiltbinder.BindType
 import javax.inject.Inject
 
 
@@ -42,6 +43,7 @@ internal interface DialogBuilder {
 }
 
 
+@BindType
 internal class DialogBuilderImpl @Inject constructor() : DialogBuilder {
 
 

@@ -16,6 +16,7 @@
 
 package com.paulrybitskyi.docskanner.core.providers
 
+import com.paulrybitskyi.hiltbinder.BindType
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -41,6 +42,7 @@ interface CoroutineScopeProvider {
 }
 
 
+@BindType
 internal class CoroutineScopeProviderImpl @Inject constructor() : CoroutineScopeProvider {
 
 

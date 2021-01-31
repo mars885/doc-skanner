@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Paul Rybitskyi, paul.rybitskyi.work@gmail.com
+ * Copyright 2021 Paul Rybitskyi, paul.rybitskyi.work@gmail.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.paulrybitskyi.docskanner.data.usecases
+package com.paulrybitskyi.docskanner.data
 
 import android.os.FileObserver
 import com.paulrybitskyi.commons.ktx.fileList
@@ -22,6 +22,7 @@ import com.paulrybitskyi.commons.ktx.newFileObserver
 import com.paulrybitskyi.docskanner.core.providers.AppStorageFolderProvider
 import com.paulrybitskyi.docskanner.core.providers.DispatcherProvider
 import com.paulrybitskyi.docskanner.domain.ObserveAppStorageFolderFilesUseCase
+import com.paulrybitskyi.hiltbinder.BindType
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -31,6 +32,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@BindType
 internal class ObserveAppStorageFolderFilesUseCaseImpl @Inject constructor(
     private val appStorageFolderProvider: AppStorageFolderProvider,
     private val dispatcherProvider: DispatcherProvider
