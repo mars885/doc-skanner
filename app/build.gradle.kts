@@ -56,19 +56,10 @@ android {
         viewBinding = true
     }
 
-    // https://dagger.dev/hilt/gradle-setup#classpath-aggregation
-    lintOptions {
-        isCheckReleaseBuilds = false
-    }
-
     compileOptions {
         sourceCompatibility = appConfig.javaCompatibilityVersion
         targetCompatibility = appConfig.javaCompatibilityVersion
     }
-}
-
-hilt {
-    enableExperimentalClasspathAggregation = true
 }
 
 dependencies {
