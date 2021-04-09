@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.ui.editor
 
 import android.graphics.Bitmap
-import androidx.hilt.Assisted
 import androidx.lifecycle.*
 import com.paulrybitskyi.docskanner.R
 import com.paulrybitskyi.docskanner.core.factories.PdfDocumentFileNameFactory
@@ -55,7 +54,7 @@ internal class DocEditorViewModel @Inject constructor(
     private val pdfDocumentFileNameFactory: PdfDocumentFileNameFactory,
     private val fileNameExtensionVerifier: FileNameExtensionVerifier,
     private val stringProvider: StringProvider,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
 

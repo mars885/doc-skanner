@@ -17,7 +17,6 @@
 package com.paulrybitskyi.docskanner.ui.scanner
 
 import android.graphics.Bitmap
-import androidx.hilt.Assisted
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.liveData
@@ -47,7 +46,7 @@ internal class DocScannerViewModel @Inject constructor(
     private val saveImageToFileUseCase: SaveImageToFileUseCase,
     private val temporaryImageFileFactory: TemporaryImageFileFactory,
     private val stringProvider: StringProvider,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
 
