@@ -24,6 +24,7 @@ plugins {
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
@@ -39,8 +40,9 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { setUrl("https://jitpack.io") }
+        mavenCentral()
         google()
+        maven { setUrl("https://jitpack.io") }
         jcenter()
     }
 }

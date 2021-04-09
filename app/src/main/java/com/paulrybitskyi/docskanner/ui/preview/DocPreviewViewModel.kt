@@ -16,7 +16,6 @@
 
 package com.paulrybitskyi.docskanner.ui.preview
 
-import androidx.hilt.Assisted
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -35,7 +34,7 @@ private const val PARAM_DOC_FILE = "doc_file"
 
 @HiltViewModel
 internal class DocPreviewViewModel @Inject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
 

@@ -24,7 +24,7 @@ object appConfig {
     const val compileSdkVersion = 29
     const val targetSdkVersion = 29
     const val minSdkVersion = 23
-    const val buildToolsVersion = "29.0.2"
+    const val buildToolsVersion = "29.0.3"
     const val applicationId = "com.paulrybitskyi.docskanner"
     const val versionCode = 1
     const val versionName = "1.0.0"
@@ -37,10 +37,10 @@ object appConfig {
 
 object versions {
 
-    const val kotlin = "1.4.21" // also in buildSrc build.gradle.kts file
-    const val navigationVersion = "2.3.2"
-    const val daggerHilt = "2.31.2-alpha"
-    const val gradleVersionsPlugin = "0.36.0"
+    const val kotlin = "1.4.32" // also in buildSrc build.gradle.kts file
+    const val navigation = "2.3.5"
+    const val daggerHilt = "2.34-beta"
+    const val gradleVersionsPlugin = "0.38.0"
 
 }
 
@@ -49,11 +49,11 @@ object deps {
 
     object plugins {
 
-        private const val gradlePluginVersion = "4.1.1" // also in buildSrc build.gradle.kts file
+        private const val gradlePluginVersion = "4.1.3" // also in buildSrc build.gradle.kts file
 
         const val androidGradle = "com.android.tools.build:gradle:${gradlePluginVersion}"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        const val navSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigationVersion}"
+        const val navSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
         const val daggerHiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${versions.daggerHilt}"
         const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:${versions.gradleVersionsPlugin}"
 
@@ -72,7 +72,7 @@ object deps {
 
     object kotlin {
 
-        private const val kotlinCoroutinesCoreVersion = "1.4.2"
+        private const val kotlinCoroutinesCoreVersion = "1.4.3"
 
         const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinCoroutinesCoreVersion}"
@@ -82,17 +82,16 @@ object deps {
     object androidX {
 
         private const val appCompatVersion = "1.2.0"
-        private const val constraintLayoutVersion = "2.0.2"
-        private const val recyclerViewVersion = "1.1.0"
-        private const val lifecycleVersion = "2.2.0"
-        private const val coreKtxVersion = "1.3.1"
-        private const val fragmentKtxVersion = "1.2.5"
-        private const val liveDataKtxVersion = "2.2.0"
-        private const val daggerHiltAssistedInjectionVersion = "1.0.0-alpha02"
+        private const val constraintLayoutVersion = "2.0.4"
+        private const val recyclerViewVersion = "1.2.0"
+        private const val lifecycleVersion = "2.3.0"
+        private const val coreKtxVersion = "1.3.2"
+        private const val fragmentKtxVersion = "1.3.2"
+        private const val liveDataKtxVersion = "2.3.1"
 
         const val appCompat = "androidx.appcompat:appcompat:${appCompatVersion}"
-        const val navFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${versions.navigationVersion}"
-        const val navUiKtx = "androidx.navigation:navigation-ui-ktx:${versions.navigationVersion}"
+        const val navFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+        const val navUiKtx = "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
         const val recyclerView = "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
         const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${lifecycleVersion}"
@@ -100,8 +99,6 @@ object deps {
         const val coreKtx = "androidx.core:core-ktx:${coreKtxVersion}"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:${fragmentKtxVersion}"
         const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${liveDataKtxVersion}"
-        const val daggerHiltAssistedInjection = "androidx.hilt:hilt-lifecycle-viewmodel:${daggerHiltAssistedInjectionVersion}"
-        const val daggerHiltAssistedInjectionCompiler = "androidx.hilt:hilt-compiler:${daggerHiltAssistedInjectionVersion}"
 
     }
 
@@ -117,7 +114,7 @@ object deps {
 
     object square {
 
-        private const val picassoVersion = "2.71828"
+        private const val picassoVersion = "2.8"
 
         const val picasso = "com.squareup.picasso:picasso:${picassoVersion}"
 
@@ -125,8 +122,8 @@ object deps {
 
     object commons {
 
-        private const val commonsCoreVersion = "1.0.1"
-        private const val commonsKtxVersion = "1.0.1"
+        private const val commonsCoreVersion = "1.0.2"
+        private const val commonsKtxVersion = "1.0.2"
         private const val commonsNavigationVersion = "1.0.1"
         private const val commonsWidgetsVersion = "1.0.1"
         private const val commonsRecyclerViewVersion = "1.0.0"
@@ -159,8 +156,8 @@ object deps {
 
     object testing {
 
-        private const val jUnitVersion = "4.13.1"
-        private const val jUnitExtVersion = "1.1.1"
+        private const val jUnitVersion = "4.13.2"
+        private const val jUnitExtVersion = "1.1.2"
 
         const val jUnit = "junit:junit:${jUnitVersion}"
         const val jUnitExt = "androidx.test.ext:junit:${jUnitExtVersion}"
