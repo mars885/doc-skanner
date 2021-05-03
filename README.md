@@ -32,11 +32,11 @@ An Android application that makes it possible to automatically scan and digitize
 * [Material Components](https://github.com/material-components/material-components-android) for common UI components
 * [Material Dialogs](https://github.com/afollestad/material-dialogs) for displaying dialogs
 * [Dexter](https://github.com/Karumi/Dexter) for requesting runtime permissions
-* [Kotlin Gradle DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) for build scipts
+* [Kotlin Gradle DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) for build scripts
 * [buildSrc](https://docs.gradle.org/current/userguide/organizing_gradle_projects.html#sec:build_sources) module for dependency management
 * [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) for updating dependencies
 
-For more information about used dependencies, see [this](https://github.com/mars885/doc-skanner/blob/master/buildSrc/src/main/java/Config.kt) file.
+For more information about used dependencies, see [this](https://github.com/mars885/doc-skanner/blob/master/buildSrc/src/main/java/Dependencies.kt) file.
 
 ## Download
 This project contains OpenCV native libraries for every mobile architecture, which means that the APK is split into multiple ones to prevent a one big [fat APK](https://en.wikipedia.org/wiki/Fat_binary). You can install the application in one of two ways:
