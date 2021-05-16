@@ -143,7 +143,7 @@ object deps {
         private const val dexterVersion = "6.2.2"
         private const val materialDialogsVersion = "3.3.0"
         private const val pdfViewerVersion = "2.8.2"
-        private const val hiltBinderVersion = "1.0.0-beta01"
+        private const val hiltBinderVersion = "1.0.0"
 
         const val dexter = "com.karumi:dexter:${dexterVersion}"
         const val materialDialogsCore = "com.afollestad.material-dialogs:core:${materialDialogsVersion}"
